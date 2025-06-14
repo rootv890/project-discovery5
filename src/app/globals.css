@@ -97,7 +97,7 @@
 @layer base {
 	:root {
 		/* ☀️ Light Theme Variables (Standard Contrast) */
-		--radius: 0.625rem;
+		--radius: 0.84rem;
 		--primary: oklch(0.489 0.122 281.04);
 		--surface-tint: oklch(0.489 0.122 281.04);
 		--on-primary: oklch(1 0 0);
