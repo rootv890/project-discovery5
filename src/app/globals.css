@@ -25,6 +25,8 @@
   */
 @custom-variant dark (&:is(.dark *));
 
+@plugin "tailwind-scrollbar";
+
 /*
   * @theme defines your design tokens for Tailwind.
   * This makes all your Material color roles available as Tailwind classes.
