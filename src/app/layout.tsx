@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono, Roboto } from "next/font/google"
 import "./globals.css"
 
-const roboto = Roboto({
+const geist = Geist({
 	variable: "--font-sans",
 	subsets: ["latin"],
 	display: "swap",
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${roboto.className} antialiased`}>{children}</body>
+			<body className={`${geist.className} antialiased`}>{children}</body>
 		</html>
 	)
 }
