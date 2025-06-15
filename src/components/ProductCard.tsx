@@ -78,7 +78,7 @@ export function ProductCard({
 				)}
 			>
 				<CardHeader className={cn("px-4 pt-4", !isHorizontal && "pb-1")}>
-					<CardTitle className="title-md-em">{title}</CardTitle>
+					<CardTitle className="title-md-em !leading-2">{title}</CardTitle>
 					{subtitle && !isHorizontal && (
 						<CardDescription className="text-xs">{subtitle}</CardDescription>
 					)}

@@ -21,7 +21,7 @@ const buttonVariants = cva(
 		variants: {
 			variant: {
 				filled:
-					"bg-primary text-on-primary shadow-xs hover:bg-primary/80 active:bg-primary/90",
+					"bg-primary  text-on-primary shadow-xs hover:bg-primary/80 active:bg-primary/90",
 				inverted:
 					"bg-inverse-surface text-inverse-on-surface shadow-xs hover:bg-inverse-surface/80 active:bg-inverse-surface/90",
 				tonal:

@@ -49,7 +49,7 @@
 		--surface-bright: oklch(0.983 0.006 312.78);
 		--surface-container-lowest: oklch(1 0 0);
 		--surface-container-low: oklch(0.969 0.008 290.13);
-		--surface-container: oklch(0.952 0.01 290.13);
+		--surface-container: oklch(0.9325 0.0148 312.24);
 		--surface-container-high: oklch(0.938 0.01 290.13);
 		--surface-container-highest: oklch(0.925 0.01 290.13);
 
