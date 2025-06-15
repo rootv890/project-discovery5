@@ -5,9 +5,7 @@ import { useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 import { AnimatePresence, motion } from "motion/react"
 import { SearchIcon } from "lucide-react"
-import { open } from "fs"
 
-// To:
 const SearchIsland = ({
 	open,
 	setOpen,
@@ -45,17 +43,24 @@ const SearchIsland = ({
 					onOpenChange={setOpen}
 					className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-20 bg-transparent"
 				>
+					{/* The h2 is now a direct child and correctly associated as the title */}
+					<h2
+						className="sr-only"
+						id="search-dialog-title"
+					>
+						Search for apps, collections, and commands
+					</h2>
 					<motion.div
 						ref={containerRef}
 						tabIndex={-1}
 						onBlur={handleBlur}
-						initial={{ opacity: 0, scale: 0.96 }}
-						animate={{ opacity: 1, scale: 1 }}
-						exit={{ opacity: 0, scale: 0.96 }}
-						transition={{ duration: 0.15 }}
+						initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
+						animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+						exit={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
+						transition={{ duration: 0.25 }}
 						className="w-full max-w-xl rounded-xl border border-surface-container-low bg-surface-container-high shadow-md text-on-surface"
+						aria-labelledby="search-dialog-title" // This links the h2 to the dialog for screen readers
 					>
-						{/* MATERIAL INPUT STYLE HERE */}
 						<SearchInput open={open} />
 						<Command.List
 							className={cn(
@@ -154,10 +159,6 @@ const MaterialCommandItem = ({
 	)
 }
 
-export default SearchIsland
-
-// focus-visible:ring-primary/50 focus-visible:ring-t-[3px]
-
 export function SearchInput({ open }: { open: boolean }) {
 	return (
 		<div
@@ -176,8 +177,10 @@ export function SearchInput({ open }: { open: boolean }) {
 				placeholder="Search for apps and collections..."
 			/>
 			<pre className="text-xs text-on-surface-variant bg-surface-container-low  p-0.5 rounded-xs">
-				{open ? "cmdk + k" : "ESC"}
+				{open ? "CMD + K" : "ESC"}
 			</pre>
 		</div>
 	)
 }
+
+export default SearchIsland

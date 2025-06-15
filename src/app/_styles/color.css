@@ -52,6 +52,9 @@
 		--surface-container: oklch(0.952 0.01 290.13);
 		--surface-container-high: oklch(0.938 0.01 290.13);
 		--surface-container-highest: oklch(0.925 0.01 290.13);
+
+		/* ring */
+		--ring: var(--primary);
 	}
 
 	/* Dark Theme */

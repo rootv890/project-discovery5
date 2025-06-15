@@ -86,3 +86,10 @@
 		animation: gradient-xy 10s ease-in-out infinite;
 	}
 }
+
+@layer utilities {
+	[data-variant="horizontal"] .no-horizontal-padding {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
