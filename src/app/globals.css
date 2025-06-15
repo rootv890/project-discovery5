@@ -18,20 +18,21 @@
  */
 
 @import "tailwindcss";
+@import "./typography.css";
 
 /*
-  * This custom variant tells Tailwind that any utility prefixed
-  * with `dark:` should apply when it's inside a `.dark` parent.
-  */
+	 * This custom variant tells Tailwind that any utility prefixed
+	 * with `dark:` should apply when it's inside a `.dark` parent.
+	 */
 @custom-variant dark (&:is(.dark *));
 
 @plugin "tailwind-scrollbar";
 
 /*
-  * @theme defines your design tokens for Tailwind.
-  * This makes all your Material color roles available as Tailwind classes.
-  * For example, `var(--primary-container)` becomes `bg-primary-container`.
-  */
+	 * @theme defines your design tokens for Tailwind.
+	 * This makes all your Material color roles available as Tailwind classes.
+	 * For example, `var(--primary-container)` becomes `bg-primary-container`.
+	 */
 @theme inline {
 	/* Sizing */
 	--radius-sm: calc(var(--radius) - 4px);
@@ -92,10 +93,10 @@
 }
 
 /*
-  * =================================================================
-  * 🎨 COLOR DEFINITIONS
-  * =================================================================
-  */
+	 * =================================================================
+	 * 🎨 COLOR DEFINITIONS
+	 * =================================================================
+	 */
 @layer base {
 	:root {
 		/* ☀️ Light Theme Variables (Standard Contrast) */
@@ -303,10 +304,10 @@
 	}
 
 	/**
-   * =================================================================
-   *  BASE STYLES
-   * =================================================================
-   */
+		* =================================================================
+		*  BASE STYLES
+		* =================================================================
+		*/
 	* {
 		@apply border-outline-variant; /* A slightly more subtle default border */
 	}
