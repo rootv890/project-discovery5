@@ -1,0 +1,98 @@
+{
+	"shapes": {
+		"4_leaf_clover": {
+			"path": "/shapes/4-leaf-clover.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"4_sided_cookie": {
+			"path": "/shapes/4-sided-cookie.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"6_sided_cookie": {
+			"path": "/shapes/6-sided-cookie.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"7_sided_cookie": {
+			"path": "/shapes/7-sided-cookie.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"8_leaf_clover": {
+			"path": "/shapes/8-leaf-clover.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"9_sided_cookie": {
+			"path": "/shapes/9-sided-cookie.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"12_sided_cookie": {
+			"path": "/shapes/12-sided-cookie.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"Circle": { "path": "/shapes/Circle.svg", "duration": 1, "rotation": 360 },
+		"Diamond": {
+			"path": "/shapes/Diamond.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"Flower": { "path": "/shapes/Flower.svg", "duration": 1, "rotation": 360 },
+		"Gem": { "path": "/shapes/Gem.svg", "duration": 1, "rotation": 360 },
+		"Heart": { "path": "/shapes/Heart.svg", "duration": 1, "rotation": 360 },
+		"Hexagon": {
+			"path": "/shapes/Hexagon.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"Oval": { "path": "/shapes/Oval.svg", "duration": 1, "rotation": 360 },
+		"Pentagon": {
+			"path": "/shapes/Pentagon.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"Pill": { "path": "/shapes/Pill.svg", "duration": 1, "rotation": 360 },
+		"Puffy_diamond": {
+			"path": "/shapes/Puffy-diamond.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"Puffy": { "path": "/shapes/Puffy.svg", "duration": 1, "rotation": 360 },
+		"Soft_boom": {
+			"path": "/shapes/Soft-boom.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"Soft_burst": {
+			"path": "/shapes/Soft-burst.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"Square": { "path": "/shapes/Square.svg", "duration": 1, "rotation": 360 },
+		"Sunny": { "path": "/shapes/Sunny.svg", "duration": 1, "rotation": 360 },
+		"Very_sunny": {
+			"path": "/shapes/Very-sunny.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"Triangle": {
+			"path": "/shapes/Triangle.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"Pixel_Circle": {
+			"path": "/shapes/Pixel-Circle.svg",
+			"duration": 1,
+			"rotation": 360
+		},
+		"Slanted": {
+			"path": "/shapes/Slanted.svg",
+			"duration": 1,
+			"rotation": 360
+		}
+	}
+}
