@@ -10,31 +10,7 @@
 			"duration": 1,
 			"rotation": 360
 		},
-		"6_sided_cookie": {
-			"path": "/shapes/6-sided-cookie.svg",
-			"duration": 1,
-			"rotation": 360
-		},
-		"7_sided_cookie": {
-			"path": "/shapes/7-sided-cookie.svg",
-			"duration": 1,
-			"rotation": 360
-		},
-		"8_leaf_clover": {
-			"path": "/shapes/8-leaf-clover.svg",
-			"duration": 1,
-			"rotation": 360
-		},
-		"9_sided_cookie": {
-			"path": "/shapes/9-sided-cookie.svg",
-			"duration": 1,
-			"rotation": 360
-		},
-		"12_sided_cookie": {
-			"path": "/shapes/12-sided-cookie.svg",
-			"duration": 1,
-			"rotation": 360
-		},
+
 		"Circle": { "path": "/shapes/Circle.svg", "duration": 1, "rotation": 360 },
 		"Diamond": {
 			"path": "/shapes/Diamond.svg",

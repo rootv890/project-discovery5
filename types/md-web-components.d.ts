@@ -20,5 +20,21 @@ declare namespace JSX {
 			buffer?: number
 			fourColor?: boolean
 		}
+
+		// Slider
+		"md-slider": React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> & {
+			value?: number
+			min?: number
+			max?: number
+			step?: number
+			disabled?: boolean
+			labeled?: boolean
+			ticks?: boolean
+			tickInterval?: number
+			valueLabel?: string
+		}
 	}
 }

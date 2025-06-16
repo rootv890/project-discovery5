@@ -1,10 +1,11 @@
-/* :root {
-	--md-linear-progress-track-height: 6px;
-
-	--md-linear-progress-active-indicator-height: 6px;
-	--md-sys-color-primary: var(--color-primary);
-	--md-linear-progress-track-shape: 6px;
-	--md-sys-color-surface-container-highest: var(
-		--color-surface-container-highest
-	);
-} */
+:root {
+	--md-slider-label-text-font: var(--font-sans, sans-serif);
+	--md-slider-label-text-weight: 600;
+	--md-slider-active-track-color: var(--color-primary);
+	--md-slider-inactive-track-color: var(--color-surface-container-highest);
+	--md-slider-handle-shape: 4px;
+	--md-slider-handle-color: var(--color-primary);
+	--md-slider-active-track-shape: 2px;
+	--md-slider-inactive-track-shape: 2px;
+	--md-slider-container-color: var(--color-primary);
+}
