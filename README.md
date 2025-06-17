@@ -6,4 +6,5 @@ Discovery5 is a platform for discovering new tools and resources for your projec
 [ ] Breadcrumbs
 [ ] Skeleton
 [ ] Sidebar
-[ ] TextField
+[ ] Select
+[x] TextField

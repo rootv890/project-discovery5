@@ -1,12 +1,9 @@
-"use client"
-
 import { forwardRef, useRef, useImperativeHandle, HTMLAttributes } from "react"
 import "@material/web/textfield/outlined-text-field.js"
 import "@material/web/textfield/filled-text-field.js"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-// Web component methods supported by Material TextField
 type TextFieldMethods = {
 	select?: () => void
 	setSelectionRange?: (
@@ -29,7 +26,6 @@ type TextFieldMethods = {
 	) => void
 }
 
-// Standard input events you may want to handle
 type TextFieldEvents = {
 	onInput?: (e: InputEvent) => void
 	onChange?: (e: Event) => void
@@ -46,7 +42,6 @@ type TextFieldEvents = {
 	onCompositionEnd?: (e: CompositionEvent) => void
 }
 
-// Props from Material + React + methods + events
 export type TextFieldProps = {
 	variant?: "filled" | "outlined"
 	type?:
@@ -59,7 +54,6 @@ export type TextFieldProps = {
 		| "search"
 		| "textarea"
 	autoComplete?: string
-	inputMode?: string
 	label?: string
 	error?: boolean
 	errorText?: string
@@ -90,7 +84,6 @@ export type TextFieldProps = {
 	TextFieldEvents &
 	HTMLAttributes<HTMLElement>
 
-// Optional Tailwind variant styling (adjust as needed)
 const textFieldVariants = cva("w-full", {
 	variants: {
 		variant: {
@@ -114,19 +107,19 @@ const TextField = forwardRef<HTMLElement, TextFieldProps>(
 		const Tag =
 			variant === "outlined" ? "md-outlined-text-field" : "md-filled-text-field"
 
-		// Final props including class + ref
-		const allProps = {
-			...props,
-			class: cn(textFieldVariants({ variant }), className),
-			ref: localRef,
-		}
+		const allProps = Object.fromEntries(
+			Object.entries({
+				...props,
+				class: cn(textFieldVariants({ variant }), className),
+				ref: localRef,
+			}).filter(([_, value]) => value !== "" && value !== undefined)
+		)
 
 		return (
-			// @ts-ignore: Custom element
+			// @ts-ignore: temporary solution to fix hydration error
 			<Tag
 				{...allProps}
-				error={error}
-				errorText={errorText}
+				suppressHydrationWarning={true}
 			/>
 		)
 	}

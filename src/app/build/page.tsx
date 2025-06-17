@@ -39,6 +39,7 @@ const page = () => {
 						variant="outlined"
 						placeholder="John Doe"
 						prefixText="@"
+						autoComplete="off"
 					/>
 
 					<TextField
