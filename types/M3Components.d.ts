@@ -1,3 +1,5 @@
+const x: string = 123
+
 declare namespace JSX {
 	interface IntrinsicElements {
 		"md-linear-progress": React.DetailedHTMLProps<
@@ -38,7 +40,10 @@ declare namespace JSX {
 		}
 
 		// swiwtch
-		"md-switch": React.DetailedHTMLProps<HTMLElement> & {
+		"md-switch": React.DetailedHTMLProps<
+			React.HTMLAttributes<HTMLElement>,
+			HTMLElement
+		> & {
 			icons?: boolean
 			selected?: boolean
 			disabled?: boolean
@@ -55,3 +60,5 @@ declare namespace JSX {
 		}
 	}
 }
+
+export {}

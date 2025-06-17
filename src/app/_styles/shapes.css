@@ -1,0 +1,9 @@
+@layer base {
+	:root {
+		--corner-shape-small: 4px;
+		--corner-shape-small-medium: 8px;
+		--corner-shape-medium: 12px;
+		--corner-shape-large: 16px;
+		--corner-shape-xl: 24px;
+	}
+}

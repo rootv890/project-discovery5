@@ -22,6 +22,7 @@
 @import "./_styles/typography.css";
 @import "./_styles/color.css";
 @import "./_styles/variables.css";
+@import "./_styles/shapes.css";
 @import "./_styles/material-design.css";
 @custom-variant dark (&:is(.dark *));
 
