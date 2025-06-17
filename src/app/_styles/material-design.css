@@ -8,4 +8,8 @@
 	--md-slider-active-track-shape: 2px;
 	--md-slider-inactive-track-shape: 2px;
 	--md-slider-container-color: var(--color-primary);
+
+	/* Swith */
+	--md-switch-handle-shape: 4px;
+	--md-switch-track-shape: 8px;
 }

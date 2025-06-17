@@ -36,5 +36,22 @@ declare namespace JSX {
 			tickInterval?: number
 			valueLabel?: string
 		}
+
+		// swiwtch
+		"md-switch": React.DetailedHTMLProps<HTMLElement> & {
+			icons?: boolean
+			selected?: boolean
+			disabled?: boolean
+			showOnlySelectedIcon?: boolean
+			required?: boolean
+			value?: string // 'on' or 'off'
+			// methods
+			formReset?: () => void
+			formStateReset?: (state: boolean) => void
+			name?: string
+			// events
+			// onChange?: (event: CustomEvent) => void
+			// onInput?: (event: CustomEvent) => void
+		}
 	}
 }
