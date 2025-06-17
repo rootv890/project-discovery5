@@ -182,14 +182,31 @@ export const toolCompanies = pgTable('tool_companies', {
 // there are 2 errors from the word "comments". 
 //TODO: research how to fix it. 
 
+// export const comments = pgTable('comments', {
+//   id: uuid('id').primaryKey().defaultRandom(),
+//   userId: uuid('user_id').notNull(),
+//   content: text('content').notNull(),
+//   parentId: uuid('parent_id').references(() => comments.id, { onDelete: 'set null' }),
+//   targetType: text('target_type').notNull(), // e.g., "Tool", "Resource"
+//   targetId: uuid('target_id').notNull(),
+// });
+
+
+// Step 1: Create placeholder
+let commentsRef: any;
+
+// Step 2: Initialize `comments` using the placeholder
 export const comments = pgTable('comments', {
   id: uuid('id').primaryKey().defaultRandom(),
   userId: uuid('user_id').notNull(),
   content: text('content').notNull(),
-  parentId: uuid('parent_id').references(() => comments.id, { onDelete: 'set null' }),
-  targetType: text('target_type').notNull(), // e.g., "Tool", "Resource"
+  parentId: uuid('parent_id').references(() => commentsRef.id, { onDelete: 'set null' }),
+  targetType: text('target_type').notNull(),
   targetId: uuid('target_id').notNull(),
 });
+
+// Step 3: Assign the actual table to the placeholder after declaration
+commentsRef = comments;
 
 export const reactions = pgTable('reactions', {
   id: uuid('id').primaryKey().defaultRandom(),
