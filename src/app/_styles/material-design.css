@@ -72,4 +72,20 @@
 	--md-outlined-text-field-container-shape-start-start: var(
 		--corner-shape-medium
 	);
+
+	/* md outlined select */
+
+	--md-outlined-select-text-field-container-shape: var(--corner-shape-medium);
+	--md-outlined-select-text-field-input-text-font: var(--font-sans, sans-serif);
+	--md-filled-select-text-field-container-shape: var(--corner-shape-medium);
+	--md-filled-select-text-field-input-text-font: var(--font-sans, sans-serif);
+
+	md-outlined-select::part(menu) {
+		--md-menu-container-color: var(--color-surface-container-lowest)
+		--md-menu-container-shape: 20px;
+	}
+	--md-outlined-select-text-field-menu-list-item-label-text-font: var(--font-sans, sans-serif);
+	--md-menu-item-label-text-font : var(--font-sans, sans-serif);
+	--md-menu-item-supporting-text-font : var(--font-sans, sans-serif);
+	--md-outlined-field-label-font : var(--font-sans, sans-serif);
 }

@@ -122,6 +122,8 @@ declare module "react" {
 				// ... add other specific methods if needed
 			}
 		>
+		"md-filled-select": MaterialWebComponent
+		"md-outlined-select": MaterialWebComponent
 	}
 }
 
