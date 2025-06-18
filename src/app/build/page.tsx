@@ -4,9 +4,24 @@ import { Button } from "@/components/ui/button"
 import { Select } from "@/components/Select"
 import React from "react"
 import { useForm, Controller } from "react-hook-form"
+import toast from "react-hot-toast"
+import { XIcon } from "lucide-react"
+import CustomMessage from "@/modules/toasts/CustomMessage"
+import { watch } from "fs"
 
 const page = () => {
-	return <DemoForm />
+	return (
+		<div className="h-screen w-full flex flex-col items-center justify-center">
+			<DemoForm />
+			<Button
+				onClick={() => {
+					toast.success("great! thanks")
+				}}
+			>
+				Toast Now
+			</Button>
+		</div>
+	)
 }
 
 export default page
@@ -20,6 +35,16 @@ function DemoForm() {
 
 	const onSubmit = (data: any) => {
 		console.log("Form Data", data)
+		toast(
+			(t) => {
+				return CustomMessage(t, data)
+			},
+			{
+				style: {
+					background: "var(--primary-container)",
+				},
+			}
+		)
 	}
 
 	const current = watch("tool")

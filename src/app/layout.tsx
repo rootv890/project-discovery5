@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono, Roboto } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/modules/navbar/Navbar"
-
+import { Toaster } from "react-hot-toast"
 const geist = Geist({
 	variable: "--font-sans",
 	subsets: ["latin"],
@@ -28,6 +28,10 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${geist.className} antialiased`}>
+				<Toaster
+					position="top-right"
+					reverseOrder={false}
+				/>
 				<Navbar />
 				{children}
 			</body>
