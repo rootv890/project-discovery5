@@ -6,44 +6,6 @@ import {
   jsonb,
 } from 'drizzle-orm/pg-core';
 
-// --- Core Tables ---
-
-
-
-// --- Tags ---
-
-export const tags = pgTable('tags', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  name: text('name').notNull(),
-});
-
-// --- Features (offer T14X) ---
-
-export const features = pgTable('features', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  name: text('name').notNull(),
-});
-
-// --- Resources (offer T14X) ---
-
-export const resources = pgTable('resources', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  title: text('title').notNull(),
-  url: text('url'),
-  format: text('format'), // paid, free, interactive, etc.
-  type: text('type'),     // book, course, tutorial
-});
-
-
-// --- Companies ( offerT14X) ---
-
-export const companies = pgTable('companies', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  name: text('name').notNull(),
-  website: text('website'),
-});
-
-// --- Main Entity ---
 
 
 
