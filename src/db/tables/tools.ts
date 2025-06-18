@@ -3,6 +3,7 @@ import {
   uuid,
   text,
   jsonb,
+  timestamp,
 } from 'drizzle-orm/pg-core';
 
 // --- Tools ---
@@ -13,4 +14,6 @@ export const tools = pgTable('tools', {
   imageUrl: text('image_url'),
   description: text('description'),
   json: jsonb('json'),
+   createdAt: timestamp('created_at').notNull().defaultNow(),
+    updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });

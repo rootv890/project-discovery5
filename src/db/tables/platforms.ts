@@ -1,5 +1,5 @@
 
-import { jsonb, pgTable, text, uuid } from "drizzle-orm/pg-core";
+import { jsonb, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 // --- Platforms ---
 
@@ -10,4 +10,6 @@ export const platforms = pgTable('platforms', {
   imageUrl: text('image_url'),
   description: text('description'),
   json: jsonb('json'),
+   createdAt: timestamp('created_at').notNull().defaultNow(),
+    updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });

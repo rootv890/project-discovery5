@@ -1,4 +1,4 @@
-import { pgTable, text, uuid } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { tools } from "./tools";
 
 // --- Reactions ---
@@ -9,4 +9,6 @@ export const reactions = pgTable('reactions', {
     .notNull()
     .references(() => tools.id, { onDelete: 'cascade' }),
   reactType: text('react_type').notNull(), // e.g., "like", "love", etc.
+   createdAt: timestamp('created_at').notNull().defaultNow(),
+    updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });

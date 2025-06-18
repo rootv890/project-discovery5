@@ -3,6 +3,7 @@ import {
   uuid,
   text,
   jsonb,
+  timestamp,
 } from 'drizzle-orm/pg-core';
 
 
@@ -14,4 +15,6 @@ export const categories = pgTable('categories', {
   imageUrl: text('image_url'),
   description: text('description'),
   json: jsonb('json'),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
