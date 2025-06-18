@@ -13,9 +13,6 @@ Discovery5 is a platform for discovering new tools and resources for your projec
 [x] Feature
 [x] Reaction
 [x] Comment
-[ ] User
-[ ] Session
-[ ] Verification
 
 # Logs
 
@@ -29,3 +26,4 @@ Discovery5 is a platform for discovering new tools and resources for your projec
 8. Add reaction_type enum (upvote, downvote) in reactions table
 9. Withhold Tool-Alternatives table for V1
 10. Index and Unique constraints for all tables
+11. Improve schema.ts file

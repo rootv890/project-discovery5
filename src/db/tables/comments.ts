@@ -9,7 +9,7 @@ import {
 } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 
-const targetTypes = pgEnum("target_type", ["Tool", "Resource"])
+export const commentTargetTypes = pgEnum("target_type", ["Tool", "Resource"])
 
 export const comments = pgTable(
 	"comments",
@@ -17,7 +17,7 @@ export const comments = pgTable(
 		id: uuid("id").primaryKey().defaultRandom(),
 		userId: uuid("user_id").notNull(),
 		content: text("content").notNull(),
-		targetType: targetTypes("target_type").notNull(),
+		targetType: commentTargetTypes("target_type").notNull(),
 		targetId: uuid("target_id").notNull(),
 		createdAt: timestamp("created_at").notNull().defaultNow(),
 		updatedAt: timestamp("updated_at").notNull().defaultNow(),

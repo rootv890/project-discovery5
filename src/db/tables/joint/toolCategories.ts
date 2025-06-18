@@ -1,4 +1,4 @@
-import { index, pgTable, unique, uuid } from "drizzle-orm/pg-core"
+import { index, pgTable, primaryKey, unique, uuid } from "drizzle-orm/pg-core"
 import { tools } from "../tools"
 import { categories } from "../categories"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"

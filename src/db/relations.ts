@@ -7,7 +7,6 @@ import { comments } from "./tables/comments"
 import { reactions } from "./tables/reactions"
 import { toolTags } from "./tables/joint/toolTags"
 import { toolIntegrations } from "./tables/joint/toolIntegrations"
-import { toolAlternatives } from "./tables/joint/toolAlternatives"
 import { toolCreators } from "./tables/joint/toolCreators"
 import { categories } from "./tables/categories"
 import { tags } from "./tables/tags"
@@ -15,6 +14,7 @@ import { platforms } from "./tables/platforms"
 import { features } from "./tables/features"
 import { creators } from "./tables/creators"
 import { tools } from "./tables/tools"
+import { toolAlternatives } from "./tables/joint/toolAlternatives"
 
 export const toolRelations = relations(tools, ({ many, one }) => ({
 	categories: many(toolCategories, { relationName: "tool_categories" }),
