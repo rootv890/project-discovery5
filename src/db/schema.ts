@@ -38,9 +38,52 @@ import { toolIntegrationRelations } from "./relations/joint-relations/toolIntegr
 import { toolTagRelations } from "./relations/joint-relations/toolTagRelations";
 import { toolPlatformRelations } from "./relations/joint-relations/toolPlatformRelations";
 
-export { account, session, user, verification, 
-    tools, categories, platforms, tags, companies, features, reactions,
-toolCategories, toolFeatures, toolPlatforms,toolCompanies, toolTags, toolAlternatives, toolIntegrations,
-toolRelations, commentRelations, tagRelations, reactionRelations, platformRelations, featureRelations, companyRelations, categoryRelations,
-toolAlternativeRelations, toolCategoryRelations, toolCompanyRelations, toolFeatureRelations, toolIntegrationRelations, toolPlatformRelations, toolTagRelations
-}
+// Exporting core tables
+export { 
+    account, 
+    session, 
+    user, 
+    verification, 
+    tools, 
+    categories, 
+    platforms, 
+    tags, 
+    companies, 
+    features, 
+    reactions 
+  };
+  
+  // Exporting joint tables
+  export { 
+    toolCategories, 
+    toolCompanies, 
+    toolPlatforms, 
+    toolTags, 
+    toolFeatures, 
+    toolAlternatives, 
+    toolIntegrations 
+  };
+  
+  // Exporting relations
+  export { 
+    toolRelations, 
+    categoryRelations, 
+    companyRelations, 
+    featureRelations, 
+    platformRelations, 
+    reactionRelations, 
+    tagRelations, 
+    commentRelations 
+  };
+  
+  // Exporting joint relations
+  export { 
+    toolAlternativeRelations, 
+    toolCategoryRelations, 
+    toolCompanyRelations, 
+    toolFeatureRelations, 
+    toolIntegrationRelations, 
+    toolTagRelations, 
+    toolPlatformRelations 
+  };
+  
