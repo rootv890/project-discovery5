@@ -1,3 +1,4 @@
+import { relations } from 'drizzle-orm';
 import { account, session, user, verification } from "./auth-schema"
 //tables imports
 import { tools } from "./tables/tools";
@@ -16,27 +17,11 @@ import { toolTags } from './tables/joint/toolTags';
 import { toolFeatures } from './tables/joint/toolFeatures';
 import { toolAlternatives } from "./tables/joint/toolAlternatives";
 import { toolIntegrations } from "./tables/joint/toolIntegrations";
+import { categoryRelations, commentRelations, companyRelations, featureRelations, platformRelations, reactionRelations, tagRelations, toolAlternativeRelations, toolCategoryRelations, toolCompanyRelations, toolFeatureRelations, toolIntegrationRelations, toolPlatformRelations, toolRelations, toolTagRelations } from './relations';
 
 //relations
-import { toolRelations } from "./relations/toolRelations";
-import { categoryRelations } from "./relations/categoryRelations";
-import { companyRelations } from "./relations/companyRelations";
-import { featureRelations } from "./relations/featureRelations";
-import { platformRelations } from "./relations/platformRelations";
-import { reactionRelations } from "./relations/reactionRelations";
-import { tagRelations } from "./relations/tagRelations";
-import { commentRelations } from "./relations/commentRelations";
 
 
-//joint relations
-
-import { toolAlternativeRelations } from "./relations/joint-relations/toolAlternativesRelations";
-import { toolCategoryRelations } from "./relations/joint-relations/toolCategoryRelations";
-import { toolCompanyRelations } from "./relations/joint-relations/toolCompanyRelations";
-import { toolFeatureRelations } from "./relations/joint-relations/toolFeatureRelations";
-import { toolIntegrationRelations } from "./relations/joint-relations/toolIntegrationRelations";
-import { toolTagRelations } from "./relations/joint-relations/toolTagRelations";
-import { toolPlatformRelations } from "./relations/joint-relations/toolPlatformRelations";
 
 // Exporting core tables
 export { 
