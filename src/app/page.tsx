@@ -1,4 +1,4 @@
-import { Discover, EmojiHappy } from "iconsax-reactjs"
+import { Discover } from "iconsax-reactjs"
 import React from "react"
 
 const page = () => {

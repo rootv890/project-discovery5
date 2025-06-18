@@ -97,7 +97,7 @@ const textFieldVariants = cva("w-full", {
 })
 
 const TextField = forwardRef<HTMLElement, TextFieldProps>(
-	({ variant = "filled", className, error, errorText, ...props }, ref) => {
+	({ variant = "filled", className, ...props }, ref) => {
 		const localRef = useRef<HTMLElement>(null)
 
 		// Expose the real DOM ref via forwardRef
@@ -112,11 +112,11 @@ const TextField = forwardRef<HTMLElement, TextFieldProps>(
 				...props,
 				class: cn(textFieldVariants({ variant }), className),
 				ref: localRef,
-			}).filter(([_, value]) => value !== "" && value !== undefined)
+			}).filter(([, value]) => value !== "" && value !== undefined)
 		)
 
 		return (
-			// @ts-ignore: temporary solution to fix hydration error
+			// @ts-expect-error: Custom Web component
 			<Tag
 				{...allProps}
 				suppressHydrationWarning={true}

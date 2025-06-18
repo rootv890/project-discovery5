@@ -2,12 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import { Select } from "@/components/Select"
-import React from "react"
 import { useForm, Controller } from "react-hook-form"
 import toast from "react-hot-toast"
-import { XIcon } from "lucide-react"
-import CustomMessage from "@/modules/toasts/CustomMessage"
-import { watch } from "fs"
+import { CheckCircle } from "lucide-react"
+import { Google } from "iconsax-reactjs"
 
 const page = () => {
 	return (
@@ -33,18 +31,19 @@ function DemoForm() {
 		},
 	})
 
-	const onSubmit = (data: any) => {
+	const onSubmit = (data: unknown) => {
 		console.log("Form Data", data)
-		toast(
-			(t) => {
-				return CustomMessage(t, data)
-			},
-			{
-				style: {
-					background: "var(--primary-container)",
-				},
-			}
-		)
+		toast.success("great! thanks", {
+			icon: (
+				<Google
+					size={20}
+					variant="Bold"
+				/>
+			),
+		})
+		toast.error("THis is long emssage that should be truncated	", {
+			icon: <CheckCircle size={20} />,
+		})
 	}
 
 	const current = watch("tool")

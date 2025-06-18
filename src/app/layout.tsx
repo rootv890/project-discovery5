@@ -1,16 +1,10 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono, Roboto } from "next/font/google"
+import { Geist } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/modules/navbar/Navbar"
 import { Toaster } from "react-hot-toast"
 const geist = Geist({
 	variable: "--font-sans",
-	subsets: ["latin"],
-	display: "swap",
-})
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
 	subsets: ["latin"],
 	display: "swap",
 })
@@ -31,6 +25,25 @@ export default function RootLayout({
 				<Toaster
 					position="top-right"
 					reverseOrder={false}
+					toastOptions={{
+						style: {
+							backgroundColor: "var(--primary-container)",
+							color: "var(--on-primary-container)",
+							borderRadius: "var(--radius)",
+						},
+						success: {
+							style: {
+								backgroundColor: "var(--success)",
+								color: "var(--on-success)",
+							},
+						},
+						error: {
+							style: {
+								backgroundColor: "var(--error)",
+								color: "var(--on-tertiary)",
+							},
+						},
+					}}
 				/>
 				<Navbar />
 				{children}

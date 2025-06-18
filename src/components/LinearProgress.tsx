@@ -4,7 +4,6 @@ import React from "react"
 import "@material/web/progress/linear-progress.js"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { progress } from "motion/react"
 
 type LinearProgressProps = {
 	buffer?: number
@@ -69,7 +68,7 @@ const LinearProgress = ({
 				} as React.CSSProperties
 			}
 		>
-			{/* @ts-ignore */}
+			{/* @ts-expect-error LinearProgress is not a valid component */}
 			<md-linear-progress
 				value={progress}
 				buffer={buffer}

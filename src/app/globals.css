@@ -40,28 +40,6 @@
 	}
 }
 
-/* Animations */
-@keyframes wave {
-	0% {
-		transform: translateX(-100%);
-	}
-	100% {
-		transform: translateX(100%);
-	}
-}
-
-@keyframes waveMorph {
-	0% {
-		d: path("M0 30 Q 25 50 50 30 T 100 30 V100 H0 Z");
-	}
-	50% {
-		d: path("M0 30 Q 25 10 50 30 T 100 30 V100 H0 Z");
-	}
-	100% {
-		d: path("M0 30 Q 25 50 50 30 T 100 30 V100 H0 Z");
-	}
-}
-
 .animate-wave {
 	animation: wave 3s linear infinite;
 }

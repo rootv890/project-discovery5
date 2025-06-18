@@ -88,7 +88,7 @@ const CircularProgress = ({
 			className={cn(circularProgressVariants({ size }), className)}
 			style={mergedStyle}
 		>
-			{/* @ts-ignore */}
+			{/* @ts-expect-error CircularProgress is not a valid component */}
 			<md-circular-progress
 				// must be value not progress
 				value={progress}

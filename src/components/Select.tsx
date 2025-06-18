@@ -31,17 +31,7 @@ export type SelectHandle = {
 }
 
 export const Select = forwardRef<SelectHandle, SelectProps>(
-	(
-		{
-			variant = "outlined",
-			options = [],
-			value,
-			className,
-			menuPositioning = "popover",
-			...rest
-		},
-		ref
-	) => {
+	({ variant = "outlined", options = [], value, className, ...rest }, ref) => {
 		const localRef = useRef<HTMLElement>(null)
 
 		useImperativeHandle(ref, () => localRef.current as unknown as SelectHandle)
@@ -49,7 +39,7 @@ export const Select = forwardRef<SelectHandle, SelectProps>(
 		const variantClass = variant === "filled" ? "d5-select--filled" : ""
 
 		return (
-			// @ts-ignore: Web component
+			// @ts-expect-error: Web component
 			<md-outlined-select
 				ref={localRef}
 				class={cn("d5-select", variantClass, className)}
@@ -70,7 +60,7 @@ export const Select = forwardRef<SelectHandle, SelectProps>(
 						end={opt.end}
 					/>
 				))}
-				{/* @ts-ignore: Web component */}
+				{/* @ts-expect-error: Custom Web component */}
 			</md-outlined-select>
 		)
 	}

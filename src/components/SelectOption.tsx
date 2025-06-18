@@ -28,7 +28,7 @@ export function SelectOption({
 	...props
 }: SelectOptionProps) {
 	return (
-		// @ts-ignore: Web component
+		// @ts-expect-error: Custom Web component
 		<md-select-option
 			value={value}
 			selected={selected ?? false}
@@ -42,7 +42,7 @@ export function SelectOption({
 			{headline && <span slot="headline">{headline}</span>}
 			{supportingText && <span slot="supporting-text">{supportingText}</span>}
 			{end && <span slot="end">{end}</span>}
-			{/* @ts-ignore: Web component */}
+			{/* @ts-expect-error: Custom Web component */}
 		</md-select-option>
 	)
 }

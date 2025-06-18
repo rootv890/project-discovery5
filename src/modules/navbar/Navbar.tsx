@@ -2,7 +2,7 @@
 
 import SearchTrigger from "@/components/SearchTrigger"
 import { Button } from "@/components/ui/button"
-import { ArrowRight3, Discover, User } from "iconsax-reactjs"
+import { Discover, User } from "iconsax-reactjs"
 import React, { useState } from "react"
 
 const Navbar = () => {
