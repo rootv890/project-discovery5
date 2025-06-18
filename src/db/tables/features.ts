@@ -1,5 +1,4 @@
 import {
-	json,
 	jsonb,
 	pgTable,
 	text,
