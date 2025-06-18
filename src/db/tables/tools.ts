@@ -5,6 +5,7 @@ import {
   jsonb,
   timestamp,
 } from 'drizzle-orm/pg-core';
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 
 // --- Tools ---
 
@@ -17,3 +18,6 @@ export const tools = pgTable('tools', {
    createdAt: timestamp('created_at').notNull().defaultNow(),
     updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
+
+export const insertToolSchema = createInsertSchema(tools);
+export const selectToolSchema = createSelectSchema(tools);
