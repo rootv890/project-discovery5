@@ -1,13 +1,12 @@
 import { createAuthClient } from "better-auth/client"
 export const authClient = createAuthClient()
 
-// const signIn = async () => {
-// 	const data = await authClient.signIn.social({
-// 		provider: "google",
-// 	})
+const signInWithGoogle = async () => {
+	const data = await authClient.signIn.social({
+		provider: "google",
+	})
+	return data
+}
 
-// 	return data
-// }
-
-const { useSession, deleteUser, signOut, accountInfo, signIn } = authClient
-export { accountInfo, deleteUser, signIn, signOut, useSession }
+const { useSession, deleteUser, signOut, accountInfo } = authClient
+export { accountInfo, deleteUser, signOut, useSession, signInWithGoogle }

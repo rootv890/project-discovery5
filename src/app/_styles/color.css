@@ -1,11 +1,10 @@
 @layer base {
 	/* Light Theme */
 	:root {
-
 		--success: oklch(0.7269 0.1576 154.9);
 		--on-success: oklch(0.98 0.02 154.9);
 
-		--error: oklch(0.6532 0.1576 22.93)
+		--error: oklch(0.6532 0.1576 22.93);
 		--on-error: oklch(0.3912 0.1576 22.93);
 		/* ☀️ Light Theme Variables (Standard Contrast) */
 		--radius: 0.84rem;

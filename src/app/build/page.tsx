@@ -41,7 +41,7 @@ function DemoForm() {
 				/>
 			),
 		})
-		toast.error("THis is long emssage that should be truncated	", {
+		toast.error("error message bro!	", {
 			icon: <CheckCircle size={20} />,
 		})
 	}
