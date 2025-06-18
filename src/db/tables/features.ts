@@ -1,10 +1,28 @@
-import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import {
+	json,
+	jsonb,
+	pgTable,
+	text,
+	timestamp,
+	uuid,
+} from "drizzle-orm/pg-core"
+import { createInsertSchema, createSelectSchema } from "drizzle-zod"
+import { tools } from "./tools"
 
-// --- Features (offer T14X) ---
+export const features = pgTable("features", {
+	id: uuid("id").primaryKey().defaultRandom(),
+	name: text("name").notNull(),
 
-export const features = pgTable('features', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  name: text('name').notNull(),
-   createdAt: timestamp('created_at').notNull().defaultNow(),
-    updatedAt: timestamp('updated_at').notNull().defaultNow(),
-});
+	json: jsonb("json"), // todo : generate a json schema for this
+	toolId: uuid("tool_id")
+		.notNull()
+		.references(() => tools.id, { onDelete: "cascade" }),
+	createdAt: timestamp("created_at").notNull().defaultNow(),
+	updatedAt: timestamp("updated_at").notNull().defaultNow(),
+})
+
+// schema and types
+export const insertFeatureSchema = createInsertSchema(features)
+export const selectFeatureSchema = createSelectSchema(features)
+export type InsertFeatureType = typeof features.$inferInsert
+export type SelectFeatureType = typeof features.$inferSelect
