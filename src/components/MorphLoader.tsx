@@ -31,9 +31,9 @@ const MorphLoader = ({
 }: MorphLoaderProps) => {
 	const scope = useRef<HTMLDivElement>(null)
 	const [paths, setPaths] = useState<string[]>([])
-	const [play, setPlay] = useState(autoPlay)
+	const [play] = useState(autoPlay)
 	const timeline = useRef<gsap.core.Timeline | null>(null)
-	const [progress, setProgress] = useState(0)
+	const [, setProgress] = useState(0)
 
 	const shapes = useMemo(
 		() =>

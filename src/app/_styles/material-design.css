@@ -9,7 +9,83 @@
 	--md-slider-inactive-track-shape: 2px;
 	--md-slider-container-color: var(--color-primary);
 
-	/* Swith */
+	/* Switch */
 	--md-switch-handle-shape: 4px;
 	--md-switch-track-shape: 8px;
+
+	/* Text Field */
+	/* filled */
+	--md-filled-text-field-label-text-font: var(--font-sans, sans-serif);
+	--md-filled-text-field-input-text-font: var(--font-sans, sans-serif);
+	--md-filled-text-field-supporting-text-font: var(--font-sans, sans-serif);
+	--md-filled-text-field-container-shape: var(--corner-shape-medium);
+	--md-filled-text-field-container-shape-end-end: var(--corner-shape-medium);
+	--md-filled-text-field-container-shape-end-start: var(--corner-shape-medium);
+	--md-filled-text-field-container-shape-start-end: var(--corner-shape-medium);
+	--md-filled-text-field-container-shape-start-start: var(
+		--corner-shape-medium
+	);
+	/* hide active indicator in filled */
+	--md-filled-text-field-active-indicator-height: 0px;
+	--md-filled-text-field-active-indicator-color: transparent;
+	--md-filled-text-field-hover-active-indicator-color: transparent;
+	--md-filled-text-field-focus-active-indicator-color: transparent;
+	--md-filled-text-field-error-active-indicator-color: transparent;
+	--md-filled-text-field-disabled-active-indicator-color: transparent;
+
+	/* md-filled-text-field {
+		transition: box-shadow 0.3s linear;
+	} */
+	md-filled-text-field:hover {
+		box-shadow: 0 0 0 1px black;
+		border-radius: var(--corner-shape-medium);
+		transition: box-shadow 0.1s linear;
+	}
+	md-filled-text-field:focus {
+		box-shadow: 0 0 0 3px var(--color-primary);
+		border-radius: var(--corner-shape-medium);
+		transition: box-shadow 0.1s linear;
+	}
+	md-filled-text-field:focus-visible {
+		box-shadow: 0 0 0 3px var(--color-primary);
+		border-radius: var(--corner-shape-medium);
+		transition: box-shadow 0.1s linear;
+	}
+	md-filled-text-field:disabled {
+		box-shadow: 0 0 0 1px var(--color-surface-container-lowest);
+		border-radius: var(--corner-shape-medium);
+		transition: box-shadow 0.1s linear;
+	}
+
+	/* outlined */
+	--md-outlined-text-field-label-text-font: var(--font-sans, sans-serif);
+	--md-outlined-text-field-input-text-font: var(--font-sans, sans-serif);
+	--md-outlined-text-field-supporting-text-font: var(--font-sans, sans-serif);
+	--md-outlined-text-field-container-shape: var(--corner-shape-medium);
+	--md-outlined-text-field-container-shape-end-end: var(--corner-shape-medium);
+	--md-outlined-text-field-container-shape-end-start: var(
+		--corner-shape-medium
+	);
+	--md-outlined-text-field-container-shape-start-end: var(
+		--corner-shape-medium
+	);
+	--md-outlined-text-field-container-shape-start-start: var(
+		--corner-shape-medium
+	);
+
+	/* md outlined select */
+
+	--md-outlined-select-text-field-container-shape: var(--corner-shape-medium);
+	--md-outlined-select-text-field-input-text-font: var(--font-sans, sans-serif);
+	--md-filled-select-text-field-container-shape: var(--corner-shape-medium);
+	--md-filled-select-text-field-input-text-font: var(--font-sans, sans-serif);
+
+	md-outlined-select::part(menu) {
+		--md-menu-container-color: var(--color-surface-container-lowest)
+		--md-menu-container-shape: 20px;
+	}
+	--md-outlined-select-text-field-menu-list-item-label-text-font: var(--font-sans, sans-serif);
+	--md-menu-item-label-text-font : var(--font-sans, sans-serif);
+	--md-menu-item-supporting-text-font : var(--font-sans, sans-serif);
+	--md-outlined-field-label-font : var(--font-sans, sans-serif);
 }

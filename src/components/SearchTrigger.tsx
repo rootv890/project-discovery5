@@ -3,7 +3,6 @@
 import { cn } from "@/lib/utils"
 import { SearchIcon } from "lucide-react"
 import SearchIsland from "./SearchIsland"
-import { useState } from "react"
 
 export function SearchTriggerInput({
 	className,

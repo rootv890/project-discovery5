@@ -1,6 +1,6 @@
 "use client"
 
-import { signIn as signInWithGoogle } from "@/auth/auth-client"
+import { signInWithGoogle } from "@/auth/auth-client"
 import { Button } from "@/components/ui/button"
 import {
 	Card,
@@ -23,6 +23,8 @@ export default function SignIn() {
 		setLoading(true)
 		try {
 			await signInWithGoogle()
+		} catch (error) {
+			console.error(error)
 		} finally {
 			setLoading(false)
 		}

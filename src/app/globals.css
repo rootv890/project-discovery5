@@ -22,6 +22,7 @@
 @import "./_styles/typography.css";
 @import "./_styles/color.css";
 @import "./_styles/variables.css";
+@import "./_styles/shapes.css";
 @import "./_styles/material-design.css";
 @custom-variant dark (&:is(.dark *));
 
@@ -36,28 +37,6 @@
 		@apply bg-background text-on-background;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-	}
-}
-
-/* Animations */
-@keyframes wave {
-	0% {
-		transform: translateX(-100%);
-	}
-	100% {
-		transform: translateX(100%);
-	}
-}
-
-@keyframes waveMorph {
-	0% {
-		d: path("M0 30 Q 25 50 50 30 T 100 30 V100 H0 Z");
-	}
-	50% {
-		d: path("M0 30 Q 25 10 50 30 T 100 30 V100 H0 Z");
-	}
-	100% {
-		d: path("M0 30 Q 25 50 50 30 T 100 30 V100 H0 Z");
 	}
 }
 
