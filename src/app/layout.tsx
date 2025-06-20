@@ -3,6 +3,7 @@ import { Geist } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/modules/navbar/Navbar"
 import { Toaster } from "react-hot-toast"
+import { QueryProvider } from "@/providers/QueryProvider"
 const geist = Geist({
 	variable: "--font-sans",
 	subsets: ["latin"],
@@ -22,31 +23,33 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${geist.className} antialiased`}>
-				<Toaster
-					position="top-right"
-					reverseOrder={false}
-					toastOptions={{
-						style: {
-							backgroundColor: "var(--primary-container)",
-							color: "var(--on-primary-container)",
-							borderRadius: "var(--radius)",
-						},
-						success: {
+				<QueryProvider>
+					<Toaster
+						position="top-right"
+						reverseOrder={false}
+						toastOptions={{
 							style: {
-								backgroundColor: "var(--success)",
-								color: "var(--on-success)",
+								backgroundColor: "var(--primary-container)",
+								color: "var(--on-primary-container)",
+								borderRadius: "var(--radius)",
 							},
-						},
-						error: {
-							style: {
-								backgroundColor: "var(--error)",
-								color: "var(--on-tertiary)",
+							success: {
+								style: {
+									backgroundColor: "var(--success)",
+									color: "var(--on-success)",
+								},
 							},
-						},
-					}}
-				/>
-				<Navbar />
-				{children}
+							error: {
+								style: {
+									backgroundColor: "var(--error)",
+									color: "var(--on-tertiary)",
+								},
+							},
+						}}
+					/>
+					<Navbar />
+					{children}
+				</QueryProvider>
 			</body>
 		</html>
 	)
