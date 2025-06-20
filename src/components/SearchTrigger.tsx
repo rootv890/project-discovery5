@@ -1,5 +1,3 @@
-"use client"
-
 import { cn } from "@/lib/utils"
 import { SearchIcon } from "lucide-react"
 import SearchIsland from "./SearchIsland"
