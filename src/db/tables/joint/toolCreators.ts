@@ -1,15 +1,15 @@
-import { pgTable, uuid } from "drizzle-orm/pg-core"
+import { pgTable, text } from "drizzle-orm/pg-core"
 import { tools } from "../tools"
 import { creators } from "../creators"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 
 // --- Tool-Creators ---
 export const toolCreators = pgTable("tool_creators", {
-	id: uuid("id").primaryKey().defaultRandom(),
-	toolId: uuid("tool_id")
+	id: text("id").primaryKey(),
+	toolId: text("tool_id")
 		.notNull()
 		.references(() => tools.id, { onDelete: "cascade" }),
-	creatorId: uuid("creator_id")
+	creatorId: text("creator_id")
 		.notNull()
 		.references(() => creators.id, { onDelete: "cascade" }),
 })

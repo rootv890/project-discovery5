@@ -1,9 +1,9 @@
-import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core"
+import { integer, pgTable, text, timestamp } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 
 // --- Tags ---
 export const tags = pgTable("tags", {
-	id: uuid("id").primaryKey().defaultRandom(),
+	id: text("id").primaryKey(),
 	name: text("name").notNull(),
 	color: text("color").notNull(),
 	slug: text("slug").notNull(),

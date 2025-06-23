@@ -1,4 +1,4 @@
-import { index, pgTable, unique, uuid } from "drizzle-orm/pg-core"
+import { index, pgTable, text, unique, uuid } from "drizzle-orm/pg-core"
 import { tools } from "../tools"
 import { platforms } from "../platforms"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
@@ -8,11 +8,11 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 export const toolPlatforms = pgTable(
 	"tool_platforms",
 	{
-		id: uuid("id").primaryKey().defaultRandom(),
-		toolId: uuid("tool_id")
+		id: text("id").primaryKey(),
+		toolId: text("tool_id")
 			.notNull()
 			.references(() => tools.id, { onDelete: "cascade" }),
-		platformId: uuid("platform_id")
+		platformId: text("platform_id")
 			.notNull()
 			.references(() => platforms.id, { onDelete: "cascade" }),
 	},

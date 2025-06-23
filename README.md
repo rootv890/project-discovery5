@@ -3,6 +3,10 @@
 - cycle : 02 Foundation to dyanmics
 - name: aeroplane-swims
 
+## Logs
+
+- Deleted a uneccessary table user-schema.ts
+
 ## Main Tech Stack applied this cycle
 
 - `@tanstack/react-query`
@@ -126,3 +130,7 @@
 
 - [ ] Soft-delete comment
 - [ ] Optionally remove or collapse replies
+
+### Fetching tool for Cards Preview
+
+Tool name, subtitle, Like Count and Views, Small Description, Buttons -> More Info,Visit Site/Product

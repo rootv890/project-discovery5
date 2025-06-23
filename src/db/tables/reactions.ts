@@ -5,9 +5,9 @@ import {
 	text,
 	timestamp,
 	unique,
-	uuid,
 } from "drizzle-orm/pg-core"
 import { tools } from "./tools"
+import { user } from "../auth-schema"
 
 export const reactionTypes = pgEnum("reaction_type", ["upvote", "downvote"])
 
@@ -15,9 +15,13 @@ export const reactionTypes = pgEnum("reaction_type", ["upvote", "downvote"])
 export const reactions = pgTable(
 	"reactions",
 	{
-		id: uuid("id").primaryKey().defaultRandom(),
-		userId: uuid("user_id").notNull(),
-		toolId: uuid("tool_id")
+		id: text("id").primaryKey(),
+		userId: text("user_id")
+			.references(() => user.id, {
+				onDelete: "set null",
+			})
+			.notNull(),
+		toolId: text("tool_id")
 			.notNull()
 			.references(() => tools.id, { onDelete: "cascade" }),
 		reactionType: reactionTypes("reaction_type").notNull(),

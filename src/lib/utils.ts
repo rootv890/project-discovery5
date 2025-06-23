@@ -33,3 +33,35 @@ export function loadRandomShapes(count: number = 4) {
 		(key) => shapes.shapes[key as keyof typeof shapes.shapes].path
 	)
 }
+
+import { nanoid, customAlphabet } from "nanoid"
+
+const alphabet = "1234567890abcdefghijklmnopqrstuvwxyz"
+const idLength = 6
+
+// 1. Define allowed string types
+type IdType =
+	| "tool"
+	| "category"
+	| "toolCategory"
+	| "platform"
+	| "toolPlatform"
+	| "tag"
+	| "toolTag"
+
+// 2. Prefix map (internal use only)
+const prefixMap = {
+	tool: "t",
+	category: "c",
+	toolCategory: "tc",
+	platform: "p",
+	tag: "tg",
+	toolTag: "ttg",
+	toolPlatform: "tp",
+} as const satisfies Record<IdType, string>
+
+// 3. Generator function
+export function generateId(type: IdType): string {
+	const prefix = prefixMap[type]
+	return `${prefix}_${nanoid(idLength)}`
+}

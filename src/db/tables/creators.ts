@@ -1,16 +1,10 @@
-import {
-	jsonb,
-	pgTable,
-	text,
-	timestamp,
-	uuid,
-} from "drizzle-orm/pg-core"
+import { jsonb, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 
 // --- Creators ---
 
 export const creators = pgTable("creators", {
-	id: uuid("id").primaryKey().defaultRandom(),
+	id: text("id").primaryKey(),
 	name: text("name").notNull(),
 	slug: text("slug").notNull(),
 	imageUrl: text("image_url"),

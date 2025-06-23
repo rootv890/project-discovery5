@@ -1,19 +1,13 @@
-import {
-	jsonb,
-	pgTable,
-	text,
-	timestamp,
-	uuid,
-} from "drizzle-orm/pg-core"
+import { jsonb, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 import { tools } from "./tools"
 
 export const features = pgTable("features", {
-	id: uuid("id").primaryKey().defaultRandom(),
+	id: text("id").primaryKey(),
 	name: text("name").notNull(),
 
 	json: jsonb("json"), // todo : generate a json schema for this
-	toolId: uuid("tool_id")
+	toolId: text("tool_id")
 		.notNull()
 		.references(() => tools.id, { onDelete: "cascade" }),
 	createdAt: timestamp("created_at").notNull().defaultNow(),
