@@ -11,6 +11,11 @@ import {
 	CardContent,
 	CardFooter,
 } from "@/components/ui/card"
+import { Button } from "./ui/button"
+import LikeButton from "./LikeButton"
+import ViewsButton from "./ViewsButton"
+
+import QuickTooltip from "./QuickToolTip"
 
 type ProductCardProps = React.ComponentProps<typeof Card> & {
 	variant?: "elevated" | "filled" | "outlined"
@@ -20,7 +25,8 @@ type ProductCardProps = React.ComponentProps<typeof Card> & {
 	title: string
 	subtitle?: string
 	description?: React.ReactNode | string
-	footer?: React.ReactNode
+	visitUrl?: string
+	moreInfoUrl?: string
 }
 
 export function ProductCard({
@@ -30,7 +36,8 @@ export function ProductCard({
 	title,
 	subtitle,
 	description,
-	footer,
+	visitUrl,
+	moreInfoUrl,
 	className,
 	variant = "filled",
 	...props
@@ -41,8 +48,10 @@ export function ProductCard({
 		<Card
 			variant={variant}
 			className={cn(
-				"overflow-hidden w-[320px]",
-				isHorizontal ? "flex-row-reverse  h-[80px]" : "flex-col h-[400px]",
+				"overflow-hidden w-[344px] rounded-[28px]",
+				isHorizontal
+					? "flex-row-reverse h-[80px]" // unchanged for horizontal
+					: "grid h-[440px] gap-3 grid-rows-[0.59fr_0.41fr]", // converted to grid
 				className
 			)}
 			{...props}
@@ -55,18 +64,20 @@ export function ProductCard({
 						alt={imageAlt}
 						fill
 						priority
-						className="object-cover object-center "
+						className="object-cover object-center"
 					/>
 				</div>
 			) : (
-				<div className="relative w-full h-1/2 shrink-0">
-					<Image
-						src={imageSrc}
-						alt={imageAlt}
-						fill
-						priority
-						className="object-cover"
-					/>
+				<div className=" w-full px-2 pt-2 overflow-clip  ">
+					<div className="relative overflow-clip rounded-[20px] size-full ">
+						<Image
+							src={imageSrc}
+							alt={imageAlt}
+							fill
+							priority
+							className="object-cover"
+						/>
+					</div>
 				</div>
 			)}
 
@@ -74,32 +85,69 @@ export function ProductCard({
 			<div
 				className={cn(
 					"flex flex-col justify-center gap-0",
-					isHorizontal ? "flex-1 pt-2" : "flex-1 min-h-0"
+					isHorizontal ? "flex-1 pt-2" : "min-h-0"
 				)}
 			>
-				<CardHeader className={cn("px-4 pt-4", !isHorizontal && "pb-1")}>
-					<CardTitle className="title-md-em !leading-2">{title}</CardTitle>
-					{subtitle && !isHorizontal && (
-						<CardDescription className="text-xs">{subtitle}</CardDescription>
+				<CardHeader
+					className={cn(
+						"px-4 py-2 flex items-start justify-between gap-2",
+						!isHorizontal && "pb-1"
 					)}
+				>
+					<div className="flex flex-col flex-[3] min-w-0">
+						<CardTitle className="title-lg-em leading-none">{title}</CardTitle>
+						{subtitle && !isHorizontal && (
+							<QuickTooltip
+								label={subtitle}
+								delayDuration={1000}
+							>
+								<CardDescription className="body-md mt-1 truncate text-on-surface-variant">
+									{subtitle}
+								</CardDescription>
+							</QuickTooltip>
+						)}
+					</div>
+
+					<div className="flex items-center justify-start gap-2 flex-shrink-0 ">
+						{/* Like Buttons */}
+						<LikeButton />
+						<ViewsButton />
+					</div>
 				</CardHeader>
 
 				{description && (
 					<CardContent
 						className={cn(
-							"px-4 body-md",
-							isHorizontal
-								? "flex-1 min-h-0 overflow-y-auto py-1"
-								: "flex-1 min-h-0 overflow-y-auto pb-2"
+							"px-4 body-md line-clamp-3 text-on-surface-variant",
+							isHorizontal ? " min-h-0 py-1" : ""
 						)}
 					>
-						<CardDescription>{description}</CardDescription>
+						<QuickTooltip
+							label={description.toString()}
+							delayDuration={2000}
+						>
+							<CardDescription>{description}</CardDescription>
+						</QuickTooltip>
 					</CardContent>
 				)}
-
-				{footer && (
-					<CardFooter className="px-4 pt-2 pb-4 shrink-0">{footer}</CardFooter>
-				)}
+				<CardFooter className="px-4 pt-2 pb-4 shrink-0 flex items-center justify-end gap-2">
+					<Button
+						borderType="round"
+						variant="outline"
+						size="xs"
+						disabled={!moreInfoUrl}
+					>
+						More Info
+					</Button>
+					<Button
+						borderType="round"
+						variant="filled"
+						size="xs"
+						disabled={!visitUrl}
+					>
+						Visit Site
+					</Button>
+				</CardFooter>
 			</div>
 		</Card>
 	)
