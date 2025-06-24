@@ -3,6 +3,8 @@ import { Geist } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/modules/navbar/Navbar"
 import { Toaster } from "react-hot-toast"
+import { SidebarProvider } from "@/components/ui/sidebar"
+import { Discovery5Sidebar } from "@/components/discovery5-sidebar"
 const geist = Geist({
 	variable: "--font-sans",
 	subsets: ["latin"],
@@ -22,6 +24,19 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${geist.className} antialiased`}>
+				<SidebarProvider>
+					<div className="flex min-h-screen bg-background">
+						<div className="w-64 p-4 hidden md:block">
+							<Discovery5Sidebar />
+						</div>
+						<div className="flex-1 flex flex-col">
+							<Navbar />
+							<main className="flex-1">
+								{children}
+							</main>
+						</div>
+					</div>
+				</SidebarProvider>
 				<Toaster
 					position="top-right"
 					reverseOrder={false}
@@ -45,8 +60,6 @@ export default function RootLayout({
 						},
 					}}
 				/>
-				<Navbar />
-				{children}
 			</body>
 		</html>
 	)
