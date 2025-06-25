@@ -1,6 +1,7 @@
 "use client"
 
 import SearchTrigger from "@/components/SearchTrigger"
+import ThemeToggler from "@/components/ThemeToggler"
 import { Button } from "@/components/ui/button"
 import { Discover, User } from "iconsax-reactjs"
 import React, { useState } from "react"
@@ -26,6 +27,7 @@ const Navbar = () => {
 				/>
 			</div>
 			<div className="flex items-center gap-2">
+				<ThemeToggler />
 				<Button
 					variant={"filled"}
 					size={"sm"}

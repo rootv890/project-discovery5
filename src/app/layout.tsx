@@ -4,6 +4,7 @@ import "./globals.css"
 import Navbar from "@/modules/navbar/Navbar"
 import { Toaster } from "react-hot-toast"
 import { QueryProvider } from "@/providers/QueryProvider"
+import { ThemeProvider } from "@/providers/ThemeProvider"
 const geist = Geist({
 	variable: "--font-sans",
 	subsets: ["latin"],
@@ -21,35 +22,45 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
+		<html
+			lang="en"
+			suppressHydrationWarning
+		>
 			<body className={`${geist.className} antialiased`}>
-				<QueryProvider>
-					<Toaster
-						position="top-right"
-						reverseOrder={false}
-						toastOptions={{
-							style: {
-								backgroundColor: "var(--primary-container)",
-								color: "var(--on-primary-container)",
-								borderRadius: "var(--radius)",
-							},
-							success: {
+				<ThemeProvider
+					attribute={"class"}
+					defaultTheme="system"
+					enableSystem={false}
+					disableTransitionOnChange
+				>
+					<QueryProvider>
+						<Toaster
+							position="top-right"
+							reverseOrder={false}
+							toastOptions={{
 								style: {
-									backgroundColor: "var(--success)",
-									color: "var(--on-success)",
+									backgroundColor: "var(--primary-container)",
+									color: "var(--on-primary-container)",
+									borderRadius: "var(--radius)",
 								},
-							},
-							error: {
-								style: {
-									backgroundColor: "var(--error)",
-									color: "var(--on-tertiary)",
+								success: {
+									style: {
+										backgroundColor: "var(--success)",
+										color: "var(--on-success)",
+									},
 								},
-							},
-						}}
-					/>
-					<Navbar />
-					{children}
-				</QueryProvider>
+								error: {
+									style: {
+										backgroundColor: "var(--error)",
+										color: "var(--on-tertiary)",
+									},
+								},
+							}}
+						/>
+						<Navbar />
+						{children}
+					</QueryProvider>
+				</ThemeProvider>
 			</body>
 		</html>
 	)
