@@ -1,6 +1,6 @@
 "use client"
 
-import { ProductCard } from "@/components/ProductCard"
+import { HorizontalProductCard } from "@/components/HorizontalProductCard"
 import { Button } from "@/components/ui/button"
 import {
 	CardHeader,
@@ -11,23 +11,45 @@ import {
 	CardContent,
 	Card,
 } from "@/components/ui/card"
+import { VerticalProductCard } from "@/components/VerticalProductCard"
+import { useFetchToolById } from "@/query-manager/hooks/useFetchTools"
+import { error } from "console"
 import { CopySuccess } from "iconsax-reactjs"
 
 import React from "react"
+import toast from "react-hot-toast"
 
 const page = () => {
+	const { data, isLoading, status, isPlaceholderData, refetch, isError } =
+		useFetchToolById("t_C0Pmn3")
+	console.log(!isLoading ? data : "L")
+	if (isError || (!isLoading && !data)) {
+		toast.error("Something went wrong")
+	}
 	return (
-		<div className="flex flex-col gap-4 h-screen w-full items-center justify-center p-6 bg-surface-variant display-lg-em">
-			<ProductCard
-				title="Rive"
-				subtitle="Real-time interactive animations"
-				description="Rive is a powerful animation tool for creating real-time, interactive motion graphics for apps, games, and websites—all without writing code."
-				imageSrc="/placeholder-image.png" // replace with your local or remote image
-				variant="filled"
-				orientation="vertical"
-				visitUrl="b"
-				moreInfoUrl="a"
-			/>
+		<div className="gap-4 h-screen w-full items-center justify-center p-6 bg-surface-variant display-lg-em grid grid-cols-1 place-items-center">
+			{data?.tool && (
+				<HorizontalProductCard
+					title={data.tool.name}
+					subtitle="Real-time UI design tool"
+					description={data.tool.description}
+					imageSrc={data.tool.imageUrl as string}
+					variant="filled"
+					visitUrl={"www.figma.com"}
+					moreInfoUrl="a"
+				/>
+			)}
+			{data?.tool && (
+				<VerticalProductCard
+					title={data.tool.name}
+					subtitle="Real-time UI design tool"
+					description={data.tool.description}
+					imageSrc={data.tool.imageUrl as string}
+					variant="filled"
+					visitUrl={"www.figma.com"}
+					moreInfoUrl="a"
+				/>
+			)}
 		</div>
 	)
 }

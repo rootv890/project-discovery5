@@ -1,290 +1,181 @@
 @theme {
-	/*
-		fs -> font-size
-		lh -> line-height
-		ts -> letter-spacing
-	*/
-
-	/* Font family & weights */
-	--font-sans: var(--font-sans), sans-serif;
-	--font-weight-regular: 400;
-	--font-weight-medium: 500;
-
 	/* Display */
-	--fs-display-lg: 57px;
-	--lh-display-lg: 64px;
-	--ts-display-lg: -0.75px;
-	--fs-display-md: 45px;
-	--lh-display-md: 52px;
-	--fs-display-sm: 36px;
-	--lh-display-sm: 44px;
+	--ts-d-lg-ff: "Roboto", sans-serif;
+	--ts-d-lg-fw: 400;
+	--ts-d-lg-fs: 57px;
+	--ts-d-lg-ls: -0.25px;
+
+	--ts-d-md-ff: "Roboto", sans-serif;
+	--ts-d-md-fw: 400;
+	--ts-d-md-fs: 45px;
+	--ts-d-md-ls: 0;
+
+	--ts-d-sm-ff: "Roboto", sans-serif;
+	--ts-d-sm-fw: 400;
+	--ts-d-sm-fs: 36px;
+	--ts-d-sm-ls: 0;
 
 	/* Headline */
-	--fs-headline-lg: 32px;
-	--lh-headline-lg: 40px;
-	--fs-headline-md: 28px;
-	--lh-headline-md: 36px;
-	--fs-headline-sm: 24px;
-	--lh-headline-sm: 32px;
+	--ts-h-lg-ff: "Roboto", sans-serif;
+	--ts-h-lg-fw: 400;
+	--ts-h-lg-fs: 32px;
+	--ts-h-lg-ls: 0;
 
-	/* Title */
-	--fs-title-lg: 22px;
-	--lh-title-lg: 0.5;
-	--fs-title-md: 16px;
-	--lh-title-md: 24px;
-	--ts-title-md: 0.15px;
-	--fs-title-sm: 14px;
-	--lh-title-sm: 20px;
-	--ts-title-sm: 0.1px;
+	--ts-h-md-ff: "Roboto", sans-serif;
+	--ts-h-md-fw: 400;
+	--ts-h-md-fs: 28px;
+	--ts-h-md-ls: 0;
+
+	--ts-h-sm-ff: "Roboto", sans-serif;
+	--ts-h-sm-fw: 400;
+	--ts-h-sm-fs: 24px;
+	--ts-h-sm-ls: 0;
 
 	/* Body */
-	--fs-body-lg: 16px;
-	--lh-body-lg: 24px;
-	--ts-body-lg: 0.5px;
-	--fs-body-md: 14px;
-	--lh-body-md: 20px;
-	--ts-body-md: 0.25px;
-	--fs-body-sm: 12px;
-	--lh-body-sm: 16px;
-	--ts-body-sm: 0.4px;
+	--ts-b-lg-ff: "Roboto", sans-serif;
+	--ts-b-lg-fw: 400;
+	--ts-b-lg-fs: 16px;
+	--ts-b-lg-ls: 0.5px;
+
+	--ts-b-md-ff: "Roboto", sans-serif;
+	--ts-b-md-fw: 400;
+	--ts-b-md-fs: 14px;
+	--ts-b-md-ls: 0.25px;
+
+	--ts-b-sm-ff: "Roboto", sans-serif;
+	--ts-b-sm-fw: 400;
+	--ts-b-sm-fs: 12px;
+	--ts-b-sm-ls: 0.4px;
 
 	/* Label */
-	--fs-label-lg: 14px;
-	--lh-label-lg: 20px;
-	--ts-label-lg: 0.1px;
-	--fs-label-md: 12px;
-	--lh-label-md: 16px;
-	--ts-label-md: 0.5px;
-	--fs-label-sm: 11px;
-	--lh-label-sm: 16px;
-	--ts-label-sm: 0.5px;
+	--ts-l-lg-ff: "Roboto", sans-serif;
+	--ts-l-lg-fw: 500;
+	--ts-l-lg-fs: 14px;
+	--ts-l-lg-ls: 0.1px;
+
+	--ts-l-md-ff: "Roboto", sans-serif;
+	--ts-l-md-fw: 500;
+	--ts-l-md-fs: 12px;
+	--ts-l-md-ls: 0.5px;
+
+	--ts-l-sm-ff: "Roboto", sans-serif;
+	--ts-l-sm-fw: 500;
+	--ts-l-sm-fs: 11px;
+	--ts-l-sm-ls: 0.5px;
+
+	/* Title */
+	--ts-t-lg-ff: "Roboto", sans-serif;
+	--ts-t-lg-fw: 400;
+	--ts-t-lg-fs: 22px;
+	--ts-t-lg-ls: 0;
+
+	--ts-t-md-ff: "Roboto", sans-serif;
+	--ts-t-md-fw: 500;
+	--ts-t-md-fs: 16px;
+	--ts-t-md-ls: 0.15px;
+
+	--ts-t-sm-ff: "Roboto", sans-serif;
+	--ts-t-sm-fw: 500;
+	--ts-t-sm-fs: 14px;
+	--ts-t-sm-ls: 0.1px;
 }
 
-/* 2. Create utility classes using `@apply` */
-.display-lg,
-.display-md,
-.display-sm,
-.headline-lg,
-.headline-md,
-.headline-sm,
-.title-lg,
-.title-md,
-.title-sm,
-.body-lg,
-.body-md,
-.body-sm,
-.label-lg,
-.label-md,
-.label-sm {
-	font-family: var(--font-sans);
-}
-
+/* Display */
 .display-lg {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-display-lg);
-	line-height: var(--lh-display-lg);
-	letter-spacing: var(--ts-display-lg);
+	font-family: var(--ts-d-lg-ff);
+	font-weight: var(--ts-d-lg-fw);
+	font-size: var(--ts-d-lg-fs);
+	letter-spacing: var(--ts-d-lg-ls);
 }
-.display-lg-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-display-lg);
-	line-height: var(--lh-display-lg);
-	letter-spacing: var(--ts-display-lg);
-}
-
 .display-md {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-display-md);
-	line-height: var(--lh-display-md);
-	letter-spacing: var(--ts-display-md);
+	font-family: var(--ts-d-md-ff);
+	font-weight: var(--ts-d-md-fw);
+	font-size: var(--ts-d-md-fs);
+	letter-spacing: var(--ts-d-md-ls);
 }
-.display-md-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-display-md);
-	line-height: var(--lh-display-md);
-	letter-spacing: var(--ts-display-md);
-}
-
 .display-sm {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-display-sm);
-	line-height: var(--lh-display-sm);
-	letter-spacing: var(--ts-display-sm);
-}
-.display-sm-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-display-sm);
-	line-height: var(--lh-display-sm);
-	letter-spacing: var(--ts-display-sm);
+	font-family: var(--ts-d-sm-ff);
+	font-weight: var(--ts-d-sm-fw);
+	font-size: var(--ts-d-sm-fs);
+	letter-spacing: var(--ts-d-sm-ls);
 }
 
+/* Headline */
 .headline-lg {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-headline-lg);
-	line-height: var(--lh-headline-lg);
-	letter-spacing: var(--ts-headline-lg);
+	font-family: var(--ts-h-lg-ff);
+	font-weight: var(--ts-h-lg-fw);
+	font-size: var(--ts-h-lg-fs);
+	letter-spacing: var(--ts-h-lg-ls);
 }
-.headline-lg-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-headline-lg);
-	line-height: var(--lh-headline-lg);
-	letter-spacing: var(--ts-headline-lg);
-}
-
 .headline-md {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-headline-md);
-	line-height: var(--lh-headline-md);
-	letter-spacing: var(--ts-headline-md);
+	font-family: var(--ts-h-md-ff);
+	font-weight: var(--ts-h-md-fw);
+	font-size: var(--ts-h-md-fs);
+	letter-spacing: var(--ts-h-md-ls);
 }
-.headline-md-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-headline-md);
-	line-height: var(--lh-headline-md);
-	letter-spacing: var(--ts-headline-md);
-}
-
 .headline-sm {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-headline-sm);
-	line-height: var(--lh-headline-sm);
-	letter-spacing: var(--ts-headline-sm);
-}
-.headline-sm-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-headline-sm);
-	line-height: var(--lh-headline-sm);
-	letter-spacing: var(--ts-headline-sm);
+	font-family: var(--ts-h-sm-ff);
+	font-weight: var(--ts-h-sm-fw);
+	font-size: var(--ts-h-sm-fs);
+	letter-spacing: var(--ts-h-sm-ls);
 }
 
-.title-lg {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-title-lg);
-	line-height: var(--lh-title-lg);
-	letter-spacing: var(--ts-title-lg);
-}
-.title-lg-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-title-lg);
-	line-height: var(--lh-title-lg);
-	letter-spacing: var(--ts-title-lg);
-}
-
-.title-md {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-title-md);
-	line-height: var(--lh-title-md);
-	letter-spacing: var(--ts-title-md);
-}
-.title-md-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-title-md);
-	line-height: var(--lh-title-md);
-	letter-spacing: var(--ts-title-md);
-}
-
-.title-sm {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-title-sm);
-	line-height: var(--lh-title-sm);
-	letter-spacing: var(--ts-title-sm);
-}
-.title-sm-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-title-sm);
-	line-height: var(--lh-title-sm);
-	letter-spacing: var(--ts-title-sm);
-}
-
+/* Body */
 .body-lg {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-body-lg);
-	line-height: var(--lh-body-lg);
-	letter-spacing: var(--ts-body-lg);
+	font-family: var(--ts-b-lg-ff);
+	font-weight: var(--ts-b-lg-fw);
+	font-size: var(--ts-b-lg-fs);
+	letter-spacing: var(--ts-b-lg-ls);
 }
-.body-lg-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-body-lg);
-	line-height: var(--lh-body-lg);
-	letter-spacing: var(--ts-body-lg);
-}
-
 .body-md {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-body-md);
-	line-height: var(--lh-body-md);
-	letter-spacing: var(--ts-body-md);
+	font-family: var(--ts-b-md-ff);
+	font-weight: var(--ts-b-md-fw);
+	font-size: var(--ts-b-md-fs);
+	letter-spacing: var(--ts-b-md-ls);
 }
-.body-md-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-body-md);
-	line-height: var(--lh-body-md);
-	letter-spacing: var(--ts-body-md);
-}
-
 .body-sm {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-body-sm);
-	line-height: var(--lh-body-sm);
-	letter-spacing: var(--ts-body-sm);
-}
-.body-sm-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-body-sm);
-	line-height: var(--lh-body-sm);
-	letter-spacing: var(--ts-body-sm);
+	font-family: var(--ts-b-sm-ff);
+	font-weight: var(--ts-b-sm-fw);
+	font-size: var(--ts-b-sm-fs);
+	letter-spacing: var(--ts-b-sm-ls);
 }
 
+/* Label */
 .label-lg {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-label-lg);
-	line-height: var(--lh-label-lg);
-	letter-spacing: var(--ts-label-lg);
+	font-family: var(--ts-l-lg-ff);
+	font-weight: var(--ts-l-lg-fw);
+	font-size: var(--ts-l-lg-fs);
+	letter-spacing: var(--ts-l-lg-ls);
 }
-.label-lg-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-label-lg);
-	line-height: var(--lh-label-lg);
-	letter-spacing: var(--ts-label-lg);
-}
-
 .label-md {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-label-md);
-	line-height: var(--lh-label-md);
-	letter-spacing: var(--ts-label-md);
+	font-family: var(--ts-l-md-ff);
+	font-weight: var(--ts-l-md-fw);
+	font-size: var(--ts-l-md-fs);
+	letter-spacing: var(--ts-l-md-ls);
 }
-.label-md-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-label-md);
-	line-height: var(--lh-label-md);
-	letter-spacing: var(--ts-label-md);
+.label-sm {
+	font-family: var(--ts-l-sm-ff);
+	font-weight: var(--ts-l-sm-fw);
+	font-size: var(--ts-l-sm-fs);
+	letter-spacing: var(--ts-l-sm-ls);
 }
 
-.label-sm {
-	font-weight: var(--font-weight-regular);
-	font-size: var(--fs-label-sm);
-	line-height: var(--lh-label-sm);
-	letter-spacing: var(--ts-label-sm);
+/* Title */
+.title-lg {
+	font-family: var(--ts-t-lg-ff);
+	font-weight: var(--ts-t-lg-fw);
+	font-size: var(--ts-t-lg-fs);
+	letter-spacing: var(--ts-t-lg-ls);
 }
-.label-sm-em {
-	font-family: var(--font-sans);
-	font-weight: var(--font-weight-medium);
-	font-size: var(--fs-label-sm);
-	line-height: var(--lh-label-sm);
-	letter-spacing: var(--ts-label-sm);
+.title-md {
+	font-family: var(--ts-t-md-ff);
+	font-weight: var(--ts-t-md-fw);
+	font-size: var(--ts-t-md-fs);
+	letter-spacing: var(--ts-t-md-ls);
+}
+.title-sm {
+	font-family: var(--ts-t-sm-ff);
+	font-weight: var(--ts-t-sm-fw);
+	font-size: var(--ts-t-sm-fs);
+	letter-spacing: var(--ts-t-sm-ls);
 }

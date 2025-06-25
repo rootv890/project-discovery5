@@ -13,6 +13,7 @@ const LikeButton = () => {
 	return (
 		<Button
 			variant={"ghost"}
+			className="w-fit"
 			size={"xs"}
 			onClick={() => {
 				if (!like) {

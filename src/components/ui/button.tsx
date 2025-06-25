@@ -34,8 +34,8 @@ const buttonVariants = cva(
 				link: "bg-transparent text-primary underline-offset-4 hover:underline",
 			},
 			size: {
-				xs: "h-[32px] py-[0.375rem] px-[0.75rem] label-lg gap-1",
-				sm: "h-[48px] py-[0.625rem] px-[1rem]   text-sm gap-2",
+				xs: "h-[32px] py-[0.625rem] px-[1rem] label-lg gap-1",
+				sm: " py-[0.625rem] !font-semibold px-[1rem]   text-sm gap-2",
 				md: "h-[56px] py-[1rem]     px-[1.5rem] text-base gap-2",
 				lg: "h-[96px] py-[2rem]     px-[3rem]   text-lg gap-3",
 				xl: "h-[136px] py-[3rem]    px-[4rem]   text-xl gap-4",
