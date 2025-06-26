@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import {
   Sidebar,
@@ -17,34 +16,25 @@ import { sidebarData } from "@/lib/sidebar-data"
 
 export function Discovery5Sidebar() {
   return (
-    <Sidebar className="rounded-4xl bg-surface shadow-lg mt-15 ml-4 overflow-hidden h-[calc(100vh-5rem)] [&>[data-sidebar=sidebar]]:rounded-4xl [&>[data-sidebar=sidebar]]:bg-surface">
-      <SidebarContent className="px-2 py-3 rounded-4xl scrollbar-thin scrollbar-track-transparent scrollbar-thumb-outline-variant/30 hover:scrollbar-thumb-outline-variant/50">
+    <Sidebar className="w-[231px] h-[870px] rounded-[28px] bg-surface-container-low flex flex-col ml-6 mt-[94px]">
+      <SidebarContent className="p-3">
         {sidebarData.map((section, sectionIndex) => (
           <React.Fragment key={section.id}>
-            <SidebarGroup className="pb-1">
-              <SidebarGroupLabel className="px-0 py-1.5 text-sm font-semibold text-on-surface">
+            <SidebarGroup>
+              <SidebarGroupLabel className="w-[207px] h-[60px] rounded-full flex items-center gap-2.5 py-[18px] px-4 text-on-surface-variant">
                 {section.title}
               </SidebarGroupLabel>
               <SidebarGroupContent>
-                <SidebarMenu className="space-y-0.5">
+                <SidebarMenu className="w-[207px]">
                   {section.items.map((item) => (
-                    <SidebarMenuItem key={item.id}>
-                      <SidebarMenuButton
-                        asChild
-                        className={cn(
-                          "w-full justify-start gap-3 !px-2 !py-3 !h-auto rounded-full",
-                          "hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:rounded-full transition-all duration-200",
-                          "text-on-surface-variant hover:text-on-surface",
-                          "cursor-pointer"
-                        )}
-                      >
-                        <a href={item.href || "#"} className="flex items-center gap-3 w-full hover:[&>svg]:text-purple-700 dark:hover:[&>svg]:text-purple-400">
+                    <SidebarMenuItem key={item.id} className="w-[207px] h-[56px]">
+                      <SidebarMenuButton asChild>
+                        <a href={item.href || "#"} className="w-[207px] h-full flex items-center py-4 pl-4 pr-6 gap-3 bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-on-primary">
                           <item.icon
                             variant="Outline"
                             size={20}
-                            className="shrink-0 text-on-surface-variant transition-colors duration-200"
                           />
-                          <span className="flex-1 text-left text-sm font-medium">
+                          <span>
                             {item.title}
                           </span>
                         </a>
@@ -55,9 +45,8 @@ export function Discovery5Sidebar() {
               </SidebarGroupContent>
             </SidebarGroup>
 
-            {/* Add separator between sections, but not after the last one */}
             {sectionIndex < sidebarData.length - 1 && (
-              <Separator className="my-1.5 mx-3 bg-outline-variant" />
+              <Separator />
             )}
           </React.Fragment>
         ))}
