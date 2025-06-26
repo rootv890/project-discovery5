@@ -20,7 +20,7 @@ export function Discovery5Sidebar() {
       <SidebarContent className="p-3">
         {sidebarData.map((section, sectionIndex) => (
           <React.Fragment key={section.id}>
-            <SidebarGroup>
+            <SidebarGroup className={section.id !== "web" ? "border-t border-outline-variant" : ""}>
               <SidebarGroupLabel className="w-[207px] h-[60px] rounded-full flex items-center gap-2.5 py-[18px] px-4 text-on-surface-variant text-base font-semibold leading-6 tracking-[0.15px]">
                 {section.title}
               </SidebarGroupLabel>
@@ -29,11 +29,11 @@ export function Discovery5Sidebar() {
                   {section.items.map((item) => (
                     <SidebarMenuItem key={item.id} className="w-[207px] h-[56px]">
                       <SidebarMenuButton asChild>
-                        <a href={item.href || "#"} className="w-[207px] h-full flex items-center py-4 pl-4 pr-6 gap-3 bg-surface-container-low text-on-surface-variant hover:bg-secondary-container hover:rounded-full transition-all duration-200">
+                        <a href={item.href || "#"} className="w-[207px] h-full flex items-center py-4 pl-4 pr-6 gap-3 bg-surface-container-low text-on-surface-variant hover:bg-secondary-container hover:rounded-full transition-all duration-200 hover:[&>svg]:text-primary">
                           <item.icon
                             variant={item.id === "prototyping" ? "Bulk" : "Outline"}
                             size={24}
-                            className="text-on-surface-variant"
+                            className="text-on-surface-variant transition-colors duration-200"
                           />
                           <span className="text-sm font-semibold leading-5 tracking-[0.1px] text-on-secondary-container">
                             {item.title}
