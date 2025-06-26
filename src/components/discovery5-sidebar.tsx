@@ -21,7 +21,7 @@ export function Discovery5Sidebar() {
         {sidebarData.map((section, sectionIndex) => (
           <React.Fragment key={section.id}>
             <SidebarGroup>
-              <SidebarGroupLabel className="w-[207px] h-[60px] rounded-full flex items-center gap-2.5 py-[18px] px-4 text-on-surface-variant">
+              <SidebarGroupLabel className="w-[207px] h-[60px] rounded-full flex items-center gap-2.5 py-[18px] px-4 text-on-surface-variant text-base font-semibold leading-6 tracking-[0.15px]">
                 {section.title}
               </SidebarGroupLabel>
               <SidebarGroupContent>
@@ -31,10 +31,11 @@ export function Discovery5Sidebar() {
                       <SidebarMenuButton asChild>
                         <a href={item.href || "#"} className="w-[207px] h-full flex items-center py-4 pl-4 pr-6 gap-3 bg-surface-container-low text-on-surface-variant hover:bg-secondary-container hover:rounded-full transition-all duration-200">
                           <item.icon
-                            variant="Outline"
-                            size={20}
+                            variant={item.id === "prototyping" ? "Bulk" : "Outline"}
+                            size={24}
+                            className="text-on-surface-variant"
                           />
-                          <span>
+                          <span className="text-sm font-semibold leading-5 tracking-[0.1px] text-on-secondary-container">
                             {item.title}
                           </span>
                         </a>
