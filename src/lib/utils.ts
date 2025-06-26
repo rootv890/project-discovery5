@@ -42,18 +42,24 @@ const idLength = 6
 // 1. Define allowed string types
 type IdType =
 	| "tool"
+	| "feature"
 	| "category"
+	| "creator"
 	| "toolCategory"
 	| "platform"
 	| "toolPlatform"
 	| "tag"
 	| "toolTag"
+	| "toolCreator"
 
 // 2. Prefix map (internal use only)
 const prefixMap = {
 	tool: "t",
 	category: "c",
+	feature: "f",
 	toolCategory: "tc",
+	creator: "cr",
+	toolCreator: "tcr",
 	platform: "p",
 	tag: "tg",
 	toolTag: "ttg",
