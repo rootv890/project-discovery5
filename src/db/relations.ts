@@ -22,8 +22,8 @@ export const toolRelations = relations(tools, ({ many, one }) => ({
 	comments: many(comments, { relationName: "tool_comments" }),
 	reactions: many(reactions, { relationName: "tool_reactions" }),
 	feature: one(features, {
-		fields: [features.toolId],
-		references: [tools.id],
+		fields: [tools.id],
+		references: [features.toolId],
 		relationName: "tool_feature",
 	}),
 	tags: many(toolTags, { relationName: "tool_tags" }),

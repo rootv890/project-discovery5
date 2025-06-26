@@ -1,11 +1,4 @@
-import {
-	index,
-	jsonb,
-	pgTable,
-	text,
-	timestamp,
-	uuid,
-} from "drizzle-orm/pg-core"
+import { index, jsonb, pgTable, text, timestamp } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 
 // --- Platforms ---
@@ -13,7 +6,7 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 export const platforms = pgTable(
 	"platforms",
 	{
-		id: uuid("id").primaryKey().defaultRandom(),
+		id: text("id").primaryKey(),
 		name: text("name").notNull(),
 		slug: text("slug").notNull(),
 		imageUrl: text("image_url"),

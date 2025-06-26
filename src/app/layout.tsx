@@ -5,6 +5,8 @@ import Navbar from "@/modules/navbar/Navbar"
 import { Toaster } from "react-hot-toast"
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { Discovery5Sidebar } from "@/components/discovery5-sidebar"
+import { QueryProvider } from "@/providers/QueryProvider"
+import { ThemeProvider } from "@/providers/ThemeProvider"
 const geist = Geist({
 	variable: "--font-sans",
 	subsets: ["latin"],
@@ -22,44 +24,55 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
+		<html
+			lang="en"
+			suppressHydrationWarning
+		>
 			<body className={`${geist.className} antialiased`}>
-				<SidebarProvider>
-					<div className="flex min-h-screen bg-background">
-						<div className="w-64 p-4 hidden md:block">
-							<Discovery5Sidebar />
-						</div>
-						<div className="flex-1 flex flex-col">
-							<Navbar />
-							<main className="flex-1">
-								{children}
-							</main>
-						</div>
-					</div>
-				</SidebarProvider>
-				<Toaster
-					position="top-right"
-					reverseOrder={false}
-					toastOptions={{
-						style: {
-							backgroundColor: "var(--primary-container)",
-							color: "var(--on-primary-container)",
-							borderRadius: "var(--radius)",
-						},
-						success: {
-							style: {
-								backgroundColor: "var(--success)",
-								color: "var(--on-success)",
-							},
-						},
-						error: {
-							style: {
-								backgroundColor: "var(--error)",
-								color: "var(--on-tertiary)",
-							},
-						},
-					}}
-				/>
+			<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem={false}
+					disableTransitionOnChange
+				>
+					<QueryProvider>
+						<SidebarProvider>
+							<div className="flex min-h-screen bg-background">
+								<div className="w-64 p-4 hidden md:block">
+									<Discovery5Sidebar />
+								</div>
+								<div className="flex-1 flex flex-col">
+									<Navbar />
+									<main className="flex-1">{children}</main>
+								</div>
+							</div>
+						</SidebarProvider>
+
+						<Toaster
+							position="top-right"
+							reverseOrder={false}
+							toastOptions={{
+								style: {
+									backgroundColor: "var(--primary-container)",
+									color: "var(--on-primary-container)",
+									borderRadius: "var(--radius)",
+								},
+								success: {
+									style: {
+										backgroundColor: "var(--success)",
+										color: "var(--on-success)",
+									},
+								},
+								error: {
+									style: {
+										backgroundColor: "var(--error)",
+										color: "var(--on-tertiary)",
+									},
+								},
+							}}
+						/>
+					</QueryProvider>
+				</ThemeProvider>
 			</body>
 		</html>
 	)

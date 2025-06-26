@@ -1,13 +1,23 @@
-import { pgTable, uuid, text, jsonb, timestamp } from "drizzle-orm/pg-core"
+import { pgTable, text, timestamp, pgEnum, jsonb } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 
 // --- Tools ---
+
+export const toolStatus = pgEnum("tool_status", [
+	"draft",
+	"pending_review",
+	"approved",
+	"rejected",
+])
+
 export const tools = pgTable("tools", {
-	id: uuid("id").primaryKey().defaultRandom(),
+	id: text("id").primaryKey(),
 	name: text("name").notNull(),
+	subtitle: text("subtitle").notNull(),
 	slug: text("slug").notNull(),
 	imageUrl: text("image_url"),
 	description: text("description"),
+	status: toolStatus("tool_status").default("draft"),
 	json: jsonb("json"), // todo : generate a json schema for this
 	createdAt: timestamp("created_at").notNull().defaultNow(),
 	updatedAt: timestamp("updated_at").notNull().defaultNow(),

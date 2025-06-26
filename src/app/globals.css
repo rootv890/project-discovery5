@@ -28,6 +28,8 @@
 
 @plugin "tailwind-scrollbar";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
 	* {
 		@apply border-outline-variant; /* A slightly more subtle default border */
@@ -72,3 +74,7 @@
 		padding-right: 0;
 	}
 }
+/*
+* {
+	border: 1px solid red;
+} */

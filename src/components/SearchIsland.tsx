@@ -5,6 +5,8 @@ import { useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 import { AnimatePresence, motion } from "motion/react"
 import { SearchIcon } from "lucide-react"
+import { DialogTitle } from "./ui/dialog"
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 
 const SearchIsland = ({
 	open,
@@ -43,13 +45,12 @@ const SearchIsland = ({
 					onOpenChange={setOpen}
 					className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-20 bg-transparent"
 				>
-					{/* The h2 is now a direct child and correctly associated as the title */}
-					<h2
-						className="sr-only"
-						id="search-dialog-title"
-					>
-						Search for apps, collections, and commands
-					</h2>
+					<VisuallyHidden>
+						<DialogTitle>
+							Search for apps, collections, and commands
+						</DialogTitle>
+					</VisuallyHidden>
+
 					<motion.div
 						ref={containerRef}
 						tabIndex={-1}
