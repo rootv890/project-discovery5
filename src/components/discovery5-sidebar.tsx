@@ -29,7 +29,7 @@ export function Discovery5Sidebar() {
                   {section.items.map((item) => (
                     <SidebarMenuItem key={item.id} className="w-[207px] h-[56px]">
                       <SidebarMenuButton asChild>
-                        <a href={item.href || "#"} className="w-[207px] h-full flex items-center py-4 pl-4 pr-6 gap-3 bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-on-primary">
+                        <a href={item.href || "#"} className="w-[207px] h-full flex items-center py-4 pl-4 pr-6 gap-3 bg-surface-container-low text-on-surface-variant hover:bg-secondary-container hover:rounded-full transition-all duration-200">
                           <item.icon
                             variant="Outline"
                             size={20}
