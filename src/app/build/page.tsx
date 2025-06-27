@@ -3,31 +3,30 @@
 import { HorizontalProductCard } from "@/components/HorizontalProductCard"
 import { Button } from "@/components/ui/button"
 import {
-	CardHeader,
-	CardFooter,
-	CardTitle,
-	CardAction,
-	CardDescription,
-	CardContent,
 	Card,
+	CardAction,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
 } from "@/components/ui/card"
 import { VerticalProductCard } from "@/components/VerticalProductCard"
 import { useFetchToolById } from "@/query-manager/hooks/useFetchTools"
-import { error } from "console"
 import { CopySuccess } from "iconsax-reactjs"
 
 import React from "react"
 import toast from "react-hot-toast"
 
 const page = () => {
-	const { data, isLoading, status, isPlaceholderData, refetch, isError } =
-		useFetchToolById("t_C0Pmn3")
+	const { data, isLoading, isError } = useFetchToolById("t_z07Jfq")
 	console.log(!isLoading ? data : "L")
 	if (isError || (!isLoading && !data)) {
 		toast.error("Something went wrong")
 	}
 	return (
 		<div className="gap-4 h-screen w-full items-center justify-center p-6 bg-surface-variant display-lg-em grid grid-cols-1 place-items-center">
+			{" "}
 			{data?.tool && (
 				<HorizontalProductCard
 					title={data.tool.name}

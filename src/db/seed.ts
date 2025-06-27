@@ -1,34 +1,35 @@
+import { db } from "@/db/db"
 import {
-	// Core
-	tools as toolsTable,
 	categories as categoriesTable,
 	platforms as platformsTable,
 	tags as tagsTable,
 
 	// Joint tables
 	toolCategories,
-	toolTags,
 	toolPlatforms,
-
-	// Types
-	type InsertToolType,
+	// Core
+	tools as toolsTable,
+	toolTags,
 	type InsertCategoryType,
 	type InsertPlatformType,
 	type InsertTagType,
 	type InsertToolCategoryType,
-	type InsertToolTagType,
 	type InsertToolPlatformType,
+	type InsertToolTagType,
+	// Types
+	type InsertToolType,
 } from "@/db/schema"
-import { db } from "@/db/db"
 import { generateId } from "@/lib/utils"
 // STEP 1: Base data (without hardcoded IDs)
 const toolsData: InsertToolType[] = [
 	{
 		id: generateId("tool"),
 		name: "Figma",
+		subtitle: "UI-UX and Prototyping tool",
 		description: "Figma is a vector graphics editor and prototyping tool.",
 		slug: "figma",
-		imageUrl: "https://cdn.sanity.io/images/599r6htc/.../figma.svg",
+		imageUrl:
+			"https://cdn.sanity.io/images/599r6htc/regionalized/4042e8ef7dbe5609613c705bdaf926cf65f6326b-720x720.png?q=75&fit=max&auto=format&dpr=2",
 		json: {
 			features: ["Vector editing", "Prototyping", "Collaboration"],
 			website: "https://figma.com",
@@ -38,10 +39,13 @@ const toolsData: InsertToolType[] = [
 	},
 	{
 		id: generateId("tool"),
+
 		name: "Adobe XD",
+		subtitle: "UI-UX Desktop tool by Freaking Adobe",
 		description: "Adobe XD is a vector-based design tool.",
 		slug: "adobe-xd",
-		imageUrl: "https://upload.wikimedia.org/.../Adobe_XD_CC_icon.svg",
+		imageUrl:
+			"https://cdn.sanity.io/images/599r6htc/regionalized/83b7a244be9f96d89a858e6663372a51f46cda7d-1560x1248.png?w=780&q=75&fit=max&auto=format&dpr=2",
 		json: {
 			features: ["Wireframing", "Prototyping", "Collaboration"],
 			website: "https://adobe.com/products/xd.html",

@@ -1,0 +1,1 @@
+ALTER TABLE "tools" ADD COLUMN "pricing_enum" "pricing_enum" DEFAULT 'free' NOT NULL;

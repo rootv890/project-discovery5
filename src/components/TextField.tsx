@@ -1,8 +1,8 @@
-import { forwardRef, useRef, useImperativeHandle, HTMLAttributes } from "react"
-import "@material/web/textfield/outlined-text-field.js"
-import "@material/web/textfield/filled-text-field.js"
-import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import "@material/web/textfield/filled-text-field.js"
+import "@material/web/textfield/outlined-text-field.js"
+import { cva } from "class-variance-authority"
+import { forwardRef, HTMLAttributes, useImperativeHandle, useRef } from "react"
 
 type TextFieldMethods = {
 	select?: () => void
@@ -84,7 +84,7 @@ export type TextFieldProps = {
 	TextFieldEvents &
 	HTMLAttributes<HTMLElement>
 
-const textFieldVariants = cva("w-full", {
+const textFieldVariants = cva("w-full ", {
 	variants: {
 		variant: {
 			filled: "",

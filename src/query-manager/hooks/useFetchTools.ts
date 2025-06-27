@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query"
-import { id } from "zod/v4/locales"
 import { fetchToolById } from "../queries/tools"
 import { queryKeys } from "../queryKeys"
 

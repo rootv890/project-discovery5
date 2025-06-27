@@ -34,7 +34,7 @@ export function loadRandomShapes(count: number = 4) {
 	)
 }
 
-import { nanoid, customAlphabet } from "nanoid"
+import { customAlphabet, nanoid } from "nanoid"
 
 const alphabet = "1234567890abcdefghijklmnopqrstuvwxyz"
 const idLength = 6
@@ -70,4 +70,17 @@ const prefixMap = {
 export function generateId(type: IdType): string {
 	const prefix = prefixMap[type]
 	return `${prefix}_${nanoid(idLength)}`
+}
+
+export function cleanRegisterProps(registerReturn: any) {
+	const {
+		min,
+		max,
+		valueAsNumber,
+		valueAsDate,
+		setValueAs,
+		shouldUnregister,
+		...rest
+	} = registerReturn
+	return rest
 }

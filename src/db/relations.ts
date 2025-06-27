@@ -1,26 +1,29 @@
 // --- Relations ---
 
 import { relations } from "drizzle-orm"
-import { toolCategories } from "./tables/joint/toolCategories"
-import { toolPlatforms } from "./tables/joint/toolPlatforms"
-import { comments } from "./tables/comments"
-import { reactions } from "./tables/reactions"
-import { toolTags } from "./tables/joint/toolTags"
-import { toolIntegrations } from "./tables/joint/toolIntegrations"
-import { toolCreators } from "./tables/joint/toolCreators"
+import { awards } from "./tables/awards"
 import { categories } from "./tables/categories"
-import { tags } from "./tables/tags"
-import { platforms } from "./tables/platforms"
-import { features } from "./tables/features"
+import { comments } from "./tables/comments"
 import { creators } from "./tables/creators"
-import { tools } from "./tables/tools"
+import { features } from "./tables/features"
 import { toolAlternatives } from "./tables/joint/toolAlternatives"
+import { toolAwards } from "./tables/joint/toolAwards"
+import { toolCategories } from "./tables/joint/toolCategories"
+import { toolCreators } from "./tables/joint/toolCreators"
+import { toolIntegrations } from "./tables/joint/toolIntegrations"
+import { toolPlatforms } from "./tables/joint/toolPlatforms"
+import { toolTags } from "./tables/joint/toolTags"
+import { platforms } from "./tables/platforms"
+import { reactions } from "./tables/reactions"
+import { tags } from "./tables/tags"
+import { tools } from "./tables/tools"
 
 export const toolRelations = relations(tools, ({ many, one }) => ({
 	categories: many(toolCategories, { relationName: "tool_categories" }),
 	platforms: many(toolPlatforms, { relationName: "tool_platforms" }),
 	comments: many(comments, { relationName: "tool_comments" }),
 	reactions: many(reactions, { relationName: "tool_reactions" }),
+	awards: many(toolAwards, { relationName: "tool_awards" }),
 	feature: one(features, {
 		fields: [tools.id],
 		references: [features.toolId],
@@ -174,3 +177,21 @@ export const reactionRelations = relations(reactions, ({ one }) => ({
 }))
 
 // TODO - low priority : move all relations to respective table files
+
+// tool-awards
+export const toolAwardRelations = relations(toolAwards, ({ one }) => ({
+	tool: one(tools, {
+		fields: [toolAwards.toolId],
+		references: [tools.id],
+		relationName: "tool_award_tool",
+	}),
+	award: one(awards, {
+		fields: [toolAwards.awardId],
+		references: [awards.id],
+		relationName: "tool_award_award",
+	}),
+}))
+
+export const awardRelations = relations(awards, ({ many }) => ({
+	tools: many(toolAwards, { relationName: "award_tools" }),
+}))
