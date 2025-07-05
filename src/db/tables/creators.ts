@@ -1,10 +1,13 @@
+import { generateId } from "@/lib/utils"
 import { jsonb, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 
 // --- Creators ---
 
 export const creators = pgTable("creators", {
-	id: text("id").primaryKey(),
+	id: text("id")
+		.primaryKey()
+		.$defaultFn(() => generateId("creator")),
 	name: text("name").notNull(),
 	slug: text("slug").notNull(),
 	imageUrl: text("image_url"),

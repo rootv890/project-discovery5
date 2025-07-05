@@ -11,35 +11,33 @@ export function SearchTriggerInput({
 }) {
 	return (
 		<>
-			{/* 🔍 Full input-like trigger on large screens */}
+			{/* 🔍 Full search bar on desktop */}
 			<button
 				onClick={onClick}
 				className={cn(
-					"hidden md:flex w-full py-[0.625rem] px-[1rem] h-[48px] outline-none transition-[color,box-shadow]",
-					"bg-surface-container-high text-on-surface-variant rounded-lg text-base font-medium shadow-xs disabled:cursor-not-allowed disabled:opacity-50",
-					"placeholder:text-muted-foreground",
-					"items-center justify-between gap-2",
+					"hidden md:flex w-full max-w-3xl h-[56px] px-4 rounded-full",
+					"bg-surface-container-high text-on-surface shadow-sm hover:shadow-md transition-shadow",
+					"items-center justify-between gap-4",
 					className
 				)}
 			>
-				<div className="flex items-center gap-2 text-on-surface-variant">
-					<SearchIcon className="size-5" />
-					<span className="text-sm text-on-surface-variant">
-						Search for apps and collections...
-					</span>
+				<div className="flex-1 px-3 text-on-surface">
+					Search for anything...
 				</div>
-				<kbd className="text-xs text-on-surface-variant bg-surface-container-low p-1 px-2 rounded">
-					cmdk + k
-				</kbd>
+
+				<div className="p-2 bg-primary text-on-primary rounded-full">
+					<SearchIcon className="size-4" />
+				</div>
 			</button>
 
-			{/* 🔍 Icon-only button on small screens */}
+			{/* 🔍 Compact search trigger on mobile */}
 			<button
 				onClick={onClick}
 				aria-label="Search"
-				className="flex md:hidden items-center justify-center size-10 rounded-md bg-surface-container-high text-on-surface-variant shadow-xs"
+				className="flex md:hidden items-center gap-2 h-[44px] px-4 rounded-full bg-surface-container-high text-on-surface shadow-sm"
 			>
 				<SearchIcon className="size-5" />
+				<span className="text-sm font-medium">Search</span>
 			</button>
 		</>
 	)
@@ -54,11 +52,9 @@ export default function SearchTrigger({
 }) {
 	return (
 		<>
-			<SearchTriggerInput
-				onClick={() => setOpen(true)}
-				// responsive width
-				className="min-w-sm lg:min-w-lg md:min-w-md"
-			/>
+			<div className="w-full flex justify-center px-4">
+				<SearchTriggerInput onClick={() => setOpen(true)} />
+			</div>
 			<SearchIsland
 				open={open}
 				setOpen={setOpen}

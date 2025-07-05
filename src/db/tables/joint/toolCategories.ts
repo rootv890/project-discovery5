@@ -1,3 +1,4 @@
+import { generateId } from "@/lib/utils"
 import {
 	index,
 	pgTable,
@@ -6,15 +7,18 @@ import {
 	unique,
 	uuid,
 } from "drizzle-orm/pg-core"
-import { tools } from "../tools"
-import { categories } from "../categories"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
+import { categories } from "../categories"
+import { tools } from "../tools"
 
 // --- Tool-Categories ---
 export const toolCategories = pgTable(
 	"tool_categories",
 	{
-		id: text("id").primaryKey(),
+		id: text("id")
+			.primaryKey()
+			.notNull()
+			.$defaultFn(() => generateId("toolCategory")),
 		toolId: text("tool_id")
 			.notNull()
 			.references(() => tools.id, { onDelete: "cascade" }),

@@ -1,3 +1,4 @@
+import { generateId } from "@/lib/utils"
 import { jsonb, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 
@@ -20,7 +21,10 @@ export const pricingEnum = pgEnum("pricing_enum", [
 ])
 
 export const tools = pgTable("tools", {
-	id: text("id").primaryKey(),
+	id: text("id")
+		.primaryKey()
+		.notNull()
+		.$defaultFn(() => generateId("tool")),
 	name: text("name").notNull(),
 	subtitle: text("subtitle").notNull(),
 	slug: text("slug").notNull(),

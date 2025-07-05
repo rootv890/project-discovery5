@@ -1,3 +1,4 @@
+import { generateId } from "@/lib/utils"
 import {
 	AnyPgColumn,
 	index,
@@ -14,7 +15,9 @@ export const commentTargetTypes = pgEnum("target_type", ["Tool", "Resource"])
 export const comments = pgTable(
 	"comments",
 	{
-		id: text("id").primaryKey(),
+		id: text("id")
+			.primaryKey()
+			.$defaultFn(() => generateId("comment")),
 		userId: text("user_id")
 			.references(() => user.id, {
 				onDelete: "set default",

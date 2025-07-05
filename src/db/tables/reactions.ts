@@ -1,3 +1,4 @@
+import { generateId } from "@/lib/utils"
 import {
 	index,
 	pgEnum,
@@ -6,8 +7,8 @@ import {
 	timestamp,
 	unique,
 } from "drizzle-orm/pg-core"
-import { tools } from "./tools"
 import { user } from "../auth-schema"
+import { tools } from "./tools"
 
 export const reactionTypes = pgEnum("reaction_type", ["upvote", "downvote"])
 
@@ -15,7 +16,9 @@ export const reactionTypes = pgEnum("reaction_type", ["upvote", "downvote"])
 export const reactions = pgTable(
 	"reactions",
 	{
-		id: text("id").primaryKey(),
+		id: text("id")
+			.primaryKey()
+			.$defaultFn(() => generateId("other")),
 		userId: text("user_id")
 			.references(() => user.id, {
 				onDelete: "set null",

@@ -53,6 +53,16 @@
 		/* ring */
 		--ring: var(--primary);
 		--radius: 0.84rem;
+		--sidebar: var(--surface-container); /* smooth container background */
+		--sidebar-foreground: var(--on-surface); /* readable text */
+		--sidebar-primary: var(--primary); /* highlight */
+		--sidebar-primary-foreground: var(--on-primary); /* text over primary */
+		--sidebar-accent: var(--secondary-container); /* subtle accent block */
+		--sidebar-accent-foreground: var(
+			--on-secondary-container
+		); /* readable text */
+		--sidebar-border: var(--outline-variant); /* low contrast border */
+		--sidebar-ring: var(--outline); /* focused ring color */
 	}
 
 	/* Dark Theme */
@@ -106,5 +116,13 @@
 		--surface-container: #211f26;
 		--surface-container-high: #2b2930;
 		--surface-container-highest: #36343b;
+		--sidebar: var(--surface-container); /* background container */
+		--sidebar-foreground: var(--on-surface); /* text */
+		--sidebar-primary: var(--primary); /* same as theme primary */
+		--sidebar-primary-foreground: var(--on-primary); /* white or light text */
+		--sidebar-accent: var(--secondary-container); /* dark-accented block */
+		--sidebar-accent-foreground: var(--on-secondary-container); /* light text */
+		--sidebar-border: var(--outline-variant); /* subtle border */
+		--sidebar-ring: var(--outline); /* focus ring */
 	}
 }

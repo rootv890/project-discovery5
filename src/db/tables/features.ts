@@ -1,9 +1,13 @@
+import { generateId } from "@/lib/utils"
 import { jsonb, pgTable, text, timestamp } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 import { tools } from "./tools"
 
 export const features = pgTable("features", {
-	id: text("id").primaryKey(),
+	id: text("id")
+		.primaryKey()
+		.notNull()
+		.$defaultFn(() => generateId("feature")),
 	json: jsonb("json"), // todo : generate a json schema for this
 	toolId: text("tool_id")
 		.notNull()

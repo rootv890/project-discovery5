@@ -51,6 +51,10 @@ type IdType =
 	| "tag"
 	| "toolTag"
 	| "toolCreator"
+	| "other"
+	| "award"
+	| "comment"
+	| "toolComment"
 
 // 2. Prefix map (internal use only)
 const prefixMap = {
@@ -64,6 +68,10 @@ const prefixMap = {
 	tag: "tg",
 	toolTag: "ttg",
 	toolPlatform: "tp",
+	other: "o",
+	comment: "cm",
+	toolComment: "tcmt",
+	award: "a",
 } as const satisfies Record<IdType, string>
 
 // 3. Generator function

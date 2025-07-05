@@ -1,9 +1,12 @@
+import { generateId } from "@/lib/utils"
 import { integer, pgTable, text, timestamp } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 
 // --- Tags ---
 export const tags = pgTable("tags", {
-	id: text("id").primaryKey(),
+	id: text("id")
+		.primaryKey()
+		.$defaultFn(() => generateId("tag")),
 	name: text("name").notNull(),
 	color: text("color").notNull(),
 	slug: text("slug").notNull(),

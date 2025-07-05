@@ -1,13 +1,18 @@
-import { pgTable, text, jsonb, timestamp } from "drizzle-orm/pg-core"
+import { generateId } from "@/lib/utils"
+import { jsonb, pgTable, text, timestamp } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 
 // --- Categories ---
 
 export const categories = pgTable("categories", {
-	id: text("id").primaryKey().notNull(),
+	id: text("id")
+		.primaryKey()
+		.notNull()
+		.$defaultFn(() => generateId("category")),
 	name: text("name").notNull(),
 	slug: text("slug").notNull(),
 	imageUrl: text("image_url"),
+	iconSvg: text("icon_svg"),
 	description: text("description"),
 	json: jsonb("json"), // todo : generate a json schema for this
 	createdAt: timestamp("created_at").notNull().defaultNow(),

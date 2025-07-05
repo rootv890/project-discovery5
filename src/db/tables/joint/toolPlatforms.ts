@@ -1,14 +1,18 @@
+import { generateId } from "@/lib/utils"
 import { index, pgTable, text, unique, uuid } from "drizzle-orm/pg-core"
-import { tools } from "../tools"
-import { platforms } from "../platforms"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
+import { platforms } from "../platforms"
+import { tools } from "../tools"
 
 // --- Tool-Platforms ---
 
 export const toolPlatforms = pgTable(
 	"tool_platforms",
 	{
-		id: text("id").primaryKey(),
+		id: text("id")
+			.primaryKey()
+			.notNull()
+			.$defaultFn(() => generateId("toolPlatform")),
 		toolId: text("tool_id")
 			.notNull()
 			.references(() => tools.id, { onDelete: "cascade" }),
