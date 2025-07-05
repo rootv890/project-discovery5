@@ -1,5 +1,4 @@
 // --- Relations ---
-
 import { relations } from "drizzle-orm"
 import { awards } from "./tables/awards"
 import { categories } from "./tables/categories"
@@ -19,33 +18,43 @@ import { tags } from "./tables/tags"
 import { tools } from "./tables/tools"
 
 export const toolRelations = relations(tools, ({ many, one }) => ({
-	categories: many(toolCategories, { relationName: "tool_categories" }),
-	platforms: many(toolPlatforms, { relationName: "tool_platforms" }),
-	comments: many(comments, { relationName: "tool_comments" }),
-	reactions: many(reactions, { relationName: "tool_reactions" }),
-	awards: many(toolAwards, { relationName: "tool_awards" }),
+	categories: many(toolCategories, { relationName: "tool_categories_tool" }),
+	platforms: many(toolPlatforms, { relationName: "tool_platforms_tool" }),
+	// P
+	comments: many(comments, {
+		relationName: "tool_comments",
+	}),
+	reactions: many(reactions, { relationName: "reaction_tool" }),
+	awards: many(toolAwards, { relationName: "tool_award_tool" }),
 	feature: one(features, {
 		fields: [tools.id],
 		references: [features.toolId],
-		relationName: "tool_feature",
+		relationName: "feature_tool",
 	}),
-	tags: many(toolTags, { relationName: "tool_tags" }),
-	integrations: many(toolIntegrations, { relationName: "tool_integrations" }),
-	alternatives: many(toolAlternatives, { relationName: "tool_alternatives" }),
-	// debate :  one or many creators ? for now many
-	creators: many(toolCreators, { relationName: "tool_creators" }),
+	tags: many(toolTags, { relationName: "tool_tags_tool" }),
+	integrations: many(toolIntegrations, {
+		relationName: "tool_integrations_tool",
+	}),
+	alternatives: many(toolAlternatives, {
+		relationName: "tool_alternatives_tool",
+	}),
+	creators: many(toolCreators, { relationName: "tool_creators_tool" }),
 }))
 
 export const categoryRelations = relations(categories, ({ many }) => ({
-	tools: many(toolCategories, { relationName: "category_tools" }),
+	toolCategories: many(toolCategories, {
+		relationName: "tool_categories_category",
+	}),
 }))
 
 export const platformRelations = relations(platforms, ({ many }) => ({
-	tools: many(toolPlatforms, { relationName: "platform_tools" }),
+	toolPlatforms: many(toolPlatforms, {
+		relationName: "tool_platforms_platform",
+	}),
 }))
 
 export const tagRelations = relations(tags, ({ many }) => ({
-	tools: many(toolTags, { relationName: "tag_tools" }),
+	toolTags: many(toolTags, { relationName: "tool_tags_tag" }),
 }))
 
 export const featureRelations = relations(features, ({ one }) => ({
@@ -58,7 +67,7 @@ export const featureRelations = relations(features, ({ one }) => ({
 
 export const creatorRelations = relations(creators, ({ many }) => ({
 	toolCreators: many(toolCreators, {
-		relationName: "creator_tool_creators",
+		relationName: "tool_creators_creator",
 	}),
 }))
 
@@ -160,12 +169,24 @@ export const toolCreatorRelations = relations(toolCreators, ({ one }) => ({
 }))
 
 export const commentRelations = relations(comments, ({ one, many }) => ({
+	// ✅ Relation to tool (polymorphic base case)
+	tool: one(tools, {
+		fields: [comments.toolId],
+		references: [tools.id],
+		relationName: "tool_comments",
+	}),
+
+	// ✅ Self-referencing parent comment (for threads)
 	parent: one(comments, {
 		fields: [comments.parentId],
 		references: [comments.id],
 		relationName: "comment_parent",
 	}),
-	replies: many(comments, { relationName: "comment_parent" }),
+
+	// ✅ Replies to this comment
+	replies: many(comments, {
+		relationName: "comment_parent",
+	}),
 }))
 
 export const reactionRelations = relations(reactions, ({ one }) => ({
@@ -176,9 +197,6 @@ export const reactionRelations = relations(reactions, ({ one }) => ({
 	}),
 }))
 
-// TODO - low priority : move all relations to respective table files
-
-// tool-awards
 export const toolAwardRelations = relations(toolAwards, ({ one }) => ({
 	tool: one(tools, {
 		fields: [toolAwards.toolId],
@@ -193,5 +211,5 @@ export const toolAwardRelations = relations(toolAwards, ({ one }) => ({
 }))
 
 export const awardRelations = relations(awards, ({ many }) => ({
-	tools: many(toolAwards, { relationName: "award_tools" }),
+	toolAwards: many(toolAwards, { relationName: "tool_award_award" }),
 }))

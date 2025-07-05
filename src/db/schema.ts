@@ -12,11 +12,12 @@ export * from "./tables/tags"
 export * from "./tables/tools"
 
 // Joint tables
+export * from "./tables/joint/toolAlternatives"
+export * from "./tables/joint/toolAwards"
 export * from "./tables/joint/toolCategories"
 export * from "./tables/joint/toolCreators"
 export * from "./tables/joint/toolIntegrations"
 export * from "./tables/joint/toolPlatforms"
 export * from "./tables/joint/toolTags"
-
 // All relations (core + joint)
 export * from "./relations"
