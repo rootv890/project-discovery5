@@ -55,6 +55,8 @@ type IdType =
 	| "award"
 	| "comment"
 	| "toolComment"
+	| "collection"
+	| "toolCollection"
 
 // 2. Prefix map (internal use only)
 const prefixMap = {
@@ -72,6 +74,8 @@ const prefixMap = {
 	comment: "cm",
 	toolComment: "tcmt",
 	award: "a",
+	collection: "cl",
+	toolCollection: "tcl",
 } as const satisfies Record<IdType, string>
 
 // 3. Generator function

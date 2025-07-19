@@ -1,198 +1,182 @@
-import { db } from "@/db/db"
-import {
-	categories as categoriesTable,
-	platforms as platformsTable,
-	tags as tagsTable,
+// seed.ts
 
-	// Joint tables
-	toolCategories,
-	toolPlatforms,
-	// Core
-	tools as toolsTable,
-	toolTags,
-	type InsertCategoryType,
-	type InsertPlatformType,
-	type InsertTagType,
-	type InsertToolCategoryType,
-	type InsertToolPlatformType,
-	type InsertToolTagType,
-	// Types
-	type InsertToolType,
-} from "@/db/schema"
-import { generateId } from "@/lib/utils"
-// STEP 1: Base data (without hardcoded IDs)
-const toolsData: InsertToolType[] = [
-	{
-		id: generateId("tool"),
-		name: "Figma",
-		subtitle: "UI-UX and Prototyping tool",
-		description: "Figma is a vector graphics editor and prototyping tool.",
-		slug: "figma",
-		imageUrl:
-			"https://cdn.sanity.io/images/599r6htc/regionalized/4042e8ef7dbe5609613c705bdaf926cf65f6326b-720x720.png?q=75&fit=max&auto=format&dpr=2",
-		json: {
-			features: ["Vector editing", "Prototyping", "Collaboration"],
-			website: "https://figma.com",
-		},
-		createdAt: new Date("2024-01-01"),
-		updatedAt: new Date("2024-01-01"),
-	},
-	{
-		id: generateId("tool"),
+import { db } from "./db"
+import { categories } from "./schema"
 
-		name: "Adobe XD",
-		subtitle: "UI-UX Desktop tool by Freaking Adobe",
-		description: "Adobe XD is a vector-based design tool.",
-		slug: "adobe-xd",
-		imageUrl:
-			"https://cdn.sanity.io/images/599r6htc/regionalized/83b7a244be9f96d89a858e6663372a51f46cda7d-1560x1248.png?w=780&q=75&fit=max&auto=format&dpr=2",
-		json: {
-			features: ["Wireframing", "Prototyping", "Collaboration"],
-			website: "https://adobe.com/products/xd.html",
-		},
-		createdAt: new Date("2024-01-02"),
-		updatedAt: new Date("2024-01-02"),
-	},
-]
+const sharedIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-replace-all-icon lucide-replace-all"><path d="M14 14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2"/><path d="M14 4a2 2 0 0 1 2-2"/><path d="M16 10a2 2 0 0 1-2-2"/><path d="M20 14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2"/><path d="M20 2a2 2 0 0 1 2 2"/><path d="M22 8a2 2 0 0 1-2 2"/><path d="m3 7 3 3 3-3"/><path d="M6 10V5a 3 3 0 0 1 3-3h1"/><rect x="2" y="14" width="8" height="8" rx="2"/></svg>`
 
-const categoriesData: InsertCategoryType[] = [
+const categoryData = [
 	{
-		id: generateId("category"),
-		name: "UI/UX Design",
-		slug: "ui-ux-design",
-		description: "All about user interfaces and experiences.",
-		imageUrl: "https://cdn.sanity.io/images/.../uiux.png",
-		json: {},
-		createdAt: new Date("2024-01-01"),
-		updatedAt: new Date("2024-01-01"),
+		id: "c93x0a",
+		name: "AI Tools",
+		slug: "ai-tools",
+		image_url: "https://example.com/images/ai.png",
+		icon_svg: sharedIcon,
+		description: "Explore cutting-edge AI tools and platforms.",
 	},
 	{
-		id: generateId("category"),
-		name: "Prototyping",
-		slug: "prototyping",
-		description: "Build interactive design ideas before development.",
-		imageUrl: "https://cdn.sanity.io/images/.../proto.png",
-		json: {},
-		createdAt: new Date("2024-01-02"),
-		updatedAt: new Date("2024-01-02"),
-	},
-]
-
-const platformsData: InsertPlatformType[] = [
-	{
-		id: generateId("platform"),
-		name: "Web",
-		slug: "web",
-		description: "Browser-based apps.",
-		imageUrl: "https://cdn.sanity.io/images/.../web.png",
-		json: {},
-		createdAt: new Date("2024-01-01"),
-		updatedAt: new Date("2024-01-01"),
+		id: "c1k9ez",
+		name: "Developer Tools",
+		slug: "developer-tools",
+		image_url: "https://example.com/images/dev.png",
+		icon_svg: sharedIcon,
+		description: "Resources and tools for software developers.",
 	},
 	{
-		id: generateId("platform"),
-		name: "Desktop",
-		slug: "desktop",
-		description: "Native desktop apps.",
-		imageUrl: "https://cdn.sanity.io/images/.../desktop.png",
-		json: {},
-		createdAt: new Date("2024-01-02"),
-		updatedAt: new Date("2024-01-02"),
-	},
-]
-
-const tagsData: InsertTagType[] = [
-	{
-		id: generateId("tag"),
+		id: "c3plmz",
 		name: "Design",
 		slug: "design",
-		color: "#FFB300",
-		description: "Design-related content",
-		usageCount: 0,
-		createdAt: new Date("2024-01-01"),
-		updatedAt: new Date("2024-01-01"),
+		image_url: "https://example.com/images/design.png",
+		icon_svg: sharedIcon,
+		description: "Design inspiration, UI kits, and creative assets.",
 	},
 	{
-		id: generateId("tag"),
-		name: "Collaboration",
-		slug: "collaboration",
-		color: "#2196F3",
-		description: "Tools for teamwork",
-		usageCount: 0,
-		createdAt: new Date("2024-01-02"),
-		updatedAt: new Date("2024-01-02"),
+		id: "c85qtw",
+		name: "Productivity",
+		slug: "productivity",
+		image_url: "https://example.com/images/productivity.png",
+		icon_svg: sharedIcon,
+		description:
+			"Boost your workflow and efficiency with top productivity tools.",
+	},
+	{
+		id: "c4drx8",
+		name: "Marketing",
+		slug: "marketing",
+		image_url: "https://example.com/images/marketing.png",
+		icon_svg: sharedIcon,
+		description: "Marketing automation, SEO, and campaign tools.",
+	},
+	{
+		id: "c0fsv9",
+		name: "Writing & Content",
+		slug: "writing-content",
+		image_url: "https://example.com/images/writing.png",
+		icon_svg: sharedIcon,
+		description: "Content creation tools for writers, bloggers, and marketers.",
+	},
+	{
+		id: "c2mqxe",
+		name: "Video & Animation",
+		slug: "video-animation",
+		image_url: "https://example.com/images/video.png",
+		icon_svg: sharedIcon,
+		description: "Video editing, motion graphics, and animation tools.",
+	},
+	{
+		id: "cyz3r4",
+		name: "Analytics",
+		slug: "analytics",
+		image_url: "https://example.com/images/analytics.png",
+		icon_svg: sharedIcon,
+		description: "Track user behavior, metrics, and KPIs easily.",
+	},
+	{
+		id: "c7bhrn",
+		name: "Education",
+		slug: "education",
+		image_url: "https://example.com/images/education.png",
+		icon_svg: sharedIcon,
+		description: "Learning platforms, courses, and educational apps.",
+	},
+	{
+		id: "ctz8uw",
+		name: "E-commerce",
+		slug: "ecommerce",
+		image_url: "https://example.com/images/ecommerce.png",
+		icon_svg: sharedIcon,
+		description: "Sell online with e-commerce tools and storefront builders.",
+	},
+	{
+		id: "c4x1pe",
+		name: "Finance",
+		slug: "finance",
+		image_url: "https://example.com/images/finance.png",
+		icon_svg: sharedIcon,
+		description: "Manage budgets, track investments, and handle crypto.",
+	},
+	{
+		id: "c2b9tr",
+		name: "Health & Wellness",
+		slug: "health-wellness",
+		image_url: "https://example.com/images/health.png",
+		icon_svg: sharedIcon,
+		description: "Apps for fitness tracking, meditation, and well-being.",
+	},
+	{
+		id: "c0k9lm",
+		name: "No-Code",
+		slug: "no-code",
+		image_url: "https://example.com/images/nocode.png",
+		icon_svg: sharedIcon,
+		description: "Build apps and workflows without writing code.",
+	},
+	{
+		id: "cmt8bv",
+		name: "3D & AR/VR",
+		slug: "3d-ar-vr",
+		image_url: "https://example.com/images/3dvr.png",
+		icon_svg: sharedIcon,
+		description: "Tools for creating 3D models, AR, and VR content.",
+	},
+	{
+		id: "cj9r2s",
+		name: "APIs & Integrations",
+		slug: "api-integrations",
+		image_url: "https://example.com/images/api.png",
+		icon_svg: sharedIcon,
+		description: "Connect systems with APIs, SDKs, and webhooks.",
+	},
+	{
+		id: "cpl4na",
+		name: "Project Management",
+		slug: "project-management",
+		image_url: "https://example.com/images/pm.png",
+		icon_svg: sharedIcon,
+		description: "Plan, manage, and execute your projects efficiently.",
+	},
+	{
+		id: "c7xkew",
+		name: "Search Engines",
+		slug: "search-engines",
+		image_url: "https://example.com/images/search.png",
+		icon_svg: sharedIcon,
+		description: "Search infrastructure and custom indexing tools.",
+	},
+	{
+		id: "cn0vzt",
+		name: "Security & Privacy",
+		slug: "security-privacy",
+		image_url: "https://example.com/images/security.png",
+		icon_svg: sharedIcon,
+		description: "Encrypt, protect, and stay private online.",
+	},
+	{
+		id: "cf43vz",
+		name: "Customer Support",
+		slug: "customer-support",
+		image_url: "https://example.com/images/support.png",
+		icon_svg: sharedIcon,
+		description: "Helpdesk, chatbots, and ticketing systems.",
+	},
+	{
+		id: "czp6da",
+		name: "Gaming",
+		slug: "gaming",
+		image_url: "https://example.com/images/gaming.png",
+		icon_svg: sharedIcon,
+		description: "Game engines, dev tools, and mods for gamers.",
 	},
 ]
 
 async function seed() {
-	// 1. Insert base tables
-	await db.insert(categoriesTable).values(categoriesData)
-	await db.insert(platformsTable).values(platformsData)
-	await db.insert(tagsTable).values(tagsData)
-	await db.insert(toolsTable).values(toolsData)
-
-	// 2. Fetch actual IDs
-	const tools = await db.select().from(toolsTable)
-	const categories = await db.select().from(categoriesTable)
-	const platforms = await db.select().from(platformsTable)
-	const tags = await db.select().from(tagsTable)
-
-	// 3. Map relationshipsally
-	const toolCategoriesData: InsertToolCategoryType[] = [
-		{
-			id: generateId("toolCategory"),
-			toolId: tools.find((t) => t.slug === "figma")!.id,
-			categoryId: categories.find((c) => c.slug === "ui-ux-design")!.id,
-		},
-		{
-			id: generateId("toolCategory"),
-			toolId: tools.find((t) => t.slug === "figma")!.id,
-			categoryId: categories.find((c) => c.slug === "prototyping")!.id,
-		},
-		{
-			id: generateId("toolCategory"),
-			toolId: tools.find((t) => t.slug === "adobe-xd")!.id,
-			categoryId: categories.find((c) => c.slug === "ui-ux-design")!.id,
-		},
-	]
-
-	const toolTagsData: InsertToolTagType[] = [
-		{
-			id: generateId("toolTag"),
-			toolId: tools.find((t) => t.slug === "figma")!.id,
-			tagId: tags.find((tag) => tag.slug === "design")!.id,
-		},
-		{
-			id: generateId("toolTag"),
-			toolId: tools.find((t) => t.slug === "adobe-xd")!.id,
-			tagId: tags.find((tag) => tag.slug === "collaboration")!.id,
-		},
-	]
-
-	const toolPlatformsData: InsertToolPlatformType[] = [
-		{
-			id: generateId("toolPlatform"),
-			toolId: tools.find((t) => t.slug === "figma")!.id,
-			platformId: platforms.find((p) => p.slug === "web")!.id,
-		},
-		{
-			id: generateId("toolPlatform"),
-			toolId: tools.find((t) => t.slug === "adobe-xd")!.id,
-			platformId: platforms.find((p) => p.slug === "desktop")!.id,
-		},
-	]
-
-	// 4. Insert join tables
-	await db.insert(toolCategories).values(toolCategoriesData)
-	await db.insert(toolTags).values(toolTagsData)
-	await db.insert(toolPlatforms).values(toolPlatformsData)
-
-	console.log("✅ Seeded all tables with relations!")
+	try {
+		console.log("🌱 Seeding categories...")
+		await db.insert(categories).values(categoryData)
+		console.log("✅ Done seeding!")
+	} catch (error) {
+		console.error("❌ Seeding failed:", error)
+	}
 }
 
-if (require.main === module) {
-	seed().catch((err) => {
-		console.error(err)
-		process.exit(1)
-	})
-}
+seed()

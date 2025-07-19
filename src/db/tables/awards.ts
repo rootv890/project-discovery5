@@ -1,7 +1,6 @@
 import { generateId } from "@/lib/utils"
-import { jsonb, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core"
+import { pgTable, text, timestamp } from "drizzle-orm/pg-core"
 import { createInsertSchema, createSelectSchema } from "drizzle-zod"
-import { z } from "zod"
 
 export const awards = pgTable("awards", {
 	id: text("id")

@@ -11,8 +11,6 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod"
 import { user } from "../auth-schema"
 import { tools } from "./tools"
 
-export const commentTargetTypes = pgEnum("target_type", ["Tool", "Resource"])
-
 export const comments = pgTable(
 	"comments",
 	{

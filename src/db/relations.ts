@@ -1,13 +1,16 @@
 // --- Relations ---
 import { relations } from "drizzle-orm"
+import { user } from "./auth-schema"
 import { awards } from "./tables/awards"
 import { categories } from "./tables/categories"
+import { collections } from "./tables/collection"
 import { comments } from "./tables/comments"
 import { creators } from "./tables/creators"
 import { features } from "./tables/features"
 import { toolAlternatives } from "./tables/joint/toolAlternatives"
 import { toolAwards } from "./tables/joint/toolAwards"
 import { toolCategories } from "./tables/joint/toolCategories"
+import { toolCollection } from "./tables/joint/toolCollection"
 import { toolCreators } from "./tables/joint/toolCreators"
 import { toolIntegrations } from "./tables/joint/toolIntegrations"
 import { toolPlatforms } from "./tables/joint/toolPlatforms"
@@ -39,6 +42,9 @@ export const toolRelations = relations(tools, ({ many, one }) => ({
 		relationName: "tool_alternatives_tool",
 	}),
 	creators: many(toolCreators, { relationName: "tool_creators_tool" }),
+	collections: many(toolCollection, {
+		relationName: "tool_collection_tool",
+	}),
 }))
 
 export const categoryRelations = relations(categories, ({ many }) => ({
@@ -212,4 +218,28 @@ export const toolAwardRelations = relations(toolAwards, ({ one }) => ({
 
 export const awardRelations = relations(awards, ({ many }) => ({
 	toolAwards: many(toolAwards, { relationName: "tool_award_award" }),
+}))
+
+export const collectionRelations = relations(collections, ({ many }) => ({
+	toolCollections: many(toolCollection, {
+		relationName: "tool_collection_collection",
+	}),
+}))
+
+export const toolCollectionRelations = relations(toolCollection, ({ one }) => ({
+	tool: one(tools, {
+		fields: [toolCollection.toolId],
+		references: [tools.id],
+		relationName: "tool_collection_tool",
+	}),
+	collection: one(collections, {
+		fields: [toolCollection.collectionId],
+		references: [collections.id],
+		relationName: "tool_collection_collection",
+	}),
+	user: one(user, {
+		fields: [toolCollection.userId],
+		references: [user.id],
+		relationName: "tool_collection_user",
+	}),
 }))

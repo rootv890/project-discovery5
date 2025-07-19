@@ -1,5 +1,6 @@
 "use client"
 
+import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import {
 	Sidebar,
@@ -13,12 +14,11 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@/components/ui/sidebar"
-import { SelectCategoryType } from "@/db/tables/categories"
 import { cn } from "@/lib/utils"
-import Image from "next/image"
 import Link from "next/link"
+
+import { usePathname } from "next/navigation"
 import { ReactNode } from "react"
-import { z } from "zod"
 import { getManyForSidebar } from "../types"
 
 type CategoriesSidebarProps = {
@@ -30,33 +30,46 @@ type CategoriesSidebarProps = {
 	children?: ReactNode
 }
 
-const renderSidebarItems = (items: getManyForSidebar["items"] = []) => (
+const renderSidebarItems = (
+	items: getManyForSidebar["items"] = [],
+	isActive: (id: string) => boolean = () => false
+) => (
 	<SidebarMenu>
 		{items.map((item) => (
 			<SidebarMenuItem key={item.id}>
 				<SidebarMenuButton
-					className="py-6 px-4 rounded-2xl hover:bg-secondary-container"
+					className={cn(
+						"py-6 px-4 rounded-2xl hover:bg-secondary-container ",
+						isActive(item.id) && "bg-secondary-container"
+					)}
 					asChild
 				>
 					<Link
+						// href={`#`}
 						href={`/c/${item.id}`}
 						className="group/item w-full"
 					>
-						<div className="flex justify-between items-center">
+						<div className="flex  w-full justify-between items-center">
 							<div className="flex items-center gap-2 group-hover/item:[&>svg]:fill-primary">
-								<Image
-									src={item.iconSvg || "not-found.svg"}
-									width={10}
-									height={10}
-									alt={item.name}
-									className="size-4"
-								/>
+								{item.iconSvg && (
+									<span
+										dangerouslySetInnerHTML={{
+											__html: item.iconSvg,
+										}}
+									/>
+								)}
+
 								<span>{item.name}</span>
 							</div>
 							{item.totalCategories && (
-								<span className="text-on-surface-variant">
+								<Badge
+									className={cn(
+										"text-on-surface-variant bg-surface hidden hover:block",
+										isActive(item.id) && "flex"
+									)}
+								>
 									{item.totalCategories}
-								</span>
+								</Badge>
 							)}
 						</div>
 					</Link>
@@ -75,6 +88,7 @@ export default function CategoriesSidebar({
 }: CategoriesSidebarProps) {
 	const { state } = useSidebar()
 	const isCollapsed = state === "collapsed"
+	const pathname = usePathname()
 
 	return (
 		<div
@@ -97,7 +111,10 @@ export default function CategoriesSidebar({
 
 					<SidebarGroup>
 						<SidebarGroupContent>
-							{renderSidebarItems(platformCategories)}
+							{renderSidebarItems(personalCollections, (id) => {
+								// check if path contains id
+								return pathname.includes(id)
+							})}
 						</SidebarGroupContent>
 					</SidebarGroup>
 
@@ -107,7 +124,10 @@ export default function CategoriesSidebar({
 							<SidebarGroup>
 								<SidebarGroupLabel>My Collections</SidebarGroupLabel>
 								<SidebarGroupContent>
-									{renderSidebarItems(personalCollections)}
+									{renderSidebarItems(personalCollections, (id) => {
+										// check if path contains id
+										return pathname.includes(id)
+									})}
 								</SidebarGroupContent>
 							</SidebarGroup>
 						</>
@@ -119,7 +139,10 @@ export default function CategoriesSidebar({
 							<SidebarGroup>
 								<SidebarGroupLabel>Related Platforms</SidebarGroupLabel>
 								<SidebarGroupContent>
-									{renderSidebarItems(relatedPlatforms)}
+									{renderSidebarItems(personalCollections, (id) => {
+										// check if path contains id
+										return pathname.includes(id)
+									})}
 								</SidebarGroupContent>
 							</SidebarGroup>
 						</>

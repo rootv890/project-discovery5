@@ -1,1 +1,0 @@
-ALTER TABLE "tools" ADD COLUMN "subtitle" text NOT NULL;
