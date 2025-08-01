@@ -7,13 +7,6 @@ export async function isAuthenticated() {
 	})
 
 	if (!session) {
-		console.error(
-			`
-						-----------------
-						No session found
-						-----------------
-				`
-		)
 		return false
 	}
 	return true

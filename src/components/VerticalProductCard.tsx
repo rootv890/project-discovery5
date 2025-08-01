@@ -1,88 +1,83 @@
 "use client"
 
 import Image from "next/image"
+
+import LikeButton from "@/components/LikeButton"
+import QuickTooltip from "@/components/QuickToolTip"
+import ViewsButton from "@/components/ViewsButton"
+import { Button } from "@/components/ui/button"
 import {
 	Card,
+	CardContent,
+	CardDescription,
+	CardFooter,
 	CardHeader,
 	CardTitle,
-	CardDescription,
-	CardContent,
-	CardFooter,
 } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import LikeButton from "@/components/LikeButton"
-import ViewsButton from "@/components/ViewsButton"
-import QuickTooltip from "@/components/QuickToolTip"
-
 import { cn } from "@/lib/utils"
 import { ProductCardProps } from "../../types/type"
 
-export function VerticalProductCard(props: ProductCardProps) {
-	const {
-		imageSrc,
-		imageAlt = "Product image",
-		title,
-		subtitle,
-		description,
-		visitUrl,
-		moreInfoUrl,
-		className,
-		variant = "filled",
-		...rest
-	} = props
-
+export function VerticalProductCard({
+	imageSrc,
+	imageAlt = "Product image",
+	title,
+	subtitle,
+	description,
+	visitUrl,
+	moreInfoUrl,
+	className,
+	variant = "filled",
+}: ProductCardProps) {
 	return (
 		<Card
 			variant={variant}
 			className={cn(
-				"overflow-hidden w-full min-w-[256px] max-w-[344px] z-0 relative grid h-[440px] gap-3 grid-rows-[0.59fr_0.41fr] rounded-[28px]",
+				// Consider extracting this layout setup as a design token if reused
+				"overflow-hidden min-w-[256px] w-full z-0 relative grid h-[480px] grid-rows-[0.59fr_0.41fr] gap-0 rounded-[28px]",
+				// responsiveness
+				"sm:max-w-[280px]",
+				"md:max-w-[320px]",
+				"lg:max-w-[360px]",
+				"xl:max-w-[400px]",
 				className
 			)}
-			{...rest}
 		>
-			<div className="w-full px-2 pt-2">
+			{/* Image section */}
+			<div className="w-full px-2 pt-2 ">
 				<div className="relative overflow-clip rounded-[20px] size-full">
 					<Image
 						src={imageSrc}
 						alt={imageAlt}
 						fill
 						priority
-						className="object-cover z-0"
+						className="object-cover"
 					/>
 				</div>
 			</div>
 
-			<div className="flex flex-col justify-center gap-0 min-h-0">
-				<CardHeader className="px-4 py-2 flex gap-2 pb-1">
-					<div className="flex flex-col flex-[3] min-w-0">
-						<CardTitle className="title-lg-em">{title}</CardTitle>
-						{subtitle && (
-							<QuickTooltip
-								label={subtitle}
-								delayDuration={1000}
-							>
-								<CardDescription className="body-md mt-1 truncate text-on-surface-variant">
-									{subtitle}
-								</CardDescription>
-							</QuickTooltip>
-						)}
-					</div>
-					<div className="flex items-center justify-start gap-0 flex-shrink-0 bg-primary-container/50 rounded-md">
-						<LikeButton />
-						<ViewsButton />
+			{/* Content section */}
+			<div className="flex w-full flex-col justify-center  gap-0 min-h-0">
+				<CardHeader className="px-2 py-2 pb-1 flex-col items-end gap-2">
+					<div className="flex justify-between items-center w-full">
+						<CardTitle className="text-lg font-semibold">{title}</CardTitle>
+
+						<div className="flex items-center gap-0 flex-shrink-0 bg-primary-container/50 rounded-md">
+							<LikeButton />
+							<ViewsButton />
+						</div>
 					</div>
 				</CardHeader>
 
-				{description && (
-					<CardContent className="px-4 body-lg line-clamp-3 text-on-surface-variant">
-						<QuickTooltip
-							label={description.toString()}
-							delayDuration={2000}
-						>
-							<CardDescription>{description}</CardDescription>
-						</QuickTooltip>
-					</CardContent>
-				)}
+				<CardContent className="px-2 body-lg line-clamp-3 text-on-surface-variant ">
+					<QuickTooltip
+						label={description.toString()}
+						delayDuration={2000}
+					>
+						<CardDescription className="text-sm line-clamp-2">
+							{description ?? "No Description provieded"}
+						</CardDescription>
+					</QuickTooltip>
+				</CardContent>
 
 				<CardFooter className="px-4 pt-2 pb-4 shrink-0 flex items-center justify-end gap-2">
 					<Button

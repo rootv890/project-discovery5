@@ -1,6 +1,6 @@
-import * as React from "react"
 import { cn } from "@/lib/utils"
 import { cva } from "class-variance-authority"
+import * as React from "react"
 
 type CardProps = React.ComponentProps<"div"> & {
 	variant?: "elevated" | "filled" | "outlined"
@@ -104,10 +104,10 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
 
 export {
 	Card,
-	CardHeader,
-	CardFooter,
-	CardTitle,
 	CardAction,
-	CardDescription,
 	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
 }

@@ -1,35 +1,33 @@
 "use client"
 
-import Image from "next/image"
+import LikeButton from "@/components/LikeButton"
+import QuickTooltip from "@/components/QuickToolTip"
+import { Button } from "@/components/ui/button"
 import {
 	Card,
+	CardContent,
+	CardDescription,
+	CardFooter,
 	CardHeader,
 	CardTitle,
-	CardDescription,
-	CardContent,
-	CardFooter,
 } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import LikeButton from "@/components/LikeButton"
 import ViewsButton from "@/components/ViewsButton"
-import QuickTooltip from "@/components/QuickToolTip"
-import { ProductCardProps } from "../../types/type"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
+import { ProductCardProps } from "../../types/type"
 
-export function HorizontalProductCard(props: ProductCardProps) {
-	const {
-		imageSrc,
-		imageAlt = "Product image",
-		title,
-		subtitle,
-		description,
-		visitUrl,
-		moreInfoUrl,
-		className,
-		variant = "filled",
-		...rest
-	} = props
-
+export function HorizontalProductCard({
+	imageSrc,
+	imageAlt = "Product image",
+	title,
+	subtitle,
+	description,
+	visitUrl,
+	moreInfoUrl,
+	className,
+	variant = "filled",
+	...rest
+}: ProductCardProps) {
 	return (
 		<Card
 			variant={variant}
