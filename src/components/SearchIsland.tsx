@@ -1,12 +1,12 @@
 "use client"
 
-import { Command } from "cmdk"
-import { useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
-import { AnimatePresence, motion } from "motion/react"
-import { SearchIcon } from "lucide-react"
-import { DialogTitle } from "./ui/dialog"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
+import { Command } from "cmdk"
+import { SearchIcon } from "lucide-react"
+import { AnimatePresence, motion } from "motion/react"
+import { useEffect, useRef } from "react"
+import { DialogTitle } from "./ui/dialog"
 
 const SearchIsland = ({
 	open,

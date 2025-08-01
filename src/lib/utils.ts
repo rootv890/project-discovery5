@@ -96,3 +96,11 @@ export function cleanRegisterProps(registerReturn: any) {
 	} = registerReturn
 	return rest
 }
+
+export function getOS() {
+	const userAgent = window.navigator.userAgent.toLowerCase()
+	if (userAgent.includes("mac")) return "mac"
+	if (userAgent.includes("win")) return "windows"
+	if (userAgent.includes("linux")) return "linux"
+	return "unknown"
+}

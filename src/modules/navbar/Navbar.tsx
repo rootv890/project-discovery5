@@ -1,16 +1,15 @@
 "use client"
 
-import SearchTrigger from "@/components/SearchTrigger"
+import { ResponsiveSearch } from "@/components/Search"
 import ThemeToggler from "@/components/ThemeToggler"
 import { UserProfile } from "@/components/UserProfile"
 import { Button } from "@/components/ui/button"
 import { useSidebar } from "@/components/ui/sidebar"
 import { Discover } from "iconsax-reactjs"
 import { SidebarCloseIcon, SidebarOpenIcon } from "lucide-react"
-import React, { useState } from "react"
+import React from "react"
 
 const Navbar = () => {
-	const [open, setOpen] = useState(false)
 	const { isMobile, state, toggleSidebar } = useSidebar()
 
 	return (
@@ -35,12 +34,8 @@ const Navbar = () => {
 			</div>
 
 			{/* Search input */}
-			<div className="flex items-center gap-2">
-				<SearchTrigger
-					open={open}
-					setOpen={setOpen}
-				/>
-			</div>
+
+			<ResponsiveSearch />
 
 			<div className="flex items-center gap-2">
 				<ThemeToggler />
