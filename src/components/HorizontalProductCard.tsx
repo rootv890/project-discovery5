@@ -3,14 +3,7 @@
 import LikeButton from "@/components/LikeButton"
 import QuickTooltip from "@/components/QuickToolTip"
 import { Button } from "@/components/ui/button"
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card"
+import { Card, CardFooter, CardTitle } from "@/components/ui/card"
 import ViewsButton from "@/components/ViewsButton"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
@@ -28,69 +21,82 @@ export function HorizontalProductCard({
 	variant = "filled",
 	...rest
 }: ProductCardProps) {
+	const hasImage = !!imageSrc
+
 	return (
 		<Card
 			variant={variant}
 			className={cn(
-				"overflow-clip w-full max-w-[400px] h-[140px] flex flex-row gap-1 rounded-2xl relative z-0 ",
+				"group relative overflow-hidden",
+				"w-full max-w-[580px] h-[180px]",
+				"bg-surface-container border-0",
+				"rounded-[32px]",
+				"transition-all duration-300 ease-out",
+				"hover:bg-surface-container-high ",
+				"flex flex-row gap-0",
 				className
 			)}
 			{...rest}
 		>
 			{/* IMAGE SECTION */}
-			<div className="relative w-[40%] bg-rose-400 h-full">
-				<Image
-					src={imageSrc}
-					alt={imageAlt}
-					fill
-					priority
-					className="object-cover object-center"
-				/>
+
+			<div className="relative w-[40%] h-full  p-3">
+				<div className="relative size-full rounded-[20px] bg-surface-container-low overflow-hidden">
+					<Image
+						src={imageSrc}
+						alt={imageAlt}
+						fill
+						className="object-cover"
+					/>
+				</div>
 			</div>
 
-			{/* TEXT SECTION */}
-			<div className="flex flex-col flex-[3] justify-between w-[60%] h-full p-3 gap-1 text-foreground ">
+			{/* CONTENT SECTION */}
+			<div className="flex   w-[60%] flex-col justify-center gap-1 items-start py-6 pr-6 pl-2">
 				{/* HEADER */}
-				<div className="space-y-0">
-					<CardTitle className="text-base font-semibold truncate">
-						{title}
-					</CardTitle>
-					{subtitle && (
-						<QuickTooltip label={subtitle}>
-							<CardDescription className="text-base truncate text-muted-foreground ">
+				<div className="">
+					<div className="flex items-start flex-col justify-center ">
+						<div className="flex-1 flex justify-between items-center space-y-1">
+							<CardTitle className="text-xl font-semibold text-on-surface leading-tight">
+								{title}
+							</CardTitle>
+
+							<div className="flex items-center gap-0 flex-shrink-0 bg-primary-container/50 rounded-md ml-4">
+								<LikeButton />
+								<ViewsButton />
+							</div>
+						</div>
+
+						{/* ENGAGEMENT STATS */}
+						{subtitle && (
+							<p className="text-sm line-clamp-2 text-on-surface-variant font-medium">
 								{subtitle}
-							</CardDescription>
-						</QuickTooltip>
-					)}
+							</p>
+						)}
+					</div>
 				</div>
 
-				{/* FOOTER */}
-				<CardFooter className="p-0  flex flex-col justify-between items-start gap-1 ">
-					<div className="flex items-center gap-2 -ml-2  bg-primary-container/50 rounded-md">
-						<LikeButton />
-						<ViewsButton />
-					</div>
-					<div className="flex gap-2 justify-end w-full">
-						{moreInfoUrl && (
-							<Button
-								size="xs"
-								variant="outline"
-								borderType="round"
-							>
-								More Info
-							</Button>
-						)}
-						{visitUrl && (
-							<Button
-								size="xs"
-								variant="filled"
-								borderType="round"
-							>
-								Visit Site
-							</Button>
-						)}
-					</div>
-				</CardFooter>
+				{/* FOOTER BUTTONS */}
+				<div className="flex items-center w-full justify-end gap-3 mt-4">
+					<Button
+						borderType="round"
+						variant="outline"
+						size="sm"
+						disabled={!moreInfoUrl}
+						className="h-10 px-4 text-sm font-medium"
+					>
+						More Info
+					</Button>
+					<Button
+						borderType="round"
+						variant="filled"
+						size="sm"
+						disabled={!visitUrl}
+						className="h-10 px-4 text-sm font-semibold"
+					>
+						Visit Site
+					</Button>
+				</div>
 			</div>
 		</Card>
 	)

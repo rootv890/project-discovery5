@@ -109,11 +109,16 @@ export const CategoriesSidebar = ({
 				className="bg-transparent px-4 h-[calc(100vh-42px)] flex-1 gap-0"
 			>
 				<SidebarContent className="border-none bg-surface-container border-r-0 rounded-3xl overflow-y-auto h-full scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent">
-					<SidebarHeader className="pl-4 pt-4">
-						<span className="text-lg font-bold text-on-primary-container">
-							{title}
-						</span>
-					</SidebarHeader>
+					<Link
+						href="/"
+						className="flex items-center gap-2"
+					>
+						<SidebarHeader className="pl-4 pt-4">
+							<span className="text-lg font-bold text-on-primary-container">
+								{title}
+							</span>
+						</SidebarHeader>
+					</Link>
 
 					<SidebarGroup>
 						<SidebarGroupContent>

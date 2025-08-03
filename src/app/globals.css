@@ -236,3 +236,12 @@
 		transform: translateY(0);
 	}
 }
+
+/* svg shape masking */
+.mask-flower {
+	mask-image: url("/shapes/Sunny.svg");
+	mask-size: cover;
+	-webkit-mask-image: url("/shapes/Sunny.svg");
+	-webkit-mask-size: cover;
+	mask-repeat: no-repeat;
+}

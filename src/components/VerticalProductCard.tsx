@@ -34,11 +34,13 @@ export function VerticalProductCard({
 			className={cn(
 				// Consider extracting this layout setup as a design token if reused
 				"overflow-hidden min-w-[256px] w-full z-0 relative grid h-[480px] grid-rows-[0.59fr_0.41fr] gap-0 rounded-[28px]",
+				"transition-all duration-300 ease-out",
+				"hover:bg-surface-container-high hover:shadow-xl",
 				// responsiveness
-				"sm:max-w-[280px]",
-				"md:max-w-[320px]",
-				"lg:max-w-[360px]",
-				"xl:max-w-[400px]",
+				// "sm:max-w-[280px]",
+				// "md:max-w-[320px]",
+				// "lg:max-w-[360px]",
+				// "xl:max-w-[400px]",
 				className
 			)}
 		>

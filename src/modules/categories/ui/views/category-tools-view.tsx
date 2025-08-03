@@ -3,6 +3,7 @@
 import { HorizontalProductCard } from "@/components/HorizontalProductCard"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
 	ProductGrid,
 	ResponsiveContainer,
@@ -91,7 +92,7 @@ const CategoryToolsView = ({ categoryId }: CategoryToolsViewProps) => {
 								<div className="flex items-center gap-2 text-muted-foreground">
 									<Badge
 										variant="secondary"
-										className="text-sm"
+										className="text-sm bg-primary-fixed-dim/30"
 									>
 										{totalTools} {totalTools === 1 ? "tool" : "tools"}
 									</Badge>
@@ -107,9 +108,9 @@ const CategoryToolsView = ({ categoryId }: CategoryToolsViewProps) => {
 							{/* Search Input */}
 							<div className="relative flex-1 max-w-md">
 								<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-								<input
+								<Input
 									type="text"
-									placeholder="Search tools..."
+									placeholder={`Search${categoryName} tools...`}
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
 									className="w-full pl-10 pr-4 py-2 border border-input rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
@@ -118,14 +119,15 @@ const CategoryToolsView = ({ categoryId }: CategoryToolsViewProps) => {
 
 							{/* View Toggle */}
 							<div className="flex items-center gap-2">
-								<div className="flex bg-muted rounded-lg p-1">
+								<div className="flex bg-primary-fixed-dim/20 rounded-lg p-1">
 									<Button
 										variant={cardType === "vertical" ? "filled" : "ghost"}
 										size="sm"
+										borderType={"square"}
 										onClick={() => setCardType("vertical")}
 										className={cn(
 											"px-3 py-1.5 h-auto",
-											cardType === "vertical" && "bg-background shadow-sm"
+											cardType === "vertical" && "bg-primary shadow-sm"
 										)}
 									>
 										<Grid className="h-4 w-4" />
@@ -136,7 +138,7 @@ const CategoryToolsView = ({ categoryId }: CategoryToolsViewProps) => {
 										onClick={() => setCardType("horizontal")}
 										className={cn(
 											"px-3 py-1.5 h-auto",
-											cardType === "horizontal" && "bg-background shadow-sm"
+											cardType === "horizontal" && "bg-primary shadow-sm"
 										)}
 									>
 										<List className="h-4 w-4" />
