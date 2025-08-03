@@ -4,8 +4,8 @@ import { SidebarProvider } from "@/components/ui/sidebar"
 import {
 	CategoriesSidebarErrorFallback,
 	CategoriesSidebarSkeleton,
-} from "@/modules/categories/ui/categories-sidebar-fallbacks"
-import CategoriesSidebarWrapper from "@/modules/categories/ui/categories-siderbar-wrapper"
+	CategoriesSidebarWrapper,
+} from "@/modules/categories/ui"
 import Navbar from "@/modules/navbar/Navbar"
 import React, { Suspense } from "react"
 import { ErrorBoundary } from "react-error-boundary"
@@ -26,9 +26,7 @@ const DashboardLayout = ({ children }: Props) => {
 								name: "CategoriesLoadError",
 								message: "Failed to load categories. Please try again later.",
 							}}
-							resetErrorBoundary={() => {
-								// Optional reset logic
-							}}
+							resetErrorBoundary={() => {}}
 						/>
 					}
 				>

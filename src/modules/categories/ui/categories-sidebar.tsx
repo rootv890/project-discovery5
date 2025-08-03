@@ -15,27 +15,35 @@ import {
 	useSidebar,
 } from "@/components/ui/sidebar"
 import { cn } from "@/lib/utils"
+import { useTRPC } from "@/trpc/client"
+import { useSuspenseQuery } from "@tanstack/react-query"
 import Link from "next/link"
-
 import { usePathname } from "next/navigation"
 import { ReactNode } from "react"
-import { getManyForSidebar } from "../types"
+import { useMediaQuery } from "react-responsive"
+import { getManyForSidebarType } from "../types"
 
+// ============================================================================
+// TYPES
+// ============================================================================
 type CategoriesSidebarProps = {
 	name?: string
-	categories: getManyForSidebar["items"]
-	personalCollections?: getManyForSidebar["items"]
-	relatedPlatforms?: getManyForSidebar["items"]
+	categories: getManyForSidebarType["items"]
+	personalCollections?: getManyForSidebarType["items"]
+	relatedPlatforms?: getManyForSidebarType["items"]
 	className?: string
 	children?: ReactNode
 }
 
+// ============================================================================
+// MAIN SIDEBAR COMPONENT
+// ============================================================================
 const renderSidebarItems = (
-	items: getManyForSidebar["items"] = [],
+	categories: getManyForSidebarType["items"] = [],
 	isActive: (id: string) => boolean = () => false
 ) => (
 	<SidebarMenu>
-		{items.map((item) => (
+		{categories.map((item) => (
 			<SidebarMenuItem key={item.id}>
 				<SidebarMenuButton
 					className={cn(
@@ -45,11 +53,10 @@ const renderSidebarItems = (
 					asChild
 				>
 					<Link
-						// href={`#`}
 						href={`/c/${item.id}`}
 						className="group/item w-full"
 					>
-						<div className="flex  w-full justify-between items-center">
+						<div className="flex w-full justify-between items-center">
 							<div className="flex items-center gap-2 group-hover/item:[&>svg]:fill-primary">
 								{item.iconSvg && (
 									<span
@@ -58,17 +65,16 @@ const renderSidebarItems = (
 										}}
 									/>
 								)}
-
 								<span>{item.name}</span>
 							</div>
-							{item.totalCategories && (
+							{item.toolCount && (
 								<Badge
 									className={cn(
 										"text-on-surface-variant bg-surface hidden hover:block",
 										isActive(item.id) && "flex"
 									)}
 								>
-									{item.totalCategories}
+									{item.toolCount}
 								</Badge>
 							)}
 						</div>
@@ -79,13 +85,13 @@ const renderSidebarItems = (
 	</SidebarMenu>
 )
 
-export default function CategoriesSidebar({
+export const CategoriesSidebar = ({
 	name: title = "Categories",
 	categories: platformCategories,
 	personalCollections,
 	relatedPlatforms,
 	className,
-}: CategoriesSidebarProps) {
+}: CategoriesSidebarProps) => {
 	const { state } = useSidebar()
 	const isCollapsed = state === "collapsed"
 	const pathname = usePathname()
@@ -102,7 +108,7 @@ export default function CategoriesSidebar({
 				variant="sidebar"
 				className="bg-transparent px-4 h-[calc(100vh-42px)] flex-1 gap-0"
 			>
-				<SidebarContent className="border-none bg-surface-container border-r-0 rounded-3xl overflow-y-auto h-full scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent ">
+				<SidebarContent className="border-none bg-surface-container border-r-0 rounded-3xl overflow-y-auto h-full scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent">
 					<SidebarHeader className="pl-4 pt-4">
 						<span className="text-lg font-bold text-on-primary-container">
 							{title}
@@ -111,8 +117,7 @@ export default function CategoriesSidebar({
 
 					<SidebarGroup>
 						<SidebarGroupContent>
-							{renderSidebarItems(personalCollections, (id) => {
-								// check if path contains id
+							{renderSidebarItems(platformCategories, (id) => {
 								return pathname.includes(id)
 							})}
 						</SidebarGroupContent>
@@ -125,7 +130,6 @@ export default function CategoriesSidebar({
 								<SidebarGroupLabel>My Collections</SidebarGroupLabel>
 								<SidebarGroupContent>
 									{renderSidebarItems(personalCollections, (id) => {
-										// check if path contains id
 										return pathname.includes(id)
 									})}
 								</SidebarGroupContent>
@@ -139,8 +143,7 @@ export default function CategoriesSidebar({
 							<SidebarGroup>
 								<SidebarGroupLabel>Related Platforms</SidebarGroupLabel>
 								<SidebarGroupContent>
-									{renderSidebarItems(personalCollections, (id) => {
-										// check if path contains id
+									{renderSidebarItems(relatedPlatforms, (id) => {
 										return pathname.includes(id)
 									})}
 								</SidebarGroupContent>
@@ -152,3 +155,34 @@ export default function CategoriesSidebar({
 		</div>
 	)
 }
+
+// ============================================================================
+// DATA WRAPPER COMPONENT
+// ============================================================================
+const CategoriesSidebarWrapper = () => {
+	const trpc = useTRPC()
+	const { data: categories } = useSuspenseQuery(
+		trpc.categories.getManyForSidebar.queryOptions({})
+	)
+
+	const isMobile = useMediaQuery({
+		maxWidth: 768,
+	})
+
+	return (
+		<div
+			className={cn(
+				"bg-surface z-50 pb-4 rounded-3xl",
+				!isMobile && "sticky top-0 left-0"
+			)}
+		>
+			<CategoriesSidebar
+				categories={categories.items}
+				personalCollections={categories.items}
+				relatedPlatforms={categories.items}
+			/>
+		</div>
+	)
+}
+
+export default CategoriesSidebarWrapper

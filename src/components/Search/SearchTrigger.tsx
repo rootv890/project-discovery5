@@ -36,7 +36,7 @@ export default function SearchTrigger({
 	return (
 		<>
 			{variant === "full" && (
-				<button
+				<div
 					onClick={handleClick}
 					onMouseEnter={() => setIsHovered(true)}
 					onMouseLeave={() => setIsHovered(false)}
@@ -104,7 +104,7 @@ export default function SearchTrigger({
 						{/* Pulsing ring effect */}
 						<div className="absolute inset-0 rounded-xl border-2 border-primary/30 scale-110 animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 					</div>
-				</button>
+				</div>
 			)}
 
 			{variant === "compact" && (

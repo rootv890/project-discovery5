@@ -1,4 +1,4 @@
-import { CategoriesSidebarSkeleton } from "@/modules/categories/ui/categories-sidebar-fallbacks"
+import { CategoriesSidebarSkeleton } from "@/modules/categories/ui"
 
 const page = () => {
 	return <div></div>

@@ -5,11 +5,19 @@ import { auth } from "@/auth/auth"
 import { initTRPC, TRPCError } from "@trpc/server"
 import { headers } from "next/headers"
 import { cache } from "react"
+
 export const createTRPCContext = cache(async () => {
 	/**
 	 * @see: https://trpc.io/docs/server/context
 	 */
-	return { userId: "user_123" }
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	})
+
+	return {
+		session,
+		userId: session?.user?.id || null,
+	}
 })
 // Avoid exporting the entire t-object
 // since it's not very descriptive.
@@ -34,7 +42,8 @@ export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
 	if (!session) {
 		throw new TRPCError({
 			code: "UNAUTHORIZED",
-			message: "UNAUTHORIZED - Please log in to continue.",
+			message:
+				"UNAUTHORIZED - Please log in to continue. from /src/trpc/init.ts",
 		})
 	}
 

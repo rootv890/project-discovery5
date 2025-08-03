@@ -53,7 +53,10 @@ export function UserProfileDropdown({
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
+			<DropdownMenuTrigger
+				asChild
+				className="cursor-pointer"
+			>
 				<button
 					className={cn(
 						"relative flex shrink-0 overflow-hidden rounded-full border border-border/50 transition-all duration-200 hover:border-border hover:shadow-md focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
