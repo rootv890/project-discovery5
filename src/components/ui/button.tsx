@@ -1,7 +1,7 @@
+import { cn } from "@/lib/utils"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import * as React from "react"
-import { cn } from "@/lib/utils"
 
 const radiusBySize: Record<string, string> = {
 	xs: "rounded-[0.75rem]",
@@ -27,7 +27,7 @@ const buttonVariants = cva(
 				tonal:
 					"bg-secondary-container text-on-secondary-container shadow-xs hover:bg-secondary-container/80 active:bg-secondary-container/90",
 				outline:
-					"border border-outline text-on-surface-variant bg-transparent hover:bg-surface-bright",
+					" border-outline/50 border-2 text-on-surface-variant bg-transparent hover:bg-surface-bright",
 				destructive:
 					"bg-tertiary-container text-on-tertiary-container shadow-xs hover:bg-tertiary-container/80",
 				ghost: "bg-transparent text-on-surface hover:bg-surface-variant",

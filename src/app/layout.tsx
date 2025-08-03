@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/providers/ThemeProvider"
 import { TRPCReactProvider } from "@/trpc/client"
 import type { Metadata } from "next"
 import { Geist } from "next/font/google"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
 import { Toaster } from "react-hot-toast"
 import "./globals.css"
 const geist = Geist({
@@ -34,31 +35,33 @@ export default function RootLayout({
 						enableSystem={false}
 						disableTransitionOnChange
 					>
-						<Toaster
-							position="top-right"
-							reverseOrder={false}
-							toastOptions={{
-								style: {
-									backgroundColor: "var(--primary-container)",
-									color: "var(--on-primary-container)",
-									borderRadius: "var(--radius)",
-								},
-								success: {
+						<NuqsAdapter>
+							<Toaster
+								position="top-right"
+								reverseOrder={false}
+								toastOptions={{
 									style: {
-										backgroundColor: "var(--success)",
-										color: "var(--on-success)",
+										backgroundColor: "var(--primary-container)",
+										color: "var(--on-primary-container)",
+										borderRadius: "var(--radius)",
 									},
-								},
-								error: {
-									style: {
-										backgroundColor: "var(--error)",
-										color: "var(--on-tertiary)",
+									success: {
+										style: {
+											backgroundColor: "var(--success)",
+											color: "var(--on-success)",
+										},
 									},
-								},
-							}}
-						/>
+									error: {
+										style: {
+											backgroundColor: "var(--error)",
+											color: "var(--on-tertiary)",
+										},
+									},
+								}}
+							/>
 
-						{children}
+							{children}
+						</NuqsAdapter>
 					</ThemeProvider>
 				</body>
 			</TRPCReactProvider>

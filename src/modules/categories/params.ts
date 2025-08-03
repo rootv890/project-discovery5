@@ -183,13 +183,9 @@ export const categorySearchParams = {
 	 * Maps to: ?pageSize=25
 	 * Controls number of items displayed per page
 	 */
-	pageSize: parseAsInteger
-		.withDefault(DEFAULT_PAGE_SIZE)
-		.withOptions({
-			clearOnDefault: true,
-		})
-		// Runtime validation ensures reasonable bounds
-		.withSchema(z.number().min(MIN_PAGE_SIZE).max(MAX_PAGE_SIZE)),
+	pageSize: parseAsInteger.withDefault(DEFAULT_PAGE_SIZE).withOptions({
+		clearOnDefault: true,
+	}),
 
 	/**
 	 * Sort Field Parameter

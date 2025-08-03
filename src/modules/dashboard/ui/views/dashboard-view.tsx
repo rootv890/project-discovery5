@@ -1,116 +1,170 @@
+/**
+ * @fileoverview Dashboard View - Main Dashboard Component
+ *
+ * Main dashboard view component with:
+ * - Comprehensive tools display with search and filtering
+ * - Real-time statistics and metrics
+ * - Responsive design and loading states
+ * - URL state synchronization
+ * - Error handling and empty states
+ *
+ * @author Your Development Team
+ * @since 2025-01-01
+ * @version 1.0.0
+ */
+
 "use client"
 
-import { VerticalProductCard } from "@/components/VerticalProductCard"
-import {
-	ProductGrid,
-	ResponsiveContainer,
-} from "@/components/ui/responsive-grid"
+import { Badge } from "@/components/ui/badge"
+import { ResponsiveContainer } from "@/components/ui/responsive-grid"
 import { useTRPC } from "@/trpc/client"
-import { useSuspenseQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
+import { useQueryStates } from "nuqs"
+import { useMemo } from "react"
+import { Pagination as ToolsPagination } from "../../../categories/components/Pagination"
+import { DashboardStats } from "../../components/DashboardStats"
+import { QuickFilterBar } from "../../components/QuickFilterBar"
+import { ToolsGrid } from "../../components/ToolsGrid"
+import { ToolsGridSkeleton } from "../../components/ToolsLoadingStates"
+import { ToolsSearchFilterBar } from "../../components/ToolsSearchFilterBar"
+import { ToolsSorting } from "../../components/ToolsSorting"
+import {
+	ToolsEmptyState,
+	ToolsError,
+} from "../../components/ToolsStateComponents"
+import {
+	dashboardToolsSearchParams,
+	searchParamsToTRPCInput,
+} from "../../params"
+import { getDefaultParams, hasActiveFilters } from "../../utils"
 
-type Props = {}
+// =============================================================================
+// MAIN DASHBOARD COMPONENT
+// =============================================================================
 
-// Sample data for demonstration
-const sampleProducts = [
-	{
-		imageSrc: "/placeholder-image.png",
-		title: "Amazing Product 1",
-		subtitle: "A fantastic tool for developers",
-		description:
-			"This is a detailed description of the amazing product that helps developers build better applications.",
-		visitUrl: "https://example.com",
-		moreInfoUrl: "https://example.com/info",
-	},
-	{
-		imageSrc: "/placeholder-image.png",
-		title: "Incredible Tool 2",
-		subtitle: "Perfect for design workflows",
-		description:
-			"An incredible tool that streamlines your design process and makes collaboration easier.",
-		visitUrl: "https://example.com",
-		moreInfoUrl: "https://example.com/info",
-	},
-	{
-		imageSrc: "/placeholder-image.png",
-		title: "Super App 3",
-		subtitle: "All-in-one solution",
-		description:
-			"A comprehensive application that combines multiple tools into one seamless experience.",
-		visitUrl: "https://example.com",
-	},
-	{
-		imageSrc: "/placeholder-image.png",
-		title: "Pro Software 4",
-		subtitle: "Enterprise-grade solution",
-		description:
-			"Professional software designed for large-scale operations and enterprise needs.",
-		moreInfoUrl: "https://example.com/info",
-	},
-	{
-		imageSrc: "/placeholder-image.png",
-		title: "Creative Studio 5",
-		subtitle: "For artists and creators",
-		description:
-			"A creative suite that empowers artists to bring their visions to life.",
-		visitUrl: "https://example.com",
-		moreInfoUrl: "https://example.com/info",
-	},
-	{
-		imageSrc: "/placeholder-image.png",
-		title: "Developer Kit 6",
-		subtitle: "Essential tools for coding",
-		description:
-			"Everything you need to start coding and building amazing applications.",
-		visitUrl: "https://example.com",
-	},
-]
+export default function DashboardPageView() {
+	// URL state management
+	const [params, setParams] = useQueryStates(dashboardToolsSearchParams)
 
-const DashboardPageView = (props: Props) => {
+	// TRPC client
 	const trpc = useTRPC()
-	const { data: categories } = useSuspenseQuery(
-		trpc.categories.getManyForSidebar.queryOptions({})
-	)
+
+	// Convert params to TRPC input
+	const trpcInput = useMemo(() => searchParamsToTRPCInput(params), [params])
+
+	// Fetch tools data
+	const {
+		data: response,
+		isLoading,
+		isError,
+		error,
+		refetch,
+	} = useQuery(trpc.tools.getAllTools.queryOptions(trpcInput))
+
+	// Extract data
+	const tools = response?.items || []
+	const meta = response?.meta || {
+		total: 0,
+		totalPages: 0,
+		page: 1,
+		pageSize: 20,
+		hasNextPage: false,
+		hasPreviousPage: false,
+	}
+
+	// Event handlers
+	const handleRetry = () => {
+		refetch()
+	}
+
+	const handleClearAllFilters = () => {
+		setParams(getDefaultParams())
+	}
+
+	// Check if filters are active
+	const hasFilters = hasActiveFilters(params)
+
+	// ==========================================================================
+	// RENDER
+	// ==========================================================================
 
 	return (
 		<ResponsiveContainer
 			maxWidth="7xl"
 			className="py-8"
 		>
-			<div className="space-y-12">
+			<div className="space-y-8">
 				{/* Header Section */}
 				<div className="space-y-4">
-					<h1 className="text-4xl font-bold tracking-tight">Dashboard</h1>
-					<p className="text-lg text-muted-foreground max-w-2xl ">
-						Welcome to your dashboard! Explore our featured products and
-						discover amazing tools.
-					</p>
+					<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+						<div>
+							<h1 className="text-4xl font-bold tracking-tight">
+								Tools Dashboard
+							</h1>
+							<p className="text-lg text-muted-foreground max-w-2xl">
+								Discover and explore our comprehensive collection of development
+								tools, design resources, and productivity applications.
+							</p>
+						</div>
+						<Badge
+							variant="secondary"
+							className="w-fit"
+						>
+							{meta.total.toLocaleString()} tools available
+						</Badge>
+					</div>
+
+					{/* Dashboard Stats */}
+					<DashboardStats />
 				</div>
 
-				<ProductGrid
-					cardType="vertical"
-					// gap="lg"
-				>
-					{sampleProducts.slice(0, 6).map((product, index) => (
-						<VerticalProductCard
-							key={index}
-							{...product}
-							description={product.description || "No description available"}
-							variant="filled"
-							imageSrc={"/images/hero-img.jpg"}
-						/>
-					))}
-				</ProductGrid>
+				{/* Search & Filter Bar */}
+				<ToolsSearchFilterBar />
 
-				{/* Debug Section (can be removed) */}
-				{/* <section className="space-y-4">
-					<h3 className="text-xl font-semibold">Categories Data</h3>
-					<div className="bg-muted rounded-lg p-4 max-h-60 overflow-auto">
-						<pre className="text-sm">{JSON.stringify(categories, null, 2)}</pre>
-					</div>
-				</section> */}
+				{/* Quick Filter Bar */}
+				<QuickFilterBar />
+
+				{/* Sorting and Results Info */}
+				{!isLoading && !isError && <ToolsSorting total={meta.total} />}
+
+				{/* Tools Grid/List */}
+				<div className="space-y-6">
+					{/* Loading State */}
+					{isLoading && <ToolsGridSkeleton view={params.view} />}
+
+					{/* Error State */}
+					{isError && (
+						<ToolsError
+							error={error as unknown as Error}
+							onRetry={handleRetry}
+						/>
+					)}
+
+					{/* Empty State */}
+					{!isLoading && !isError && tools.length === 0 && (
+						<ToolsEmptyState
+							hasFilters={hasFilters}
+							onClearFilters={handleClearAllFilters}
+						/>
+					)}
+
+					{/* Tools Grid */}
+					{!isLoading && !isError && tools.length > 0 && (
+						<>
+							<ToolsGrid
+								tools={tools}
+								viewMode={params.view}
+							/>
+
+							{/* Pagination */}
+							<ToolsPagination
+								total={meta.total}
+								totalPages={meta.totalPages}
+							/>
+						</>
+					)}
+				</div>
 			</div>
 		</ResponsiveContainer>
 	)
 }
-
-export default DashboardPageView

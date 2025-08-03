@@ -27,49 +27,45 @@ const getManyInputSchema = z.object({
 
 export const categoriesProcedure = createTRPCRouter({
 	// Get Many for Sidebar - using baseProcedure since auth is checked at page level
-	getManyForSidebar: baseProcedure
-		.input(z.object({}))
-		.query(async ({ ctx, input }) => {
-			const whereClause = undefined
+	getCategoriesForSidebar: baseProcedure.query(async () => {
+		const whereClause = undefined
 
-			// Get categories with actual tool counts using SQL subquery
-			const data = await db
-				.select({
-					id: categories.id,
-					name: categories.name,
-					slug: categories.slug,
-					imageUrl: categories.imageUrl,
-					iconSvg: categories.iconSvg,
-					description: categories.description,
-					createdAt: categories.createdAt,
-					updatedAt: categories.updatedAt,
-					toolCount: sql<number>`COUNT(${toolCategories.toolId})`.as(
-						"toolCount"
-					),
-				})
-				.from(categories)
-				.innerJoin(toolCategories, eq(toolCategories.categoryId, categories.id))
-				.where(whereClause)
-				.groupBy(categories.id)
-				.orderBy(sql`${categories.createdAt} DESC`)
-			// .offset((input.page - 1) * input.pageSize)
-			// .limit(input.pageSize)
+		// Get categories with actual tool counts using SQL subquery
+		const data = await db
+			.select({
+				id: categories.id,
+				name: categories.name,
+				slug: categories.slug,
+				imageUrl: categories.imageUrl,
+				iconSvg: categories.iconSvg,
+				description: categories.description,
+				createdAt: categories.createdAt,
+				updatedAt: categories.updatedAt,
+				toolCount: sql<number>`COUNT(${toolCategories.toolId})`.as("toolCount"),
+			})
+			.from(categories)
+			.innerJoin(toolCategories, eq(toolCategories.categoryId, categories.id))
+			.where(whereClause)
+			.groupBy(categories.id)
+			.orderBy(sql`${categories.createdAt} DESC`)
+		// .offset((input.page - 1) * input.pageSize)
+		// .limit(input.pageSize)
 
-			// Get total count of categories
-			const [{ count: totalCount }] = await db
-				.select({ count: sql<number>`COUNT(*)::int` })
-				.from(categories)
+		// Get total count of categories
+		const [{ count: totalCount }] = await db
+			.select({ count: sql<number>`COUNT(*)::int` })
+			.from(categories)
 
-			return {
-				items: data,
-				meta: {
-					total: totalCount,
-					// totalPages: Math.ceil(totalCount / input.pageSize),
-					// page: input.page,
-					// pageSize: input.pageSize,
-				},
-			}
-		}),
+		return {
+			items: data,
+			meta: {
+				total: totalCount,
+				// totalPages: Math.ceil(totalCount / input.pageSize),
+				// page: input.page,
+				// pageSize: input.pageSize,
+			},
+		}
+	}),
 
 	getCategoryById: protectedProcedure
 		.input(

@@ -34,10 +34,7 @@ type CategoriesSidebarProps = {
 	className?: string
 	children?: ReactNode
 }
-
-// ============================================================================
-// MAIN SIDEBAR COMPONENT
-// ============================================================================
+// Render sidebar items
 const renderSidebarItems = (
 	categories: getManyForSidebarType["items"] = [],
 	isActive: (id: string) => boolean = () => false
@@ -167,8 +164,10 @@ export const CategoriesSidebar = ({
 const CategoriesSidebarWrapper = () => {
 	const trpc = useTRPC()
 	const { data: categories } = useSuspenseQuery(
-		trpc.categories.getManyForSidebar.queryOptions({})
+		trpc.categories.getCategoriesForSidebar.queryOptions()
 	)
+
+	console.log("CategoriesSidebarWrapper categories:", categories.items.length)
 
 	const isMobile = useMediaQuery({
 		maxWidth: 768,

@@ -10,7 +10,7 @@ const page = async () => {
 		redirect("/auth/enter")
 	}
 
-	prefetch(trpc.categories.getManyForSidebar.queryOptions({}))
+	prefetch(trpc.categories.getCategoriesForSidebar.queryOptions())
 
 	return (
 		<HydrateClient>
