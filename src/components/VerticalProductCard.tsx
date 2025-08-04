@@ -48,7 +48,7 @@ export function VerticalProductCard({
 			<div className="w-full px-2 pt-2 ">
 				<div className="relative overflow-clip rounded-[20px] size-full">
 					<Image
-						src={imageSrc}
+						src={"/images/hero-img.jpg"}
 						alt={imageAlt}
 						fill
 						priority

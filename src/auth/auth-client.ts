@@ -9,4 +9,3 @@ export const signInWithGoogle = async () => {
 }
 
 export const { useSession, deleteUser, signOut, accountInfo } = authClient
-// export { accountInfo, deleteUser, signInWithGoogle, signOut, useSession }

@@ -237,11 +237,24 @@
 	}
 }
 
-/* svg shape masking */
+@keyframes rotateMask {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
 .mask-flower {
-	mask-image: url("/shapes/Sunny.svg");
+	mask-image: url("/shapes/4-leaf-clover.svg");
 	mask-size: cover;
-	-webkit-mask-image: url("/shapes/Sunny.svg");
+	-webkit-mask-image: url("/shapes/4-leaf-clover.svg");
 	-webkit-mask-size: cover;
 	mask-repeat: no-repeat;
+	transition: transform 0.3s ease-out;
+}
+
+.mask-flower:hover {
+	transform: rotate(15deg);
 }
