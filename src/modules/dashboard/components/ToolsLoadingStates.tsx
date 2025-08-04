@@ -21,7 +21,14 @@ import { ToolsGridSkeletonProps } from "../types"
 
 // =============================================================================
 // TOOLS GRID SKELETON
-// =============================================================================
+/**
+ * Renders a set of loading skeleton cards for tools in either grid or list view.
+ *
+ * Displays a configurable number of animated skeleton placeholders using the appropriate layout for the specified view. Defaults to 8 items for grid view and 6 for list view if `count` is not provided.
+ *
+ * @param view - Determines the layout style ("grid" or "list") for the skeleton cards.
+ * @param count - Optional number of skeleton items to render.
+ */
 
 export function ToolsGridSkeleton({ view, count }: ToolsGridSkeletonProps) {
 	const skeletonCount = count || (view === "grid" ? 8 : 6)
@@ -45,7 +52,11 @@ export function ToolsGridSkeleton({ view, count }: ToolsGridSkeletonProps) {
 
 // =============================================================================
 // GRID SKELETON ITEM
-// =============================================================================
+/**
+ * Renders a loading skeleton placeholder for a grid-style card.
+ *
+ * Displays an animated image skeleton and multiple content bars to simulate a card's layout during loading in grid view.
+ */
 
 function GridSkeletonItem() {
 	return (
@@ -70,7 +81,11 @@ function GridSkeletonItem() {
 
 // =============================================================================
 // LIST SKELETON ITEM
-// =============================================================================
+/**
+ * Renders a skeleton placeholder for a single list view item in a dashboard.
+ *
+ * Displays an image skeleton on the left and stacked skeleton bars on the right to simulate loading content and actions.
+ */
 
 function ListSkeletonItem() {
 	return (
@@ -91,7 +106,11 @@ function ListSkeletonItem() {
 
 // =============================================================================
 // DASHBOARD STATS SKELETON
-// =============================================================================
+/**
+ * Renders a responsive grid of four skeleton cards representing loading states for dashboard statistics.
+ *
+ * Each card displays animated placeholders for a label, value, and icon, providing visual feedback while data is loading.
+ */
 
 export function DashboardStatsSkeleton() {
 	return (

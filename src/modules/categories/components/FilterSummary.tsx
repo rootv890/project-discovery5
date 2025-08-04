@@ -38,16 +38,11 @@ interface FilterSummaryProps {
 // =============================================================================
 
 /**
- * FilterSummary - Active Filters Display Component
+ * Displays all currently active category search filters as removable badges and provides controls to clear individual filters or all filters at once.
  *
- * This component shows users what filters are currently active and provides
- * quick ways to remove individual filters or clear all at once. Features:
+ * Updates the URL query parameters in sync with filter changes. Renders nothing if no filters are active.
  *
- * - **Visual Filter Tags**: Each active filter shown as removable badge
- * - **Quick Removal**: One-click removal of individual filters
- * - **Bulk Clear**: "Clear all" button for resetting all filters
- * - **Smart Grouping**: Related filters grouped together visually
- * - **URL Sync**: All changes immediately reflect in URL
+ * @param params - The current category search parameters reflecting active filters
  */
 export function FilterSummary({ params }: FilterSummaryProps) {
 	const [, setParams] = useQueryStates(categorySearchParams)

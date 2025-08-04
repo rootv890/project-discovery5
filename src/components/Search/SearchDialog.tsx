@@ -32,6 +32,18 @@ const defaultSuggestions: SearchSuggestion[] = [
 	{ id: "import", title: "Import Extension", icon: "📦", label: "Command" },
 ]
 
+/**
+ * Renders a searchable command palette dialog with animated transitions and keyboard shortcut support.
+ *
+ * Displays a modal dialog containing a search input and a list of suggestions, allowing users to quickly find and select apps, collections, or commands. The dialog can be opened or closed using keyboard shortcuts (Cmd/Ctrl+K to toggle, Escape to close), and closes automatically when focus leaves the dialog. Selecting a suggestion triggers its optional callback and closes the dialog.
+ *
+ * @param open - Whether the dialog is currently visible
+ * @param setOpen - Function to update the dialog's open state
+ * @param onSearch - Optional callback invoked with the search query as the user types
+ * @param placeholder - Optional placeholder text for the search input
+ * @param suggestions - Optional array of suggestions to display in the dialog
+ * @returns The rendered search dialog component
+ */
 export default function SearchDialog({
 	open,
 	setOpen,
@@ -143,6 +155,11 @@ interface SearchItemProps {
 	onSelect?: () => void
 }
 
+/**
+ * Renders a selectable command palette item with optional icon and label.
+ *
+ * Displays the provided content as the item's title, with optional icon on the left and label on the right. Calls the `onSelect` callback when the item is selected.
+ */
 function SearchItem({ children, icon, label, onSelect }: SearchItemProps) {
 	return (
 		<Command.Item

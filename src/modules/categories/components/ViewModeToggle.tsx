@@ -29,16 +29,9 @@ import { useQueryStates } from "nuqs"
 // =============================================================================
 
 /**
- * ViewModeToggle - URL-Synchronized View Mode Control
+ * Renders a button group for switching between grid, list, and compact category view modes, synchronized with the URL query parameter.
  *
- * This component allows users to switch between different view modes
- * (grid, list, compact) while maintaining URL synchronization.
- *
- * Features:
- * - Immediate URL updates when view mode changes
- * - Visual indicators for active view mode
- * - Keyboard navigation support
- * - Mobile-responsive design
+ * Updates the `viewMode` in the URL when a mode is selected, preserving other query parameters. Visually highlights the active mode and provides accessible labels and tooltips for each option. Designed for keyboard accessibility and responsive layouts.
  */
 export function ViewModeToggle() {
 	const [{ viewMode }, setParams] = useQueryStates(categorySearchParams)

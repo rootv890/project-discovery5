@@ -24,6 +24,12 @@ export async function loadSVGPath(path: string) {
 	}
 }
 
+/**
+ * Returns an array of SVG path strings for a specified number of randomly selected shapes.
+ *
+ * @param count - The number of random shapes to select (default is 4)
+ * @returns An array of SVG path data strings corresponding to the selected shapes
+ */
 export function loadRandomShapes(count: number = 4) {
 	// pick random shapes from shapes.json
 	// just rreturn the path
@@ -78,12 +84,23 @@ const prefixMap = {
 	toolCollection: "tcl",
 } as const satisfies Record<IdType, string>
 
-// 3. Generator function
+/**
+ * Generates a unique ID string with a type-specific prefix.
+ *
+ * @param type - The category of entity for which to generate the ID
+ * @returns A unique ID string composed of the prefix for the given type and a random 6-character suffix
+ */
 export function generateId(type: IdType): string {
 	const prefix = prefixMap[type]
 	return `${prefix}_${nanoid(idLength)}`
 }
 
+/**
+ * Removes specific form registration properties from the input object and returns the remaining properties.
+ *
+ * @param registerReturn - The object containing form registration properties to be cleaned.
+ * @returns The input object without `min`, `max`, `valueAsNumber`, `valueAsDate`, `setValueAs`, and `shouldUnregister` properties.
+ */
 export function cleanRegisterProps(registerReturn: any) {
 	const {
 		min,
@@ -97,6 +114,11 @@ export function cleanRegisterProps(registerReturn: any) {
 	return rest
 }
 
+/**
+ * Detects the user's operating system based on the browser's user agent string.
+ *
+ * @returns The detected operating system: "mac", "windows", "linux", or "unknown"
+ */
 export function getOS() {
 	const userAgent = window.navigator.userAgent.toLowerCase()
 	if (userAgent.includes("mac")) return "mac"

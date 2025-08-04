@@ -40,16 +40,14 @@ interface EmptyStateProps {
 // =============================================================================
 
 /**
- * EmptyState - Professional No Results Component
+ * Displays a visually appealing and accessible empty state with context-specific messaging, icon, and optional action button.
  *
- * This component provides users with helpful guidance when no content
- * is available, whether due to filters, search queries, or genuinely
- * empty data sets. Features include:
+ * Use this component to inform users when no content is available, such as after a search or when a data set is empty. The component supports customizable titles, descriptions, icons, and an optional call-to-action button, and includes ARIA live region support for accessibility.
  *
- * - **Context-Aware Messaging**: Different messages for different scenarios
- * - **Clear Actions**: Helpful buttons to guide users to next steps
- * - **Visual Appeal**: Professional icons and spacing
- * - **Accessibility**: Proper semantic structure and ARIA labels
+ * @param title - The main heading text describing the empty state.
+ * @param description - Additional information or guidance for the user.
+ * @param action - Optional configuration for a call-to-action button, including label, link, and style variant.
+ * @param icon - Optional icon type to visually represent the empty state; defaults to "search".
  */
 export function EmptyState({
 	title,

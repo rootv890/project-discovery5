@@ -17,6 +17,19 @@ interface QuickFilterBarProps {
 	onClearAll: () => void
 }
 
+/**
+ * Renders a filter bar for quickly filtering items by top categories, pricing options, and a featured-only toggle.
+ *
+ * Displays up to five top categories as toggle buttons with tool count badges, pricing filter buttons ("Free", "Freemium", "Paid"), a "Featured Only" toggle, and a "Clear All" button when any filter is active. Category data is loaded asynchronously, showing skeletons while loading.
+ *
+ * @param selectedCategories - Array of selected category IDs
+ * @param selectedPricing - Array of selected pricing options
+ * @param featuredOnly - Whether the featured-only filter is active
+ * @param onCategoryToggle - Callback to toggle a category selection
+ * @param onPricingToggle - Callback to toggle a pricing selection
+ * @param onFeaturedToggle - Callback to toggle the featured-only filter
+ * @param onClearAll - Callback to clear all filters
+ */
 export function QuickFilterBar({
 	selectedCategories,
 	selectedPricing,

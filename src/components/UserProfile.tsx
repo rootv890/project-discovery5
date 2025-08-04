@@ -34,6 +34,17 @@ interface UserProfileProps {
 	animationStyle?: keyof typeof ANIMATION_PRESETS
 }
 
+/**
+ * Renders a user profile component with animated masked avatar, authentication-aware UI, and interactive dropdown menu for account actions.
+ *
+ * Displays a loading placeholder, sign-in button, or authenticated user dropdown based on authentication and loading state. The avatar uses a dynamic mask shape and GSAP-powered animation on hover. The dropdown menu provides user info, status badges, copy-to-clipboard actions for name and email with feedback, and options for settings, account management, and sign-out.
+ *
+ * @param size - Optional size of the avatar and button ("sm", "md", or "lg"); defaults to "md"
+ * @param className - Optional additional CSS classes for the root element
+ * @param maskShape - Optional custom mask shape for the avatar; if omitted, selected based on user status
+ * @param animationStyle - Optional animation preset key for avatar mask animation; defaults to "dramatic"
+ * @returns The rendered user profile React element
+ */
 export function UserProfile({
 	size = "md",
 	className = "",

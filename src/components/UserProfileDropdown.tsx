@@ -34,6 +34,20 @@ interface UserProfileDropdownProps {
 	side?: "top" | "right" | "bottom" | "left"
 }
 
+/**
+ * Renders a user profile dropdown menu with avatar, user information, and action items.
+ *
+ * Displays the user's avatar or initials as a dropdown trigger. The dropdown shows user details, allows copying the email address to the clipboard, and provides menu items for managing the account, accessing settings, and signing out. The sign-out option displays a loading state when signing out is in progress.
+ *
+ * @param userInitials - The initials to display if the user does not have an image
+ * @param isSigningOut - Whether the sign-out process is currently active
+ * @param onSignOut - Callback invoked when the user selects "Sign out"
+ * @param onManageAccount - Callback invoked when the user selects "Manage Account"
+ * @param onSettings - Callback invoked when the user selects "Settings"
+ * @param size - Optional avatar size ("sm", "md", or "lg"); defaults to "md"
+ * @param align - Optional dropdown alignment ("start", "center", or "end"); defaults to "end"
+ * @param side - Optional dropdown side ("top", "right", "bottom", or "left"); defaults to "bottom"
+ */
 export function UserProfileDropdown({
 	user,
 	userInitials,

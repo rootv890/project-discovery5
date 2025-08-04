@@ -9,6 +9,22 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { ProductCardProps } from "../../types/type"
 
+/**
+ * Displays a horizontal product card with an image, title, subtitle, and action buttons.
+ *
+ * Renders a visually styled card featuring a product image, title, optional subtitle, and interactive buttons for liking, viewing stats, and accessing more information or visiting an external site. The "More Info" and "Visit Site" buttons are disabled if their respective URLs are not provided.
+ *
+ * @param imageSrc - The URL of the product image to display
+ * @param imageAlt - Alternative text for the product image
+ * @param title - The main title of the product
+ * @param subtitle - An optional subtitle or secondary description
+ * @param description - An optional detailed description of the product
+ * @param visitUrl - URL to visit the product's external site
+ * @param moreInfoUrl - URL for more information about the product
+ * @param className - Additional CSS classes for custom styling
+ * @param variant - Visual style variant for the card
+ * @returns A React element representing the horizontal product card
+ */
 export function HorizontalProductCard({
 	imageSrc,
 	imageAlt = "Product image",

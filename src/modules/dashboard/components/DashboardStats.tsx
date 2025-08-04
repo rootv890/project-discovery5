@@ -24,7 +24,13 @@ import { DashboardStatsSkeleton } from "./ToolsLoadingStates"
 
 // =============================================================================
 // DASHBOARD STATS COMPONENT
-// =============================================================================
+/**
+ * Displays a grid of dashboard statistic cards for tools, including total, approved, free, and freemium counts.
+ *
+ * Shows a loading skeleton while fetching data and returns nothing if no statistics are available.
+ *
+ * @param className - Optional additional CSS class names for the grid container
+ */
 
 export function DashboardStats({ className }: DashboardStatsProps) {
 	const trpc = useTRPC()
@@ -95,6 +101,17 @@ interface StatCardProps {
 	bgColor: string
 }
 
+/**
+ * Displays a statistic card with a label, formatted value, and a color-coded icon.
+ *
+ * Used for presenting individual dashboard metrics in a visually distinct card layout.
+ *
+ * @param label - The label describing the statistic
+ * @param value - The numeric value to display
+ * @param icon - The icon component representing the statistic
+ * @param color - The icon color class
+ * @param bgColor - The background color class for the icon container
+ */
 function StatCard({ label, value, icon: Icon, color, bgColor }: StatCardProps) {
 	return (
 		<div className="bg-card rounded-lg p-4 border hover:shadow-md transition-shadow">
@@ -113,7 +130,13 @@ function StatCard({ label, value, icon: Icon, color, bgColor }: StatCardProps) {
 
 // =============================================================================
 // ENHANCED STATS WITH TRENDS
-// =============================================================================
+/**
+ * Displays dashboard statistics with additional trend metrics for tools.
+ *
+ * Fetches and presents main tool statistics along with approval rate and free tools percentage, including visual badges indicating metric status. Shows loading skeleton while data is loading and returns nothing if no data is available.
+ *
+ * @param className - Optional CSS class for custom styling
+ */
 
 export function DashboardStatsWithTrends({ className }: DashboardStatsProps) {
 	const trpc = useTRPC()

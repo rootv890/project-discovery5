@@ -44,19 +44,13 @@ interface CategoryListProps {
 // =============================================================================
 
 /**
- * CategoryList - Server-Side Data Integration Component
+ * Server-rendered React component that fetches and displays a paginated list of categories based on URL search parameters and selected view mode.
  *
- * This component demonstrates how to integrate URL-based state management
- * with server-side data fetching and rendering. Key features:
+ * Renders categories in grid, list, or compact layouts, handles empty and error states, and provides contextual messaging and actions for users. Supports server-side data fetching with TRPC and adapts output for SEO and performance.
  *
- * 1. **Type-Safe API Integration**: Uses TRPC with full TypeScript support
- * 2. **Server-Side Rendering**: Renders on server for SEO and performance
- * 3. **Error Boundaries**: Graceful error handling and user feedback
- * 4. **Responsive Design**: Adapts to different view modes and screen sizes
- * 5. **Performance Optimized**: Efficient data fetching and caching
- *
- * @param props - Component props containing search parameters and view mode
- * @returns Promise<JSX.Element> - Server-rendered category list
+ * @param searchParams - Parsed URL search parameters for filtering, searching, and pagination
+ * @param viewMode - Determines the layout style for displaying categories
+ * @returns The rendered category list, empty state, or error state as a JSX element
  */
 export async function CategoryList({
 	searchParams,

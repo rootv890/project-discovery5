@@ -13,6 +13,13 @@ interface QuickFilterBarProps {
 	onFiltersChange: (filters: string) => void
 }
 
+/**
+ * Renders a quick filter bar for filtering dashboard items by category, pricing, and featured status.
+ *
+ * Displays buttons for the top five categories, pricing options ("Free" and "Paid"), and a featured toggle. Allows users to select or clear filters, updating the parent component via the `onFiltersChange` callback with the new filter query string.
+ *
+ * @param onFiltersChange - Callback invoked with the updated filter query string whenever filters change.
+ */
 export function QuickFilterBar({ onFiltersChange }: QuickFilterBarProps) {
 	const [isPending, startTransition] = useTransition()
 	const searchParams = useSearchParams()

@@ -36,7 +36,13 @@ interface ToolCardProps {
 
 // =============================================================================
 // TOOLS GRID COMPONENT
-// =============================================================================
+/**
+ * Renders a responsive grid or list of tool cards based on the specified view mode.
+ *
+ * Returns `null` if the tools array is empty.
+ *
+ * @returns A grid or list of tool cards, or `null` if no tools are provided.
+ */
 
 export function ToolsGrid({ tools, viewMode, className }: ToolsGridProps) {
 	if (tools.length === 0) {
@@ -62,7 +68,11 @@ export function ToolsGrid({ tools, viewMode, className }: ToolsGridProps) {
 
 // =============================================================================
 // TOOL CARD COMPONENT
-// =============================================================================
+/**
+ * Renders a tool card in either horizontal (list) or vertical (grid) layout based on the view mode.
+ *
+ * Displays the tool's image, name, subtitle, description, and links for visiting or more information. Uses default values if certain tool properties are missing.
+ */
 
 function ToolCard({ tool, viewMode }: ToolCardProps) {
 	const cardProps = {
@@ -84,7 +94,11 @@ function ToolCard({ tool, viewMode }: ToolCardProps) {
 
 // =============================================================================
 // TOOLS GRID WITH VIRTUAL SCROLLING (Future Enhancement)
-// =============================================================================
+/**
+ * Renders a tools grid with a placeholder for future virtualized scrolling support.
+ *
+ * Currently displays the standard `ToolsGrid` component. Intended for future enhancement to efficiently render large tool lists using virtualization.
+ */
 
 export function VirtualizedToolsGrid({
 	tools,
@@ -112,6 +126,11 @@ interface SelectableToolsGridProps extends ToolsGridProps {
 	selectionMode?: boolean
 }
 
+/**
+ * Renders a tools grid with props for selection features, currently without selection UI.
+ *
+ * Intended for future use cases where tool selection is needed, such as admin interfaces. Currently behaves identically to `ToolsGrid`.
+ */
 export function SelectableToolsGrid({
 	tools,
 	viewMode,

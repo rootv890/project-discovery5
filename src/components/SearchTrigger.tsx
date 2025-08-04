@@ -2,6 +2,14 @@ import { cn } from "@/lib/utils"
 import { SearchIcon } from "lucide-react"
 import SearchIsland from "./SearchIsland"
 
+/**
+ * Renders a responsive search trigger button that adapts its appearance for desktop and mobile screens.
+ *
+ * On desktop, displays a full-width search bar styled as a rounded button with placeholder text and a search icon. On mobile, shows a compact pill-shaped button with a search icon and label. Invokes the provided `onClick` callback when either button is clicked.
+ *
+ * @param className - Additional CSS classes to apply to the desktop button for custom styling
+ * @param onClick - Callback function invoked when the search trigger is clicked
+ */
 export function SearchTriggerInput({
 	className,
 	onClick,
@@ -43,6 +51,14 @@ export function SearchTriggerInput({
 	)
 }
 
+/**
+ * Displays a centered search trigger button and manages the visibility of the search interface.
+ *
+ * Renders a search button that, when clicked, opens the search interface by setting the `open` state to `true`. The search interface is controlled via the `open` and `setOpen` props.
+ *
+ * @param open - Whether the search interface is currently visible
+ * @param setOpen - Function to update the visibility state of the search interface
+ */
 export default function SearchTrigger({
 	open,
 	setOpen,

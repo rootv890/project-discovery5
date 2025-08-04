@@ -52,7 +52,21 @@ interface ToolsPaginationProps {
 
 // =============================================================================
 // COMPONENT
-// =============================================================================
+/**
+ * Renders a pagination UI for dashboard tools, including results summary, page size selection, and navigation controls.
+ *
+ * Displays the current range of items, allows users to select the number of items per page, and provides navigation buttons for moving between pages. Pagination state is synchronized with URL query parameters for consistent navigation and bookmarking. The component is hidden if there are no items to display.
+ *
+ * @param totalItems - The total number of items available for pagination.
+ * @param totalPages - The total number of pages based on the current page size.
+ * @param currentPage - The currently active page number.
+ * @param pageSize - The number of items displayed per page.
+ * @param hasNextPage - Indicates if there is a next page available.
+ * @param hasPreviousPage - Indicates if there is a previous page available.
+ * @param className - Optional CSS class for custom styling.
+ *
+ * @returns The pagination UI component, or `null` if there are no items.
+ */
 
 export function ToolsPagination({
 	totalItems,

@@ -20,7 +20,9 @@ import { FilterSummary, Tool, ToolsResponse } from "./types"
 // =============================================================================
 
 /**
- * Check if any filters are currently active
+ * Determines whether any filter parameters are active.
+ *
+ * Returns `true` if at least one filter (search term, status, pricing, categories, platforms, tags, featured, or image presence) is set to a non-default value; otherwise, returns `false`.
  */
 export function hasActiveFilters(params: any): boolean {
 	return Boolean(
@@ -36,7 +38,10 @@ export function hasActiveFilters(params: any): boolean {
 }
 
 /**
- * Get filter summary for display
+ * Generates a summary of active filters, including descriptive labels and a count of all active filters.
+ *
+ * @param params - The filter parameters to summarize
+ * @returns An object containing the total count of active filters and an array of descriptive labels
  */
 export function getFilterSummary(params: any): FilterSummary {
 	const labels: string[] = []
@@ -86,7 +91,9 @@ export function getFilterSummary(params: any): FilterSummary {
 }
 
 /**
- * Clear all filters and return default params
+ * Returns an object containing the default filter parameters for the dashboard.
+ *
+ * The returned object includes default values for search, status, pricing, categories, platforms, tags, sorting, featured flag, image presence, and page number.
  */
 export function getDefaultParams(): any {
 	return {
@@ -109,7 +116,9 @@ export function getDefaultParams(): any {
 // =============================================================================
 
 /**
- * Transform tools data for display
+ * Maps an array of tools to include formatted display strings for pricing and status.
+ *
+ * @returns An array of tools, each extended with `displayPrice` and `displayStatus` properties for UI display.
  */
 export function transformToolsForDisplay(tools: Tool[]) {
 	return tools.map((tool) => ({
@@ -120,7 +129,10 @@ export function transformToolsForDisplay(tools: Tool[]) {
 }
 
 /**
- * Format pricing for display
+ * Converts a tool's pricing value into a human-readable string for display.
+ *
+ * @param pricing - The pricing category of the tool
+ * @returns The formatted pricing label, or "Unknown" if the value is unrecognized
  */
 export function formatPricing(pricing: Tool["pricing"]): string {
 	switch (pricing) {
@@ -142,7 +154,10 @@ export function formatPricing(pricing: Tool["pricing"]): string {
 }
 
 /**
- * Format status for display
+ * Converts a tool's status value into a human-readable string for display.
+ *
+ * @param status - The status value to format
+ * @returns The formatted status string, or "Unknown" if the status is unrecognized
  */
 export function formatStatus(status: Tool["status"]): string {
 	switch (status) {
@@ -160,7 +175,10 @@ export function formatStatus(status: Tool["status"]): string {
 }
 
 /**
- * Get status color for badges
+ * Returns the CSS class string representing the background and text color for a tool's status badge.
+ *
+ * @param status - The status value of the tool
+ * @returns A string of CSS classes for the corresponding status badge color
  */
 export function getStatusColor(status: Tool["status"]): string {
 	switch (status) {
@@ -178,7 +196,10 @@ export function getStatusColor(status: Tool["status"]): string {
 }
 
 /**
- * Get pricing color for badges
+ * Returns CSS class strings for badge colors based on the tool's pricing category.
+ *
+ * @param pricing - The pricing type of the tool
+ * @returns A string of CSS classes representing background and text colors for the given pricing
  */
 export function getPricingColor(pricing: Tool["pricing"]): string {
 	switch (pricing) {
@@ -201,7 +222,12 @@ export function getPricingColor(pricing: Tool["pricing"]): string {
 // =============================================================================
 
 /**
- * Calculate pagination info
+ * Calculates pagination metadata for a dataset.
+ *
+ * @param total - The total number of items in the dataset
+ * @param page - The current page number (1-based)
+ * @param pageSize - The number of items per page
+ * @returns An object containing total pages, start and end item indices for the current page, and booleans indicating the presence of next and previous pages
  */
 export function calculatePaginationInfo(
 	total: number,
@@ -224,7 +250,14 @@ export function calculatePaginationInfo(
 }
 
 /**
- * Generate page numbers for pagination
+ * Generates an array of page numbers and ellipses for pagination controls.
+ *
+ * The returned array includes the first and last page, a range of pages around the current page, and ellipses ("...") to indicate skipped ranges when appropriate.
+ *
+ * @param currentPage - The currently active page number
+ * @param totalPages - The total number of pages available
+ * @param delta - The number of pages to show on each side of the current page (default is 2)
+ * @returns An array containing page numbers and ellipses for pagination display
  */
 export function generatePageNumbers(
 	currentPage: number,
@@ -264,7 +297,10 @@ export function generatePageNumbers(
 // =============================================================================
 
 /**
- * Debounce search input
+ * Creates a debounced function that delays invoking the provided function until after the specified delay has elapsed since the last call.
+ *
+ * @param delay - The debounce delay in milliseconds
+ * @returns A debounced function that wraps the provided callback
  */
 export function createSearchDebouncer(delay: number = 300) {
 	let timeoutId: NodeJS.Timeout
@@ -279,7 +315,13 @@ export function createSearchDebouncer(delay: number = 300) {
 }
 
 /**
- * Highlight search terms in text
+ * Returns the input text with all occurrences of the search term wrapped in `<mark>` tags for highlighting.
+ *
+ * If the search term is empty or whitespace, the original text is returned unchanged.
+ *
+ * @param text - The text in which to highlight search terms
+ * @param searchTerm - The term to highlight within the text
+ * @returns The text with highlighted search term matches
  */
 export function highlightSearchTerms(text: string, searchTerm: string): string {
 	if (!searchTerm.trim()) return text
@@ -289,7 +331,10 @@ export function highlightSearchTerms(text: string, searchTerm: string): string {
 }
 
 /**
- * Escape special regex characters
+ * Escapes special characters in a string so it can be safely used in a regular expression.
+ *
+ * @param string - The input string to escape
+ * @returns The escaped string with regex metacharacters prefixed by a backslash
  */
 function escapeRegExp(string: string): string {
 	return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
@@ -300,7 +345,11 @@ function escapeRegExp(string: string): string {
 // =============================================================================
 
 /**
- * Validate page number
+ * Ensures the page number is within the valid range from 1 to totalPages.
+ *
+ * @param page - The page number to validate
+ * @param totalPages - The maximum number of pages allowed
+ * @returns The adjusted page number, clamped between 1 and totalPages
  */
 export function validatePageNumber(page: number, totalPages: number): number {
 	if (page < 1) return 1
@@ -309,7 +358,12 @@ export function validatePageNumber(page: number, totalPages: number): number {
 }
 
 /**
- * Validate page size
+ * Ensures the page size is one of the allowed values (10, 20, 50, 100).
+ *
+ * Returns the input if valid; otherwise, defaults to 20.
+ *
+ * @param pageSize - The requested number of items per page
+ * @returns The validated page size
  */
 export function validatePageSize(pageSize: number): number {
 	const validSizes = [10, 20, 50, 100]
@@ -321,7 +375,9 @@ export function validatePageSize(pageSize: number): number {
 // =============================================================================
 
 /**
- * Check if error is a network error
+ * Determines whether the provided error is related to network issues.
+ *
+ * Returns `true` if the error message contains keywords indicating a network error; otherwise, returns `false`.
  */
 export function isNetworkError(error: unknown): boolean {
 	return (
@@ -333,7 +389,11 @@ export function isNetworkError(error: unknown): boolean {
 }
 
 /**
- * Check if error is a timeout error
+ * Determines whether the provided error is a timeout or abort error.
+ *
+ * Returns `true` if the error message contains "timeout" or "abort"; otherwise, returns `false`.
+ *
+ * @returns Whether the error is related to a timeout or abort condition
  */
 export function isTimeoutError(error: unknown): boolean {
 	return (
@@ -343,7 +403,11 @@ export function isTimeoutError(error: unknown): boolean {
 }
 
 /**
- * Get user-friendly error message
+ * Returns a user-friendly error message based on the type of error provided.
+ *
+ * If the error is network-related or a timeout, a descriptive message is returned; otherwise, the error's message or a generic fallback is used.
+ *
+ * @returns A string containing a user-friendly error message.
  */
 export function getUserFriendlyErrorMessage(error: unknown): string {
 	if (isNetworkError(error)) {

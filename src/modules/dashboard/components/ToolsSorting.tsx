@@ -55,7 +55,14 @@ const PAGE_SIZE_OPTIONS = [
 
 // =============================================================================
 // MAIN COMPONENT
-// =============================================================================
+/**
+ * Renders advanced sorting and pagination controls for a tools dashboard.
+ *
+ * Displays the total number of tools, allows users to select sorting criteria, toggle sort direction, and adjust the number of items shown per page. All controls synchronize with URL query parameters and reset pagination to the first page on change.
+ *
+ * @param total - The total number of tools to display controls for
+ * @param className - Optional additional CSS class names for the container
+ */
 
 export function ToolsSorting({ total, className }: ToolsSortingProps) {
 	const [params, setParams] = useQueryStates(dashboardToolsSearchParams)

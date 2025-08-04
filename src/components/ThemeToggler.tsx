@@ -13,6 +13,13 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
 
+/**
+ * Renders a dropdown menu for toggling between light, dark, and system themes.
+ *
+ * Displays a button with animated sun and moon icons to indicate the current theme. Selecting an option from the dropdown updates the application's theme accordingly. The currently active theme is visually highlighted in the menu.
+ *
+ * @returns A React element for theme selection.
+ */
 export default function ThemeToggler() {
 	const { setTheme, theme } = useTheme()
 

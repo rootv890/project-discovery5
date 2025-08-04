@@ -46,6 +46,11 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
 	)
 }
 
+/**
+ * Renders the title section of a Card with appropriate text styling.
+ *
+ * Additional class names and props are merged and applied to the underlying div.
+ */
 function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
 	return (
 		<div
@@ -59,6 +64,9 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
 	)
 }
 
+/**
+ * Renders descriptive text within a Card component, styled for secondary content.
+ */
 function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
 	return (
 		<div

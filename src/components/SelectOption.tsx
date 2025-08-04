@@ -15,6 +15,14 @@ export type SelectOptionProps = HTMLAttributes<HTMLElement> & {
 	supportingText?: ReactNode
 }
 
+/**
+ * Renders a custom select option using the `<md-select-option>` web component for use within a select menu.
+ *
+ * Supports optional slots for custom content at the start, end, headline, and supporting text positions.
+ *
+ * @param value - The value associated with this option.
+ * @param displayText - Optional text to display for the option if different from its children.
+ */
 export function SelectOption({
 	value,
 	selected,

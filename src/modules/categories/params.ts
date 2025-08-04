@@ -406,8 +406,12 @@ export const categoryParamsSchema = z
 // =============================================================================
 
 /**
- * Constructs a clean, SEO-friendly URL from parameters
- * Removes default values and formats arrays properly
+ * Builds a URL query string from category search parameters, omitting defaults and empty values.
+ *
+ * Formats array parameters as comma-separated values and excludes parameters with empty, zero, or false values to produce concise, SEO-friendly URLs.
+ *
+ * @param params - Partial set of category search parameters to include in the URL
+ * @returns A query string beginning with "?" if parameters are present, or an empty string otherwise
  */
 export function buildCategoryUrl(
 	params: Partial<CategorySearchParams>
@@ -437,7 +441,10 @@ export function buildCategoryUrl(
 }
 
 /**
- * Validates and sanitizes parameters before sending to API
+ * Returns a fully validated and sanitized set of category search parameters, merging provided values with defaults and falling back to defaults if validation fails.
+ *
+ * @param params - Partial category search parameters to validate and sanitize
+ * @returns A complete, validated `CategorySearchParams` object suitable for API requests
  */
 export function sanitizeCategoryParams(
 	params: Partial<CategorySearchParams>
@@ -486,8 +493,12 @@ export function sanitizeCategoryParams(
 }
 
 /**
- * Generates a human-readable description of current filters
- * Useful for displaying active filter summaries to users
+ * Returns a human-readable summary of active category filters based on the provided parameters.
+ *
+ * If no filters are active, returns "Showing all categories".
+ *
+ * @param params - The current category search parameters
+ * @returns A descriptive string summarizing the applied filters
  */
 export function getFilterDescription(params: CategorySearchParams): string {
 	const filters: string[] = []

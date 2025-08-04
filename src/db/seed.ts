@@ -478,6 +478,11 @@ const toolCategoryRelations = [
 	{ toolId: "tool_canva", categoryId: "c4drx8" }, // Also Marketing
 ]
 
+/**
+ * Populates the database with initial categories, tools, and their relationships.
+ *
+ * Inserts predefined data into the categories, tools, and tool-category relationship tables to set up baseline content for the application.
+ */
 async function seed() {
 	try {
 		console.log("🌱 Seeding categories...")
