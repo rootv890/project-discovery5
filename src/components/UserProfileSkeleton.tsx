@@ -6,6 +6,12 @@ interface UserProfileSkeletonProps {
 	size?: "sm" | "md" | "lg"
 }
 
+/**
+ * Renders a circular skeleton placeholder for a user profile image with configurable size.
+ *
+ * @param className - Additional CSS classes to apply to the skeleton
+ * @param size - The size of the skeleton ("sm", "md", or "lg"); defaults to "md"
+ */
 export function UserProfileSkeleton({
 	className,
 	size = "md",

@@ -3,6 +3,13 @@ import { useRouter } from "next/navigation"
 import { useCallback, useState } from "react"
 import toast from "react-hot-toast"
 
+/**
+ * Provides user profile data, authentication status, user status flags, and action handlers for managing user-related actions in a React/Next.js application.
+ *
+ * Returns user information (ID, name, email, image, verification status, initials, join date), authentication and loading states, error handling, user status flags (new user, verified, has image), navigation handlers (sign in, sign out, manage account, settings), and clipboard utilities for copying email or name. All actions include user feedback via toast notifications.
+ *
+ * @returns An object containing user data, authentication and loading states, error and status flags, action handlers, and clipboard utilities.
+ */
 export function useUserProfile() {
 	const { data: session, error, isPending } = useSession()
 	const router = useRouter()

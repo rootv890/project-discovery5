@@ -17,6 +17,13 @@ export const metadata: Metadata = {
 	description: "Discover the world of open source projects",
 }
 
+/**
+ * Root layout component that sets up global providers, theming, and notification handling for the application.
+ *
+ * Wraps the application with tRPC, theme, authentication/session, and toast notification providers, and applies the Geist font and antialiasing styles.
+ *
+ * @param children - The content to render within the layout
+ */
 export default function RootLayout({
 	children,
 }: Readonly<{

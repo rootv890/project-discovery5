@@ -28,7 +28,11 @@ import { AdvancedFiltersDialog } from "./AdvancedFiltersDialog"
 
 // =============================================================================
 // MAIN COMPONENT
-// =============================================================================
+/**
+ * Provides a search and filtering interface for tools, including search input, filter chips, advanced filters dialog, and view mode toggle.
+ *
+ * Synchronizes filter and search state with URL query parameters, displays active filters as removable chips, and allows clearing or modifying filters. Supports toggling between grid and list views and opening an advanced filters dialog for more options.
+ */
 
 export function ToolsSearchFilterBar() {
 	const [params, setParams] = useQueryStates(dashboardToolsSearchParams)
@@ -265,6 +269,14 @@ interface ViewModeToggleProps {
 	onViewChange: (view: ViewMode) => void
 }
 
+/**
+ * Renders toggle buttons for switching between grid and list view modes.
+ *
+ * Highlights the active view mode and calls the provided callback when a mode is selected.
+ *
+ * @param currentView - The currently selected view mode ("grid" or "list").
+ * @param onViewChange - Callback invoked with the new view mode when a toggle button is clicked.
+ */
 function ViewModeToggle({ currentView, onViewChange }: ViewModeToggleProps) {
 	return (
 		<div className="flex bg-muted rounded-lg p-1">
@@ -299,6 +311,12 @@ interface FilterChipProps {
 	onRemove?: () => void
 }
 
+/**
+ * Displays a filter label as a chip, optionally with a button to remove the filter.
+ *
+ * @param label - The text to display inside the chip
+ * @param onRemove - Optional callback invoked when the remove button is clicked
+ */
 function FilterChip({ label, onRemove }: FilterChipProps) {
 	return (
 		<div className="inline-flex items-center gap-1 bg-primary/10 text-primary rounded-md px-2 py-1 text-xs">
@@ -327,6 +345,13 @@ interface SearchStatsProps {
 	className?: string
 }
 
+/**
+ * Displays the total number of search results, optionally highlighting the current search term.
+ *
+ * @param total - The total number of results to display.
+ * @param searchTerm - The search term used, if any.
+ * @param className - Optional additional CSS classes for styling.
+ */
 export function SearchStats({
 	total,
 	searchTerm,

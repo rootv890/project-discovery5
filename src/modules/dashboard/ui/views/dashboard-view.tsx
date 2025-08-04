@@ -40,7 +40,11 @@ import { getDefaultParams, hasActiveFilters } from "../../utils"
 
 // =============================================================================
 // MAIN DASHBOARD COMPONENT
-// =============================================================================
+/**
+ * Displays the main dashboard view for browsing, searching, filtering, and sorting a collection of development tools.
+ *
+ * Synchronizes state with URL parameters, fetches tools data with pagination and metadata, and renders appropriate UI components for loading, error, empty, and populated states. Includes real-time statistics, search and filter bars, sorting controls, and pagination.
+ */
 
 export default function DashboardPageView() {
 	// URL state management

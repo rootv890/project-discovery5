@@ -86,7 +86,14 @@ const PRICING_OPTIONS = [
 
 // =============================================================================
 // MAIN COMPONENT
-// =============================================================================
+/**
+ * Renders a modal dialog for advanced filtering of dashboard tools, allowing users to refine search results by status, pricing, categories, platforms, tags, and additional options.
+ *
+ * The dialog displays filter controls with immediate application of changes, shows the count of active filters, and provides options to clear all filters or apply them and close the dialog.
+ *
+ * @param open - Whether the dialog is visible
+ * @param onOpenChange - Callback invoked when the dialog's open state changes
+ */
 
 export function AdvancedFiltersDialog({
 	open,

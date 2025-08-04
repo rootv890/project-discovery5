@@ -15,28 +15,13 @@
 import { useEffect, useState } from "react"
 
 /**
- * useDebounce - Performance Hook for Delayed Value Updates
+ * Returns a debounced version of the input value that updates only after the specified delay.
  *
- * This hook debounces rapidly changing values to prevent excessive
- * API calls or expensive operations. Commonly used for search inputs
- * where you want to wait until the user stops typing.
+ * Useful for reducing unnecessary updates or API calls when the input value changes rapidly, such as during user typing.
  *
  * @param value - The value to debounce
- * @param delay - Delay in milliseconds (default: 300ms)
- * @returns The debounced value
- *
- * @example
- * ```typescript
- * const [searchTerm, setSearchTerm] = useState("")
- * const debouncedSearchTerm = useDebounce(searchTerm, 300)
- *
- * useEffect(() => {
- *   // This will only run 300ms after the user stops typing
- *   if (debouncedSearchTerm) {
- *     searchAPI(debouncedSearchTerm)
- *   }
- * }, [debouncedSearchTerm])
- * ```
+ * @param delay - The debounce delay in milliseconds (default: 300)
+ * @returns The debounced value, updated after the delay when the input value remains unchanged
  */
 export function useDebounce<T>(value: T, delay: number = 300): T {
 	const [debouncedValue, setDebouncedValue] = useState<T>(value)

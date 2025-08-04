@@ -31,16 +31,12 @@ interface CategorySkeletonProps {
 // =============================================================================
 
 /**
- * CategorySkeleton - Professional Loading State Component
+ * Renders a loading skeleton UI for category listings, adapting the layout to match the specified view mode.
  *
- * This component provides sophisticated loading states that match the actual
- * content layout. Features include:
+ * Displays placeholder elements that visually resemble the actual category content in grid, list, or compact views. Includes accessible ARIA attributes and screen reader text to indicate loading state.
  *
- * - **View Mode Matching**: Skeletons adapt to current view mode
- * - **Realistic Proportions**: Matches actual content dimensions
- * - **Smooth Animations**: Subtle pulse effects for better UX
- * - **Accessibility**: Proper ARIA labels for screen readers
- * - **Performance**: Lightweight CSS animations only
+ * @param viewMode - The layout mode for the skeleton ("grid", "list", or "compact")
+ * @param count - Optional number of skeleton items to display (defaults to 6)
  */
 export function CategorySkeleton({
 	viewMode,

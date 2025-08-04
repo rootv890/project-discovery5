@@ -38,17 +38,13 @@ interface PaginationProps {
 // =============================================================================
 
 /**
- * Pagination - Professional URL-Synchronized Navigation Component
+ * Renders a responsive, accessible pagination control synchronized with URL query parameters.
  *
- * This component provides comprehensive pagination controls that sync with
- * URL parameters, enabling shareable, bookmarkable page states. Features:
+ * Displays page navigation buttons with smart ellipsis for large page ranges, updates the URL on page changes, and adapts its layout for mobile and desktop. Disables navigation at boundaries and provides ARIA support for screen readers. Returns null if only one page is present.
  *
- * - **URL Synchronization**: All page changes update the URL immediately
- * - **Smart Navigation**: Efficient page jumping with ellipsis for large ranges
- * - **Keyboard Support**: Arrow keys and Enter for navigation
- * - **Mobile Responsive**: Adaptive controls for different screen sizes
- * - **Accessibility**: Full ARIA support and screen reader compatibility
- * - **Edge Case Handling**: Proper bounds checking and disabled states
+ * @param total - Optional total number of items to paginate
+ * @param totalPages - Optional total number of pages; overrides calculation from `total`
+ * @returns The pagination navigation element, or null if pagination is unnecessary
  */
 export function Pagination({
 	total,

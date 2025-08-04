@@ -39,7 +39,14 @@ interface QuickFilterBarProps {
 
 // =============================================================================
 // MAIN COMPONENT
-// =============================================================================
+/**
+ * Renders a quick filter bar for dashboard tools, allowing users to filter by top categories, pricing options, and featured status.
+ *
+ * Displays the five most popular categories, pricing filters ("Free", "Freemium"), a featured toggle, and a clear filters button. Filter state is synchronized with URL query parameters.
+ *
+ * @param className - Optional CSS class for custom styling
+ * @returns The rendered quick filter bar component
+ */
 
 export function QuickFilterBar({ className }: QuickFilterBarProps) {
 	const [params, setParams] = useQueryStates(dashboardToolsSearchParams)

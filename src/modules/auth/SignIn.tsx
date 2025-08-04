@@ -23,6 +23,13 @@ const authColorPalettes = {
 	professional: ["#4F46E5", "#7C3AED", "#DB2777"], // Indigo to Purple to Pink
 }
 
+/**
+ * Renders a visually rich, animated sign-in page with Google authentication and professional-themed backgrounds.
+ *
+ * The component features dynamic color palettes, animated mesh gradients, floating orbs, and a branded card interface. Users can sign in with Google, with loading state feedback provided during authentication.
+ *
+ * @returns The sign-in page React element
+ */
 export default function SignIn() {
 	const [loading, setLoading] = useState(false)
 	const [colors, setColors] = useState(authColorPalettes.professional)

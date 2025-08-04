@@ -43,17 +43,17 @@ interface ErrorStateProps {
 // =============================================================================
 
 /**
- * ErrorState - Professional Error Handling Component
+ * Displays a user-friendly error state with messaging, recovery actions, and optional technical details.
  *
- * This component provides users with clear error communication while
- * maintaining a professional appearance and offering recovery paths.
- * Features include:
+ * Renders a prominent error icon, error title, and description. Optionally shows collapsible technical error details for developers, a primary recovery action button, a "Go Home" button, and support contact guidance. Includes accessibility features for screen readers.
  *
- * - **User-Friendly Messaging**: Clear, non-technical error explanations
- * - **Recovery Actions**: Helpful buttons to resolve or work around errors
- * - **Technical Details**: Collapsible technical info for developers
- * - **Accessibility**: Proper error announcements and semantic structure
- * - **Logging**: Automatic error logging for debugging
+ * @param title - The main error heading shown to the user.
+ * @param description - A user-friendly explanation of the error.
+ * @param error - Optional technical error details, shown only if enabled.
+ * @param action - Optional configuration for a primary recovery action button.
+ * @param showTechnicalDetails - Whether to display technical error details; defaults to true in development environments.
+ *
+ * @returns The rendered error state UI.
  */
 export function ErrorState({
 	title,

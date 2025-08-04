@@ -20,7 +20,14 @@ import { ToolsEmptyStateProps, ToolsErrorProps } from "../types"
 
 // =============================================================================
 // ERROR COMPONENT
-// =============================================================================
+/**
+ * Displays an error state for failed tool data loading, with an option to retry.
+ *
+ * Shows an error icon, a descriptive message about possible network or server issues, and a "Try Again" button that triggers the provided retry callback. In development mode, reveals detailed error information for debugging.
+ *
+ * @param error - The error object containing details about the failure
+ * @param onRetry - Callback invoked when the user clicks the retry button
+ */
 
 export function ToolsError({ error, onRetry }: ToolsErrorProps) {
 	return (
@@ -58,7 +65,14 @@ export function ToolsError({ error, onRetry }: ToolsErrorProps) {
 
 // =============================================================================
 // EMPTY STATE COMPONENT
-// =============================================================================
+/**
+ * Displays an empty state message when no tools are available or when filters yield no results.
+ *
+ * Shows a contextual heading and message based on whether filters are applied, and provides a "Clear All Filters" button if applicable.
+ *
+ * @param hasFilters - Indicates if any filters are currently applied
+ * @param onClearFilters - Callback invoked when the user chooses to clear all filters
+ */
 
 export function ToolsEmptyState({
 	hasFilters,
@@ -92,7 +106,11 @@ export function ToolsEmptyState({
 
 // =============================================================================
 // NETWORK ERROR COMPONENT
-// =============================================================================
+/**
+ * Displays a network connection error state with a retry option.
+ *
+ * Renders an alert icon, a message indicating a connection problem, and a "Retry Connection" button that invokes the provided callback.
+ */
 
 export function NetworkError({ onRetry }: { onRetry: () => void }) {
 	return (
@@ -118,7 +136,11 @@ export function NetworkError({ onRetry }: { onRetry: () => void }) {
 
 // =============================================================================
 // TIMEOUT ERROR COMPONENT
-// =============================================================================
+/**
+ * Displays a user-friendly error state for request timeouts with an option to retry the operation.
+ *
+ * Renders a warning icon, a descriptive message about the timeout, and a "Try Again" button that triggers the provided retry callback.
+ */
 
 export function TimeoutError({ onRetry }: { onRetry: () => void }) {
 	return (

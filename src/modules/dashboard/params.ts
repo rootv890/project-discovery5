@@ -193,8 +193,10 @@ export const dashboardToolsSearchParamsCache = createSearchParamsCache(
 // =============================================================================
 
 /**
- * Extract TRPC query parameters from search params
- * Converts URL state to API-compatible format
+ * Converts dashboard search parameters into a TRPC API input object, applying defaults and omitting filters set to "all" or empty.
+ *
+ * @param searchParams - Partial set of dashboard search parameters from the URL
+ * @returns An object formatted for TRPC API queries, with defaults applied and irrelevant filters omitted
  */
 export function searchParamsToTRPCInput(
 	searchParams: Partial<Record<keyof DashboardToolsSearchParamsType, any>>
@@ -218,8 +220,12 @@ export function searchParamsToTRPCInput(
 }
 
 /**
- * Build filter summary for display
- * Returns human-readable active filters count and labels
+ * Generates a summary of active dashboard tool filters based on the provided search parameters.
+ *
+ * Constructs an array of human-readable labels for each active filter (such as search query, status, pricing, selected categories, platforms, tags, featured, and image presence) and returns the total count of active filters along with their labels.
+ *
+ * @param searchParams - Partial set of dashboard tools search parameters to summarize
+ * @returns An object containing the count of active filters and an array of descriptive labels
  */
 export function buildFilterSummary(
 	searchParams: Partial<Record<keyof DashboardToolsSearchParamsType, any>>

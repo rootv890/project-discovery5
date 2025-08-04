@@ -43,6 +43,11 @@ const getGridCols = (cols: ResponsiveGridProps["cols"] = {}) => {
 	)
 }
 
+/**
+ * Renders a responsive container that arranges its children in a grid, masonry, or flex layout with configurable columns, gaps, and aspect ratios.
+ *
+ * Selects the layout variant based on the `variant` prop, supporting CSS grid with responsive columns, masonry columns, or flexbox wrapping. Applies gap and aspect ratio styles as specified.
+ */
 export function ResponsiveGrid({
 	children,
 	className,
@@ -113,6 +118,16 @@ interface ProductGridProps
 	preferredGap?: number
 }
 
+/**
+ * Renders a responsive grid optimized for product cards, dynamically adjusting the number of columns based on container width, card type, and card size constraints.
+ *
+ * The grid ensures cards remain within specified minimum and maximum widths, applies a preferred gap between items, and adapts column count responsively as the container resizes. Supports "horizontal", "vertical", and "mixed" card layouts with sensible defaults for card sizing.
+ *
+ * @param cardType - The layout style of product cards ("horizontal", "vertical", or "mixed")
+ * @param minCardWidth - The minimum width for each card in pixels
+ * @param maxCardWidth - The maximum width for each card in pixels
+ * @param preferredGap - The preferred gap size between cards in pixels
+ */
 export function ProductGrid({
 	children,
 	className,
@@ -228,7 +243,12 @@ export function ProductGrid({
 	)
 }
 
-// Container with built-in padding and max-width
+/**
+ * Renders a container div with configurable max-width and horizontal padding.
+ *
+ * @param maxWidth - The maximum width of the container, corresponding to preset size options or full width.
+ * @param padding - The horizontal padding applied to the container, with responsive and fixed size options.
+ */
 export function ResponsiveContainer({
 	children,
 	className,

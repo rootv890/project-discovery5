@@ -44,16 +44,9 @@ import { useQueryStates } from "nuqs"
 // =============================================================================
 
 /**
- * SortControls - Professional URL-Synchronized Sorting Interface
+ * Renders sorting controls for categories with real-time URL synchronization and accessibility support.
  *
- * This component provides users with intuitive sorting controls that
- * immediately sync with URL parameters. Features include:
- *
- * - Smart field-specific default directions (e.g., name→asc, date→desc)
- * - Visual feedback for current sort state
- * - One-click direction toggle for same field
- * - Automatic pagination reset when sorting changes
- * - Keyboard navigation support
+ * Provides a dropdown to select the sort field and a button to toggle sort direction, both of which update URL query parameters and reset pagination. The component applies intelligent default sort directions per field and includes accessible labels and visual indicators for the current sort state.
  */
 export function SortControls() {
 	const [{ sortBy, sortDirection }, setParams] =

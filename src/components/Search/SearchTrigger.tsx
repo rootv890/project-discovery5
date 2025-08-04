@@ -13,6 +13,16 @@ interface SearchTriggerProps {
 	variant?: "full" | "compact" | "icon-only"
 }
 
+/**
+ * Renders a customizable search trigger component with animated visual variants and opens a search dialog on interaction.
+ *
+ * Displays one of three interactive UI variants ("full", "compact", or "icon-only") based on the `variant` prop. Handles hover and click events to animate the trigger and open a search dialog. The displayed keyboard shortcut adapts to the user's platform. Optionally accepts a placeholder for the search dialog and a callback for handling search queries.
+ *
+ * @param className - Additional CSS classes for custom styling.
+ * @param placeholder - Placeholder text for the search input dialog.
+ * @param onSearch - Callback invoked with the search query when a search is performed.
+ * @param variant - Visual style of the trigger; "full", "compact", or "icon-only". Defaults to "full".
+ */
 export default function SearchTrigger({
 	className,
 	placeholder,

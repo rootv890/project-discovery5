@@ -11,6 +11,14 @@ interface UseSearchReturn {
 	handleSearch: (searchQuery: string) => void
 }
 
+/**
+ * React hook for managing search state, including the search query and whether a search is active.
+ *
+ * Provides methods to update the query, toggle the searching state, clear the search, and handle search input changes. Optionally invokes a callback when a search is performed.
+ *
+ * @param onSearch - Optional callback invoked with the search query whenever a search is performed
+ * @returns An object containing the current query, searching state, and functions to manage search behavior
+ */
 export function useSearch(onSearch?: (query: string) => void): UseSearchReturn {
 	const [query, setQuery] = useState("")
 	const [isSearching, setIsSearching] = useState(false)

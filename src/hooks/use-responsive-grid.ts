@@ -17,6 +17,18 @@ interface ResponsiveGridResult {
 	containerRef: React.RefObject<HTMLDivElement>
 }
 
+/**
+ * React hook that computes and manages a responsive grid layout based on the container's width and card type constraints.
+ *
+ * Dynamically determines the optimal number of columns, gap size, and card width for a grid, adapting to container resizing and card type ("horizontal", "vertical", or "mixed"). Returns the current layout parameters and a ref to attach to the grid container element.
+ *
+ * @param cardType - The layout style of the cards: "horizontal", "vertical", or "mixed"
+ * @param minCardWidth - The minimum width allowed for each card
+ * @param maxCardWidth - The maximum width allowed for each card (optional)
+ * @param preferredGap - The preferred gap between cards in pixels (optional, defaults to 16)
+ * @param maxGap - The maximum gap allowed between cards in pixels (optional, defaults to 24)
+ * @returns An object containing the current number of columns, gap size, card width, and a ref for the grid container
+ */
 export function useResponsiveGrid({
 	cardType,
 	minCardWidth,

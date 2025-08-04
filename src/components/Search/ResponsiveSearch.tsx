@@ -12,6 +12,15 @@ interface ResponsiveSearchProps {
 	onSearch?: (query: string) => void
 }
 
+/**
+ * Renders a responsive search component with triggers for both desktop and mobile views and a dialog for entering search queries.
+ *
+ * Displays a full search bar on medium and larger screens and a compact search button on smaller screens. When triggered, a search dialog appears, allowing users to input queries. An optional callback is invoked when a search is performed.
+ *
+ * @param className - Additional CSS classes to apply to the search triggers
+ * @param placeholder - Placeholder text for the search input field in the dialog
+ * @param onSearch - Callback function called with the search query when a search is submitted
+ */
 export default function ResponsiveSearch({
 	className,
 	placeholder,

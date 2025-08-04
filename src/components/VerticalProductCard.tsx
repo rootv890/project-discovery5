@@ -17,6 +17,23 @@ import {
 import { cn } from "@/lib/utils"
 import { ProductCardProps } from "../../types/type"
 
+/**
+ * Displays a vertically oriented product card with an image, title, description, and action buttons.
+ *
+ * Renders a product card featuring a hero image, product title, interactive like and view buttons, a truncated description with tooltip, and footer buttons for additional information and visiting an external site. Buttons are disabled if their corresponding URLs are not provided.
+ *
+ * @param imageSrc - The source URL for the product image.
+ * @param imageAlt - Alternative text for the product image. Defaults to "Product image".
+ * @param title - The main title of the product.
+ * @param subtitle - An optional subtitle for the product.
+ * @param description - A brief description of the product. If absent, a fallback message is shown.
+ * @param visitUrl - URL to visit the product's external site. Disables the button if not provided.
+ * @param moreInfoUrl - URL for more information about the product. Disables the button if not provided.
+ * @param className - Additional CSS classes for custom styling.
+ * @param variant - Visual variant of the card. Defaults to "filled".
+ *
+ * @returns A React element representing the vertical product card.
+ */
 export function VerticalProductCard({
 	imageSrc,
 	imageAlt = "Product image",
