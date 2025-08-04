@@ -1,11 +1,12 @@
+import { cn } from "@/lib/utils"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import * as React from "react"
-import { cn } from "@/lib/utils"
 
 const radiusBySize: Record<string, string> = {
 	xs: "rounded-[0.75rem]",
 	sm: "rounded-[0.75rem]",
+	default: "rounded-[0.75rem]",
 	md: "rounded-[1rem]",
 	lg: "rounded-[1.75rem]",
 	xl: "rounded-[1.75rem]",
@@ -27,15 +28,18 @@ const buttonVariants = cva(
 				tonal:
 					"bg-secondary-container text-on-secondary-container shadow-xs hover:bg-secondary-container/80 active:bg-secondary-container/90",
 				outline:
-					"border border-outline text-on-surface-variant bg-transparent hover:bg-surface-bright",
+					" border-outline/50 border-2 text-on-surface-variant bg-transparent hover:bg-surface-bright",
 				destructive:
 					"bg-tertiary-container text-on-tertiary-container shadow-xs hover:bg-tertiary-container/80",
 				ghost: "bg-transparent text-on-surface hover:bg-surface-variant",
 				link: "bg-transparent text-primary underline-offset-4 hover:underline",
+				default:
+					/* bascially filled */ "bg-primary  text-on-primary shadow-xs hover:bg-primary/80 active:bg-primary/90",
 			},
 			size: {
-				xs: "h-[32px] py-[0.375rem] px-[0.75rem] text-xs gap-1",
-				sm: "h-[48px] py-[0.625rem] px-[1rem]   text-sm gap-2",
+				xs: "h-[32px] py-[0.625rem] px-[1rem] label-lg gap-1",
+				sm: " py-[0.625rem] !font-semibold px-[1rem]   text-sm gap-2",
+				default: "h-[56px] py-[1rem]     px-[1.5rem] text-base gap-2",
 				md: "h-[56px] py-[1rem]     px-[1.5rem] text-base gap-2",
 				lg: "h-[96px] py-[2rem]     px-[3rem]   text-lg gap-3",
 				xl: "h-[136px] py-[3rem]    px-[4rem]   text-xl gap-4",

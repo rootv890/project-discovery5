@@ -1,6 +1,6 @@
-import * as React from "react"
 import { cn } from "@/lib/utils"
 import { cva } from "class-variance-authority"
+import * as React from "react"
 
 type CardProps = React.ComponentProps<"div"> & {
 	variant?: "elevated" | "filled" | "outlined"
@@ -50,7 +50,10 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
 	return (
 		<div
 			data-slot="card-title"
-			className={cn("text-title-md  font-medium text-on-surface", className)}
+			className={cn(
+				"text-var(--ts-body-sm)  font-medium text-on-surface",
+				className
+			)}
 			{...props}
 		/>
 	)
@@ -60,7 +63,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
 	return (
 		<div
 			data-slot="card-description"
-			className={cn("text-body-md text-on-surface-variant", className)}
+			className={cn("text-body-md   text-on-surface-variant", className)}
 			{...props}
 		/>
 	)
@@ -101,10 +104,10 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
 
 export {
 	Card,
-	CardHeader,
-	CardFooter,
-	CardTitle,
 	CardAction,
-	CardDescription,
 	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
 }

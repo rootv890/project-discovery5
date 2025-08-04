@@ -1,10 +1,12 @@
 "use client"
 
-import { Command } from "cmdk"
-import { useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
-import { AnimatePresence, motion } from "motion/react"
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
+import { Command } from "cmdk"
 import { SearchIcon } from "lucide-react"
+import { AnimatePresence, motion } from "motion/react"
+import { useEffect, useRef } from "react"
+import { DialogTitle } from "./ui/dialog"
 
 const SearchIsland = ({
 	open,
@@ -43,13 +45,12 @@ const SearchIsland = ({
 					onOpenChange={setOpen}
 					className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-20 bg-transparent"
 				>
-					{/* The h2 is now a direct child and correctly associated as the title */}
-					<h2
-						className="sr-only"
-						id="search-dialog-title"
-					>
-						Search for apps, collections, and commands
-					</h2>
+					<VisuallyHidden>
+						<DialogTitle>
+							Search for apps, collections, and commands
+						</DialogTitle>
+					</VisuallyHidden>
+
 					<motion.div
 						ref={containerRef}
 						tabIndex={-1}

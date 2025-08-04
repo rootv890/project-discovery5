@@ -1,0 +1,192 @@
+"use client"
+
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
+import {
+	Sidebar,
+	SidebarContent,
+	SidebarGroup,
+	SidebarGroupContent,
+	SidebarGroupLabel,
+	SidebarHeader,
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	useSidebar,
+} from "@/components/ui/sidebar"
+import { cn } from "@/lib/utils"
+import { useTRPC } from "@/trpc/client"
+import { useSuspenseQuery } from "@tanstack/react-query"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { ReactNode } from "react"
+import { useMediaQuery } from "react-responsive"
+import { getManyForSidebarType } from "../types"
+
+// ============================================================================
+// TYPES
+// ============================================================================
+type CategoriesSidebarProps = {
+	name?: string
+	categories: getManyForSidebarType["items"]
+	personalCollections?: getManyForSidebarType["items"]
+	relatedPlatforms?: getManyForSidebarType["items"]
+	className?: string
+	children?: ReactNode
+}
+// Render sidebar items
+const renderSidebarItems = (
+	categories: getManyForSidebarType["items"] = [],
+	isActive: (id: string) => boolean = () => false
+) => (
+	<SidebarMenu>
+		{categories.map((item) => (
+			<SidebarMenuItem key={item.id}>
+				<SidebarMenuButton
+					className={cn(
+						"py-6 px-4 rounded-2xl hover:bg-secondary-container ",
+						isActive(item.id) && "bg-secondary-container"
+					)}
+					asChild
+				>
+					<Link
+						href={`/c/${item.id}`}
+						className="group/item w-full"
+					>
+						<div className="flex w-full justify-between items-center">
+							<div className="flex items-center gap-2 group-hover/item:[&>svg]:fill-primary">
+								{item.iconSvg && (
+									<span
+										dangerouslySetInnerHTML={{
+											__html: item.iconSvg,
+										}}
+									/>
+								)}
+								<span>{item.name}</span>
+							</div>
+							{item.toolCount && (
+								<Badge
+									className={cn(
+										"text-on-surface-variant bg-surface hidden hover:block",
+										isActive(item.id) && "flex"
+									)}
+								>
+									{item.toolCount}
+								</Badge>
+							)}
+						</div>
+					</Link>
+				</SidebarMenuButton>
+			</SidebarMenuItem>
+		))}
+	</SidebarMenu>
+)
+
+export const CategoriesSidebar = ({
+	name: title = "Categories",
+	categories: platformCategories,
+	personalCollections,
+	relatedPlatforms,
+	className,
+}: CategoriesSidebarProps) => {
+	const { state } = useSidebar()
+	const isCollapsed = state === "collapsed"
+	const pathname = usePathname()
+
+	return (
+		<div
+			className={cn(
+				"z-50 pb-12",
+				!isCollapsed && "sticky top-4 left-0",
+				className
+			)}
+		>
+			<Sidebar
+				variant="sidebar"
+				className="bg-transparent px-4 h-[calc(100vh-42px)] flex-1 gap-0"
+			>
+				<SidebarContent className="border-none bg-surface-container border-r-0 rounded-3xl overflow-y-auto h-full scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent">
+					<Link
+						href="/"
+						className="flex items-center gap-2"
+					>
+						<SidebarHeader className="pl-4 pt-4">
+							<span className="text-lg font-bold text-on-primary-container">
+								{title}
+							</span>
+						</SidebarHeader>
+					</Link>
+
+					<SidebarGroup>
+						<SidebarGroupContent>
+							{renderSidebarItems(platformCategories, (id) => {
+								return pathname.includes(id)
+							})}
+						</SidebarGroupContent>
+					</SidebarGroup>
+
+					{personalCollections && personalCollections.length > 0 && (
+						<>
+							<Separator className="bg-outline-variant !h-[2px] rounded-full !w-3/4 mx-auto" />
+							<SidebarGroup>
+								<SidebarGroupLabel>My Collections</SidebarGroupLabel>
+								<SidebarGroupContent>
+									{renderSidebarItems(personalCollections, (id) => {
+										return pathname.includes(id)
+									})}
+								</SidebarGroupContent>
+							</SidebarGroup>
+						</>
+					)}
+
+					{relatedPlatforms && relatedPlatforms.length > 0 && (
+						<>
+							<Separator className="bg-outline-variant !h-[2px] rounded-full !w-3/4 mx-auto" />
+							<SidebarGroup>
+								<SidebarGroupLabel>Related Platforms</SidebarGroupLabel>
+								<SidebarGroupContent>
+									{renderSidebarItems(relatedPlatforms, (id) => {
+										return pathname.includes(id)
+									})}
+								</SidebarGroupContent>
+							</SidebarGroup>
+						</>
+					)}
+				</SidebarContent>
+			</Sidebar>
+		</div>
+	)
+}
+
+// ============================================================================
+// DATA WRAPPER COMPONENT
+// ============================================================================
+const CategoriesSidebarWrapper = () => {
+	const trpc = useTRPC()
+	const { data: categories } = useSuspenseQuery(
+		trpc.categories.getCategoriesForSidebar.queryOptions()
+	)
+
+	console.log("CategoriesSidebarWrapper categories:", categories.items.length)
+
+	const isMobile = useMediaQuery({
+		maxWidth: 768,
+	})
+
+	return (
+		<div
+			className={cn(
+				"bg-surface z-50 pb-4 rounded-3xl",
+				!isMobile && "sticky top-0 left-0"
+			)}
+		>
+			<CategoriesSidebar
+				categories={categories.items}
+				personalCollections={categories.items}
+				relatedPlatforms={categories.items}
+			/>
+		</div>
+	)
+}
+
+export default CategoriesSidebarWrapper

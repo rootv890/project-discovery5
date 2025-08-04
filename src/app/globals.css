@@ -22,10 +22,13 @@
 @import "./_styles/typography.css";
 @import "./_styles/color.css";
 @import "./_styles/variables.css";
+@import "./_styles/shapes.css";
 @import "./_styles/material-design.css";
 @custom-variant dark (&:is(.dark *));
 
 @plugin "tailwind-scrollbar";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
 	* {
@@ -36,28 +39,6 @@
 		@apply bg-background text-on-background;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-	}
-}
-
-/* Animations */
-@keyframes wave {
-	0% {
-		transform: translateX(-100%);
-	}
-	100% {
-		transform: translateX(100%);
-	}
-}
-
-@keyframes waveMorph {
-	0% {
-		d: path("M0 30 Q 25 50 50 30 T 100 30 V100 H0 Z");
-	}
-	50% {
-		d: path("M0 30 Q 25 10 50 30 T 100 30 V100 H0 Z");
-	}
-	100% {
-		d: path("M0 30 Q 25 50 50 30 T 100 30 V100 H0 Z");
 	}
 }
 
@@ -92,4 +73,188 @@
 		padding-left: 0;
 		padding-right: 0;
 	}
+}
+/*
+* {
+	border: 1px solid red;
+} */
+
+.grain-overlay::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'><filter id='noise'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/></filter><rect fill='black' width='100%' height='100%' filter='url(%23noise)'/></svg>");
+	opacity: 0.08;
+	pointer-events: none;
+	z-index: 0;
+	mix-blend-mode: soft-light;
+}
+
+.displacement-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	filter: url(#displacementFilter);
+	pointer-events: none;
+	z-index: 0;
+}
+
+@utility flex-center {
+	@apply items-center justify-center;
+}
+
+@utility flex-c-c {
+	@apply flex items-center justify-center;
+}
+
+@utility flex-s-c {
+	@apply flex items-start justify-center;
+}
+
+@utility flex-e-c {
+	@apply flex items-end justify-center;
+}
+
+@utility flex-c-s {
+	@apply flex items-center justify-start;
+}
+
+@utility flex-c-e {
+	@apply flex items-center justify-end;
+}
+
+@utility flex-s-s {
+	@apply flex items-start justify-start;
+}
+
+@utility flex-e-e {
+	@apply flex items-end justify-end;
+}
+
+@utility flex-c-b {
+	@apply flex items-center justify-between;
+}
+
+@utility flex-c-a {
+	@apply flex items-center justify-around;
+}
+
+@utility flex-c {
+	@apply flex items-center;
+}
+
+@utility flex-jc {
+	@apply flex justify-center;
+}
+
+/* Flex column versions */
+@utility flex-col-c-c {
+	@apply flex flex-col items-center justify-center;
+}
+
+@utility flex-col-s-c {
+	@apply flex flex-col items-start justify-center;
+}
+@utility flex-col-s-b {
+	@apply flex flex-col items-start justify-between;
+}
+
+@utility flex-col-c-s {
+	@apply flex flex-col items-center justify-start;
+}
+
+@utility flex-col-c-b {
+	@apply flex flex-col items-center justify-between;
+}
+
+.glass {
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+}
+
+.glass-shadow {
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================================
+ * ENHANCED SKELETON ANIMATIONS
+ * ============================================================================ */
+@keyframes shimmer {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes rotateMask {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.mask-flower {
+	mask-image: url("/shapes/4-leaf-clover.svg");
+	mask-size: cover;
+	-webkit-mask-image: url("/shapes/4-leaf-clover.svg");
+	-webkit-mask-size: cover;
+	mask-repeat: no-repeat;
+	transition: transform 0.3s ease-out;
+}
+
+.mask-flower:hover {
+	transform: rotate(15deg);
 }

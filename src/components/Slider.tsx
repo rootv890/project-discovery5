@@ -19,7 +19,7 @@ type MdSliderProps = React.HTMLAttributes<HTMLElement> & {
 
 const Slider2 = (props: MdSliderProps) => {
 	return (
-		// @ts-ignore: md-slider is a custom element
+		// @ts-expect-error: Custom Web component
 		<md-slider
 			style={{
 				"--md-slider-active-track-height": props.height || "6px",

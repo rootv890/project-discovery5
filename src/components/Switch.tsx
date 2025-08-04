@@ -62,7 +62,7 @@ const Switch = ({
 		: {}
 
 	return (
-		// @ts-ignore
+		// @ts-expect-error: Custom Web component
 		<md-switch
 			icons={icons}
 			selected={selected}
